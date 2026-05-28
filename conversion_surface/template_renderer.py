@@ -105,24 +105,46 @@ def render_js() -> str:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# Image helpers — Amazon CDN (no domain registration required)
+# Image helpers — Amazon CDN HD images (I/ format, not P/ which returns 160x160)
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def _amazon_image_url(asin: str, size: str = "SL400") -> str:
+# Verified HD image IDs scraped from Amazon product pages (2026-05-28)
+_HD_IMAGE_IDS: dict[str, list[str]] = {
+    "B0BDHWDR12": ["21ttIrgHhTL", "31TmzlrWV2L", "21On7xikgOL"],
+    "B08KTZ8249": ["41uqWaJH1aL", "415YFn0VOzL", "61w6XlassQL"],
+    "B09XS7JWHH": ["31BXEEUVfFL", "41JkueTBELL", "41WAozqLfiL"],
+    "B09B8V1LZ3": ["31vkCUuIWCL", "315PBUzfZiL", "41NkdsdZ3OL"],
+    "B00TTD9BRC": ["41ba2zJNMXL", "41itoI7tueL", "51Sb3T4JXGL"],
+    "B085DTZQNZ": ["718RbhzhVbL", "31iIKOIm46L", "41YVoy+qyXL"],
+    "B00FLYWNYQ": ["71Z401LjFFL", "41OFXY6pMRL", "511i62OkshL"],
+    "B07FDJMC9Q": ["71+8uTMDRFL", "31MBSKiZOPL", "410LYwPnZLL"],
+    "B0DGJ4QQ5W": ["21DcbviXOxL", "11RrezJCPgL", "11ZDMqH9n7L"],
+}
+
+
+def _hd_image_url(image_id: str) -> str:
+    return f"https://m.media-amazon.com/images/I/{image_id}._AC_SL1500_.jpg"
+
+
+def _amazon_image_url(asin: str) -> str:
     if not asin:
         return ""
-    return f"https://m.media-amazon.com/images/P/{asin}.01._{size}_.jpg"
+    ids = _HD_IMAGE_IDS.get(asin)
+    if ids:
+        return _hd_image_url(ids[0])
+    # Fallback for unknown ASINs (160x160 but better than nothing)
+    return f"https://m.media-amazon.com/images/P/{asin}.01._SL1500_.jpg"
 
 
 def _build_carousel_image_urls(asin: str, primary_url: str) -> list:
-    """Up to 3 Amazon CDN image variants (.01 / .02 / .03)."""
+    """Up to 3 HD Amazon images. Uses verified I/ image IDs when available."""
     if not asin:
         return [primary_url] if primary_url else []
-    return [
-        f"https://m.media-amazon.com/images/P/{asin}.01._SL400_.jpg",
-        f"https://m.media-amazon.com/images/P/{asin}.02._SL400_.jpg",
-        f"https://m.media-amazon.com/images/P/{asin}.03._SL400_.jpg",
-    ]
+    ids = _HD_IMAGE_IDS.get(asin)
+    if ids:
+        return [_hd_image_url(img_id) for img_id in ids[:3]]
+    # Fallback: use primary_url only (P/ format variants are all 160x160)
+    return [primary_url] if primary_url else []
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -605,9 +627,9 @@ _SHELL_BODY = """
       </button>
 
       <!-- Hero image -->
-      <div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex items-center justify-center aspect-square md:aspect-video">
+      <div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex items-center justify-center aspect-square md:aspect-[4/3]">
         <img id="detail-image" src="" alt=""
-             class="object-contain w-full h-full max-h-[420px] p-6 transition-opacity duration-300">
+             class="object-contain w-full h-full p-6 transition-opacity duration-300">
       </div>
 
       <!-- Carousel strip (for carousel/video products) -->
@@ -1201,7 +1223,7 @@ function _renderDetail(p) {
       carousel.classList.remove('hidden');
       carousel.innerHTML = urls.map(function(u, i) {
         return '<img src="' + _escAttr(u) + '" alt="' + _escHtml(p.title || '') + ' ' + (i+1) + '" '
-             + 'class="h-16 w-16 object-contain rounded-lg border-2 cursor-pointer flex-shrink-0 snap-center '
+             + 'class="h-20 w-20 object-contain rounded-lg border-2 cursor-pointer flex-shrink-0 snap-center '
              + (i === 0 ? 'border-primary-container' : 'border-outline-variant') + '" '
              + 'onclick="document.getElementById(\'detail-image\').src=this.src;'
              + 'this.parentElement.querySelectorAll(\'img\').forEach(function(x){x.className=x.className.replace(\'border-primary-container\',\'border-outline-variant\');});'

@@ -136,27 +136,46 @@ def _fallback_product(worker_base_url: str) -> SurfaceProduct:
 
 
 def _make_test_hub(worker_base_url: str) -> HubSurface:
-    """Rich test hub with verified ASINs (image + title confirmed)."""
+    """Rich test hub with verified ASINs + HD Amazon image IDs (scraped & confirmed)."""
+
+    # Verified HD image IDs per ASIN (Amazon I/ format, scraped from product pages)
+    _HD_IMAGES: dict[str, list[str]] = {
+        "B0BDHWDR12": ["21ttIrgHhTL", "31TmzlrWV2L", "21On7xikgOL"],
+        "B08KTZ8249": ["41uqWaJH1aL", "415YFn0VOzL", "61w6XlassQL"],
+        "B09XS7JWHH": ["31BXEEUVfFL", "41JkueTBELL", "41WAozqLfiL"],
+        "B09B8V1LZ3": ["31vkCUuIWCL", "315PBUzfZiL", "41NkdsdZ3OL"],
+        "B00TTD9BRC": ["41ba2zJNMXL", "41itoI7tueL", "51Sb3T4JXGL"],
+        "B085DTZQNZ": ["718RbhzhVbL", "31iIKOIm46L", "41YVoy+qyXL"],
+        "B00FLYWNYQ": ["71Z401LjFFL", "41OFXY6pMRL", "511i62OkshL"],
+        "B07FDJMC9Q": ["71+8uTMDRFL", "31MBSKiZOPL", "410LYwPnZLL"],
+        "B0DGJ4QQ5W": ["21DcbviXOxL", "11RrezJCPgL", "11ZDMqH9n7L"],
+    }
+
+    def _hd_url(image_id: str) -> str:
+        return f"https://m.media-amazon.com/images/I/{image_id}._AC_SL1500_.jpg"
+
+    # (asin, name, price, category, section, rating, reviews)
     VERIFIED_PRODUCTS = [
-        # (asin, name, price, category, section, rating, reviews)
         ("B0BDHWDR12", "Apple AirPods Pro (2nd Generation)", 199.99, "electronics", "hero", 4.8, 89432),
-        ("B08KTZ8249", "Kindle Paperwhite (11th Gen) – 6.8 display", 139.99, "electronics", "trending", 4.7, 45231),
+        ("B08KTZ8249", "Kindle Paperwhite (11th Gen) – 6.8\" display", 139.99, "electronics", "trending", 4.7, 45231),
         ("B09XS7JWHH", "Sony WH-1000XM5 Noise Canceling Headphones", 279.99, "electronics", "trending", 4.7, 28654),
         ("B09B8V1LZ3", "Amazon Echo Show 5 (3rd Gen)", 89.99, "electronics", "trending", 4.6, 19823),
         ("B00TTD9BRC", "CeraVe Moisturizing Cream (19 oz)", 16.99, "beauty", "evergreen", 4.8, 156432),
         ("B085DTZQNZ", "Owala FreeSip Insulated Water Bottle (24oz)", 34.99, "home", "evergreen", 4.7, 47821),
         ("B00FLYWNYQ", "Instant Pot Duo 7-in-1 Electric Pressure Cooker (6 Qt)", 99.99, "home", "recent", 4.7, 132456),
-        ("B07XJ8C8F5", "Ninja 4 Qt Air Fryer", 99.99, "home", "recent", 4.7, 31287),
-        ("B09V3KXJPB", "Apple MagSafe Charger (1m Cable)", 38.99, "electronics", "recent", 4.6, 12934),
+        ("B07FDJMC9Q", "Ninja 4 Qt Air Fryer AF101", 99.99, "home", "recent", 4.7, 31287),
+        ("B0DGJ4QQ5W", "Apple MagSafe Charger (1m)", 38.99, "electronics", "recent", 4.6, 12934),
     ]
 
     def _tp(asin, name, price, category, section, rating, reviews):
         aff = f"https://www.amazon.com/dp/{asin}/?tag=aetherglobal-20"
         trk = f"{worker_base_url.rstrip('/')}/go/{asin}?src=hub" if worker_base_url else aff
+        img_ids = _HD_IMAGES.get(asin, [])
+        primary_img = _hd_url(img_ids[0]) if img_ids else ""
         return SurfaceProduct(
             asin=asin, name=name, price=price, category=category,
             affiliate_url=aff, tracking_url=trk,
-            image_url="", final_score=0.8 + rating/10,
+            image_url=primary_img, final_score=0.8 + rating/10,
             section=section, archetype_label=category.title(),
             creative_mode="", evergreen_status="active",
             rating=rating, reviews=reviews,

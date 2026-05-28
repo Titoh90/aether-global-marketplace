@@ -464,7 +464,7 @@ function _renderDetail(p) {
       carousel.classList.remove('hidden');
       carousel.innerHTML = urls.map(function(u, i) {
         return '<img src="' + _escAttr(u) + '" alt="' + _escHtml(p.title || '') + ' ' + (i+1) + '" '
-             + 'class="h-16 w-16 object-contain rounded-lg border-2 cursor-pointer flex-shrink-0 snap-center '
+             + 'class="h-20 w-20 object-contain rounded-lg border-2 cursor-pointer flex-shrink-0 snap-center '
              + (i === 0 ? 'border-primary-container' : 'border-outline-variant') + '" '
              + 'onclick="document.getElementById(\'detail-image\').src=this.src;'
              + 'this.parentElement.querySelectorAll(\'img\').forEach(function(x){x.className=x.className.replace(\'border-primary-container\',\'border-outline-variant\');});'

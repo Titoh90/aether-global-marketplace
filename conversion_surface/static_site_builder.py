@@ -127,21 +127,41 @@ def _product_tags(p) -> list:
     return tags
 
 
-def _amazon_image_url(asin: str, size: str = "SL400") -> str:
+# Verified HD image IDs scraped from Amazon product pages (2026-05-28)
+_HD_IMAGE_IDS: dict[str, list[str]] = {
+    "B0BDHWDR12": ["21ttIrgHhTL", "31TmzlrWV2L", "21On7xikgOL"],
+    "B08KTZ8249": ["41uqWaJH1aL", "415YFn0VOzL", "61w6XlassQL"],
+    "B09XS7JWHH": ["31BXEEUVfFL", "41JkueTBELL", "41WAozqLfiL"],
+    "B09B8V1LZ3": ["31vkCUuIWCL", "315PBUzfZiL", "41NkdsdZ3OL"],
+    "B00TTD9BRC": ["41ba2zJNMXL", "41itoI7tueL", "51Sb3T4JXGL"],
+    "B085DTZQNZ": ["718RbhzhVbL", "31iIKOIm46L", "41YVoy+qyXL"],
+    "B00FLYWNYQ": ["71Z401LjFFL", "41OFXY6pMRL", "511i62OkshL"],
+    "B07FDJMC9Q": ["71+8uTMDRFL", "31MBSKiZOPL", "410LYwPnZLL"],
+    "B0DGJ4QQ5W": ["21DcbviXOxL", "11RrezJCPgL", "11ZDMqH9n7L"],
+}
+
+
+def _hd_image_url(image_id: str) -> str:
+    return f"https://m.media-amazon.com/images/I/{image_id}._AC_SL1500_.jpg"
+
+
+def _amazon_image_url(asin: str) -> str:
     if not asin:
         return ""
-    return f"https://m.media-amazon.com/images/P/{asin}.01._{size}_.jpg"
+    ids = _HD_IMAGE_IDS.get(asin)
+    if ids:
+        return _hd_image_url(ids[0])
+    return f"https://m.media-amazon.com/images/P/{asin}.01._SL1500_.jpg"
 
 
 def _build_carousel_image_urls(asin: str, primary_url: str) -> list:
-    """Up to 3 Amazon CDN image variants (.01 / .02 / .03)."""
+    """Up to 3 HD Amazon images. Uses verified I/ image IDs when available."""
     if not asin:
         return [primary_url] if primary_url else []
-    return [
-        f"https://m.media-amazon.com/images/P/{asin}.01._SL400_.jpg",
-        f"https://m.media-amazon.com/images/P/{asin}.02._SL400_.jpg",
-        f"https://m.media-amazon.com/images/P/{asin}.03._SL400_.jpg",
-    ]
+    ids = _HD_IMAGE_IDS.get(asin)
+    if ids:
+        return [_hd_image_url(img_id) for img_id in ids[:3]]
+    return [primary_url] if primary_url else []
 
 
 def build_static_site(
