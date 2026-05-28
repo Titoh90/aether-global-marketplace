@@ -80,19 +80,17 @@ _TW_CONFIG: str = json.dumps({
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def render_html(surface: HubSurface) -> str:
-    """Render the complete AffilioLux SPA with embedded product data."""
-    import hashlib as _hashlib
+    """Render the complete AffilioLux SPA with all JS inlined (avoids CDN cache issues)."""
     products_json     = _build_products_json(surface)
     translations_json = json.dumps(_TRANSLATIONS, ensure_ascii=False)
     updated           = _e(surface.generated_at[:16].replace("T", " "))
-    build_hash        = _hashlib.md5(_JS.encode()).hexdigest()[:10]
 
     return (
         _SHELL_HEAD
         + _SHELL_BODY.replace("__PRODUCTS__", products_json)
                      .replace("__TRANSLATIONS__", translations_json)
                      .replace("__UPDATED__", updated)
-                     .replace("__BUILD_HASH__", build_hash)
+                     .replace("__APP_JS__", _JS)
     )
 
 
@@ -653,8 +651,7 @@ _SHELL_BODY = """
   <!-- ══ DATA ══════════════════════════════════════════════════════════════ -->
   <script id="products-data" type="application/json">__PRODUCTS__</script>
   <script id="translations-data" type="application/json">__TRANSLATIONS__</script>
-  <!-- app.js with build-hash cache busting -->
-  <script src="assets/app.js?v=__BUILD_HASH__"></script>
+  <script>__APP_JS__</script>
 </body>
 </html>"""
 
