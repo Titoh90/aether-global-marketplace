@@ -80,16 +80,17 @@ _TW_CONFIG: str = json.dumps({
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def render_html(surface: HubSurface) -> str:
-    """Render the complete AffilioLux SPA with embedded product data."""
-    products_json  = _build_products_json(surface)
+    """Render the complete AffilioLux SPA with embedded product data and inlined JS."""
+    products_json     = _build_products_json(surface)
     translations_json = json.dumps(_TRANSLATIONS, ensure_ascii=False)
-    updated = _e(surface.generated_at[:16].replace("T", " "))
+    updated           = _e(surface.generated_at[:16].replace("T", " "))
 
     return (
         _SHELL_HEAD
         + _SHELL_BODY.replace("__PRODUCTS__", products_json)
                      .replace("__TRANSLATIONS__", translations_json)
                      .replace("__UPDATED__", updated)
+                     .replace("__APP_JS__", _JS)
     )
 
 
@@ -641,7 +642,8 @@ _SHELL_BODY = """
   <!-- ══ DATA ══════════════════════════════════════════════════════════════ -->
   <script id="products-data" type="application/json">__PRODUCTS__</script>
   <script id="translations-data" type="application/json">__TRANSLATIONS__</script>
-  <script src="assets/app.js"></script>
+  <!-- app.js inlined to avoid CDN cache issues -->
+  <script>__APP_JS__</script>
 </body>
 </html>"""
 
