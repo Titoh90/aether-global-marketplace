@@ -160,21 +160,22 @@ def _product_tags(p) -> list:
     return tags
 
 
-def _amazon_image_url(asin: str, size: str = "SL400", img_id: str = "AsinImage") -> str:
+def _amazon_image_url(asin: str, size: str = "SL400") -> str:
+    """Return direct Amazon CDN image URL. Works without domain registration."""
     if not asin:
         return ""
-    return f"https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN={asin}&Format=_{size}_&ID={img_id}&MarketPlace=US&ServiceVersion=20070822&WS=1"
+    return f"https://m.media-amazon.com/images/P/{asin}.01._{size}_.jpg"
 
 
 def _build_carousel_image_urls(asin: str, primary_url: str) -> list:
-    """Generate up to 3 image URLs for carousel slides using Amazon alternate image IDs."""
-    urls = [primary_url] if primary_url else []
-    if asin:
-        for suffix in (".01", ".02"):
-            alt = _amazon_image_url(asin, img_id=f"AsinImage{suffix}")
-            if alt and alt not in urls:
-                urls.append(alt)
-    return urls
+    """Generate up to 3 image URLs for carousel slides using Amazon CDN image variants."""
+    if not asin:
+        return [primary_url] if primary_url else []
+    return [
+        f"https://m.media-amazon.com/images/P/{asin}.01._SL400_.jpg",
+        f"https://m.media-amazon.com/images/P/{asin}.02._SL400_.jpg",
+        f"https://m.media-amazon.com/images/P/{asin}.03._SL400_.jpg",
+    ]
 
 
 def build_static_site(

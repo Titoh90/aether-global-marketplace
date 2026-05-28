@@ -30,7 +30,7 @@ def render_html(surface: HubSurface) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aether Global — Premium Deals</title>
   <meta name="description" content="Curated premium products with affiliate links. Quality you can trust.">
-  <link rel="preconnect" href="https://ws-na.amazon-adsystem.com" crossorigin>
+  <link rel="preconnect" href="https://m.media-amazon.com" crossorigin>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -141,23 +141,24 @@ def render_js() -> str:
 # Data Helpers
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def _amazon_image_url(asin: str, size: str = "SL400", img_id: str = "AsinImage") -> str:
+def _amazon_image_url(asin: str, size: str = "SL400") -> str:
+    """Return direct Amazon CDN image URL. Works without domain registration."""
     if not asin:
         return ""
-    return f"https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN={asin}&Format=_{size}_&ID={img_id}&MarketPlace=US&ServiceVersion=20070822&WS=1"
+    return f"https://m.media-amazon.com/images/P/{asin}.01._{size}_.jpg"
 
 
 def _build_carousel_image_urls(asin: str, primary_url: str) -> list:
-    """Generate up to 3 image URLs for carousel slides using Amazon alternate image IDs.
-    Amazon indexes: AsinImage (primary), AsinImage.01, AsinImage.02.
-    Deduplicates against all existing URLs."""
-    urls = [primary_url] if primary_url else []
-    if asin:
-        for suffix in (".01", ".02"):
-            alt = _amazon_image_url(asin, img_id=f"AsinImage{suffix}")
-            if alt and alt not in urls:
-                urls.append(alt)
-    return urls
+    """Generate up to 3 image URLs for carousel slides using Amazon CDN image variants.
+    Uses .01. .02. .03. suffixes which are standard Amazon product image indices.
+    Falls back to primary_url if no asin."""
+    if not asin:
+        return [primary_url] if primary_url else []
+    return [
+        f"https://m.media-amazon.com/images/P/{asin}.01._SL400_.jpg",
+        f"https://m.media-amazon.com/images/P/{asin}.02._SL400_.jpg",
+        f"https://m.media-amazon.com/images/P/{asin}.03._SL400_.jpg",
+    ]
 
 # ── Product Description i18n ────────────────────────────────────────────────────
 
@@ -1341,7 +1342,7 @@ function _setupLazyImages() {
         if (entry.isIntersecting) {
           var img = entry.target;
           var src = img.getAttribute('data-src');
-          if (src && !img.src) {
+          if (src && !img.getAttribute('src')) {
             img.src = src;
           }
           img.classList.add('loaded');
@@ -1357,7 +1358,7 @@ function _setupLazyImages() {
     // Fallback: load all immediately
     document.querySelectorAll('.card-img').forEach(function(img) {
       var src = img.getAttribute('data-src');
-      if (src && !img.src) img.src = src;
+      if (src && !img.getAttribute('src')) img.src = src;
       img.classList.add('loaded');
     });
   }
@@ -1479,10 +1480,10 @@ function _buildVideoModal() {
       (hasMultiple ? '<div class="video-dots">' + dotsHtml + '</div>' : '') +
       '<div class="video-info-bar">' +
         '<div class="video-nav-arrows">' +
-          (hasMultiple ? '<button class="video-arrow video-arrow-prev">‹</button>' : '') +
-          (hasMultiple ? '<button class="video-arrow video-arrow-next">›</button>' : '') +
+          (hasMultiple ? '<button class="video-arrow video-arrow-prev">&#8249;</button>' : '') +
+          (hasMultiple ? '<button class="video-arrow video-arrow-next">&#8250;</button>' : '') +
         '</div>' +
-        (_videoUrl ? '<a href="' + _escAttr(_videoUrl) + '" target="_blank" rel="noopener noreferrer" class="video-cta-btn">' + ctaLabel + ' →</a>' : '') +
+        (_videoUrl ? '<a href="' + _escAttr(_videoUrl) + '" target="_blank" rel="noopener noreferrer" class="video-cta-btn">' + ctaLabel + ' &rarr;</a>' : '') +
       '</div>' +
     '</div>';
   document.body.appendChild(modal);
@@ -1563,7 +1564,7 @@ function _updateVideoSlide() {
     var img = activeSlide.querySelector('.video-modal-img');
     if (img) {
       var src = img.getAttribute('data-src');
-      if (src && !img.src) img.src = src;
+      if (src && !img.getAttribute('src')) img.src = src;
     }
   }
 }
