@@ -5,7 +5,8 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Aether Global — AffilioLux client app
    Features: i18n (EN/ES/FR), search, category filter chips,
-             sort, IntersectionObserver lazy loading, bottom nav
+             sidebar category/sort (desktop), sort, IntersectionObserver
+             lazy loading, shimmer skeleton, bottom nav (mobile)
    ═══════════════════════════════════════════════════════════════════════ */
 
 // ── Data ─────────────────────────────────────────────────────────────────────
@@ -39,6 +40,8 @@ var App = {
     if (sortSel) sortSel.value = 'default';
     var input = document.getElementById('search-input');
     if (input) input.value = '';
+    var inputD = document.getElementById('search-input-desktop');
+    if (inputD) inputD.value = '';
     var clear = document.getElementById('search-clear');
     if (clear) clear.classList.add('hidden');
     _updateNavUI('shop');
@@ -51,6 +54,8 @@ var App = {
     _saveLang(lang);
     var display = document.getElementById('lang-display');
     if (display) display.textContent = lang.toUpperCase();
+    var displayD = document.getElementById('lang-display-desktop');
+    if (displayD) displayD.textContent = lang.toUpperCase();
     this.render();
   },
 
@@ -58,6 +63,8 @@ var App = {
     this.query = '';
     var input = document.getElementById('search-input');
     if (input) input.value = '';
+    var inputD = document.getElementById('search-input-desktop');
+    if (inputD) inputD.value = '';
     var clear = document.getElementById('search-clear');
     if (clear) clear.classList.add('hidden');
     this.render();
@@ -70,6 +77,8 @@ var App = {
 
   setSort: function(val) {
     this.sort = val;
+    var sortSel = document.getElementById('sort-select');
+    if (sortSel) sortSel.value = val;
     this.render();
   },
 
@@ -150,6 +159,8 @@ var App = {
   render: function() {
     _updateI18nText();
     _renderCategories();
+    _renderSidebarCategories();
+    _renderSidebarSort();
     _renderProducts();
   },
 };
@@ -171,21 +182,47 @@ function _updateNavUI(active) {
 // ── i18n text updates ─────────────────────────────────────────────────────────
 
 function _updateI18nText() {
+  // Mobile page header
   var pageTitle    = document.getElementById('page-title');
   var pageSubtitle = document.getElementById('page-subtitle');
-  var footerDisc   = document.getElementById('footer-disclaimer');
-  var noResText    = document.getElementById('no-results-text');
-
   if (pageTitle)    pageTitle.textContent    = App.t('pageTitle');
   if (pageSubtitle) pageSubtitle.textContent = App.t('pageSubtitle');
-  if (footerDisc)   footerDisc.textContent   = App.t('footerDisclaimer');
-  if (noResText)    noResText.textContent    = App.t('noResults');
 
-  // Nav labels
+  // Desktop hero
+  var pageTitleD    = document.getElementById('page-title-desktop');
+  var pageSubtitleD = document.getElementById('page-subtitle-desktop');
+  var heroBadge     = document.getElementById('hero-badge');
+  if (pageTitleD)    pageTitleD.textContent    = App.t('pageTitle');
+  if (pageSubtitleD) pageSubtitleD.textContent = App.t('pageSubtitle');
+  if (heroBadge)     heroBadge.textContent     = App.t('herobage') || 'CURATED EXCELLENCE';
+
+  // Footer
+  var footerDisc = document.getElementById('footer-disclaimer');
+  if (footerDisc) footerDisc.textContent = App.t('footerDisclaimer');
+
+  // No results
+  var noResText = document.getElementById('no-results-text');
+  if (noResText) noResText.textContent = App.t('noResults');
+
+  // Mobile nav labels
   ['shop','trends','saved','account'].forEach(function(id) {
     var el = document.getElementById('nav-' + id + '-label');
     if (el) el.textContent = App.t('nav' + id.charAt(0).toUpperCase() + id.slice(1));
   });
+
+  // Desktop nav labels
+  var dShop = document.getElementById('desktop-nav-shop-label');
+  var dTrends = document.getElementById('desktop-nav-trends-label');
+  var dDeals = document.getElementById('desktop-nav-deals-label');
+  if (dShop)   dShop.textContent   = App.t('navShopAll');
+  if (dTrends) dTrends.textContent = App.t('navTrending');
+  if (dDeals)  dDeals.textContent  = App.t('navDailyDeals');
+
+  // Sidebar headings
+  var sbCat  = document.getElementById('sidebar-category-heading');
+  var sbSort = document.getElementById('sidebar-sort-heading');
+  if (sbCat)  sbCat.textContent  = App.t('category');
+  if (sbSort) sbSort.textContent = App.t('sortBy');
 
   // Sort options
   var sortSel = document.getElementById('sort-select');
@@ -195,12 +232,16 @@ function _updateI18nText() {
     opts.forEach(function(opt, i) { if (labels[i]) opt.textContent = labels[i]; });
   }
 
-  // Search placeholder
+  // Search placeholder (mobile)
   var input = document.getElementById('search-input');
   if (input) input.placeholder = App.t('searchPlaceholder') || 'Search products...';
+
+  // Search placeholder (desktop)
+  var inputD = document.getElementById('search-input-desktop');
+  if (inputD) inputD.placeholder = App.t('searchPlaceholder') || 'Search products...';
 }
 
-// ── Category filter chips ─────────────────────────────────────────────────────
+// ── Mobile category filter chips ──────────────────────────────────────────────
 
 function _renderCategories() {
   var bar = document.getElementById('filter-bar');
@@ -220,6 +261,64 @@ function _renderCategories() {
   });
 
   bar.innerHTML = chips;
+}
+
+// ── Desktop sidebar: categories ───────────────────────────────────────────────
+
+function _renderSidebarCategories() {
+  var container = document.getElementById('sidebar-categories');
+  if (!container) return;
+
+  var ACTIVE   = 'flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer text-sm font-semibold text-primary bg-surface-container-low transition-colors';
+  var INACTIVE = 'flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer text-sm text-on-surface hover:text-primary hover:bg-surface-container-low transition-colors';
+
+  var html = '';
+
+  // "All" item
+  html += '<div class="' + (App.category === 'all' ? ACTIVE : INACTIVE) + '" '
+       + 'onclick="App.filterCategory(\'all\')">'
+       + '<span class="material-symbols-outlined" style="font-size:18px">apps</span>'
+       + '<span>' + _escHtml(App.t('allCategories')) + '</span>'
+       + '</div>';
+
+  CATEGORIES.forEach(function(cat) {
+    html += '<div class="' + (App.category === cat ? ACTIVE : INACTIVE) + '" '
+          + 'onclick="App.filterCategory(\'' + _escAttr(cat) + '\')">'
+          + '<span class="material-symbols-outlined" style="font-size:18px">label</span>'
+          + '<span>' + _escHtml(cat) + '</span>'
+          + '</div>';
+  });
+
+  container.innerHTML = html;
+}
+
+// ── Desktop sidebar: sort ─────────────────────────────────────────────────────
+
+function _renderSidebarSort() {
+  var container = document.getElementById('sidebar-sort');
+  if (!container) return;
+
+  var ACTIVE   = 'flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer text-sm font-semibold text-primary bg-surface-container-low transition-colors';
+  var INACTIVE = 'flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer text-sm text-on-surface hover:text-primary hover:bg-surface-container-low transition-colors';
+
+  var sorts = [
+    {val: 'default',    label: App.t('sortDefault')},
+    {val: 'trending',   label: App.t('sortTrending')},
+    {val: 'bestseller', label: App.t('sortBestseller')},
+    {val: 'rating',     label: App.t('sortRating')},
+    {val: 'price-low',  label: App.t('sortPriceLow')},
+    {val: 'price-high', label: App.t('sortPriceHigh')},
+  ];
+
+  var html = '';
+  sorts.forEach(function(s) {
+    html += '<div class="' + (App.sort === s.val ? ACTIVE : INACTIVE) + '" '
+          + 'onclick="App.setSort(\'' + _escAttr(s.val) + '\')">'
+          + _escHtml(s.label)
+          + '</div>';
+  });
+
+  container.innerHTML = html;
 }
 
 // ── Product rendering ─────────────────────────────────────────────────────────
@@ -255,7 +354,6 @@ function _renderProducts() {
 
 function _renderCard(p, idx) {
   var url      = _escAttr(p.affiliateUrl || '#');
-  var urlRaw   = p.affiliateUrl || '#';
   var title    = _escHtml(p.title || '');
   var category = _escHtml(p.category || '');
   var price    = p.price ? '$' + p.price.toFixed(2) : '';
@@ -293,11 +391,13 @@ function _renderCard(p, idx) {
   return '<article class="product-card bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col animate-in" '
        + 'style="animation-delay:' + delay + 's">'
 
-       // Image area — clicking opens affiliate link
-       + '<div class="relative w-full aspect-square bg-surface-container-low cursor-pointer" '
+       // Image area with shimmer
+       + '<div class="relative w-full aspect-square bg-surface-container-low cursor-pointer shimmer-bg" '
        + 'onclick="window.open(\'' + url + '\',\'_blank\')">'
        + '<img data-src="' + imgSrc + '" alt="' + title + '" '
-       + 'class="card-img w-full h-full object-contain mix-blend-multiply p-4" onerror="this.hidden=true">'
+       + 'class="card-img w-full h-full object-contain mix-blend-multiply p-4" '
+       + 'onload="this.parentElement.classList.remove(\'shimmer-bg\')" '
+       + 'onerror="this.hidden=true;this.parentElement.classList.remove(\'shimmer-bg\')">'
        + badge
        + '</div>'
 
@@ -357,6 +457,7 @@ function _setupLazyImages() {
 // ── Search ────────────────────────────────────────────────────────────────────
 
 function _setupSearch() {
+  // Mobile search toggle
   var toggle    = document.getElementById('search-toggle');
   var searchBar = document.getElementById('search-bar');
   var input     = document.getElementById('search-input');
@@ -396,6 +497,28 @@ function _setupSearch() {
       App.clearSearch();
     });
   }
+
+  // Desktop search input
+  var inputD = document.getElementById('search-input-desktop');
+  if (inputD) {
+    var debounceD;
+    inputD.addEventListener('input', function() {
+      clearTimeout(debounceD);
+      debounceD = setTimeout(function() {
+        App.query = inputD.value.trim();
+        // Sync mobile input
+        if (input) input.value = inputD.value;
+        App.render();
+      }, 220);
+    });
+
+    inputD.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        inputD.value = '';
+        App.clearSearch();
+      }
+    });
+  }
 }
 
 // ── Sort ──────────────────────────────────────────────────────────────────────
@@ -414,13 +537,25 @@ function _setupSort() {
 var _LANGS = ['en', 'es', 'fr'];
 
 function _setupLang() {
+  // Mobile lang button
   var btn = document.getElementById('lang-cycle');
-  if (!btn) return;
-  btn.addEventListener('click', function() {
-    var idx  = _LANGS.indexOf(App.lang);
-    var next = _LANGS[(idx + 1) % _LANGS.length];
-    App.setLang(next);
-  });
+  if (btn) {
+    btn.addEventListener('click', function() {
+      var idx  = _LANGS.indexOf(App.lang);
+      var next = _LANGS[(idx + 1) % _LANGS.length];
+      App.setLang(next);
+    });
+  }
+
+  // Desktop lang button
+  var btnD = document.getElementById('lang-cycle-desktop');
+  if (btnD) {
+    btnD.addEventListener('click', function() {
+      var idx  = _LANGS.indexOf(App.lang);
+      var next = _LANGS[(idx + 1) % _LANGS.length];
+      App.setLang(next);
+    });
+  }
 }
 
 function _detectLang() {
@@ -436,12 +571,19 @@ function _saveLang(lang) {
   try { localStorage.setItem('aether_lang', lang); } catch(e) {}
 }
 
-// ── Brand link ────────────────────────────────────────────────────────────────
+// ── Brand links ───────────────────────────────────────────────────────────────
 
 function _setupBrandLink() {
   var link = document.getElementById('brand-link');
   if (link) {
     link.addEventListener('click', function(e) {
+      e.preventDefault();
+      App.reset();
+    });
+  }
+  var linkD = document.getElementById('brand-link-desktop');
+  if (linkD) {
+    linkD.addEventListener('click', function(e) {
       e.preventDefault();
       App.reset();
     });
@@ -472,6 +614,8 @@ function _escAttr(s) {
 document.addEventListener('DOMContentLoaded', function() {
   var display = document.getElementById('lang-display');
   if (display) display.textContent = App.lang.toUpperCase();
+  var displayD = document.getElementById('lang-display-desktop');
+  if (displayD) displayD.textContent = App.lang.toUpperCase();
 
   _setupSearch();
   _setupSort();

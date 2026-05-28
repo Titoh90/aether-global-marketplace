@@ -35,11 +35,24 @@
   -webkit-box-orient: vertical;
 }
 
-/* Product card hover lift */
-article.product-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* Shimmer loading skeleton */
+.shimmer-bg {
+  background: #f6f7f8;
+  background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+  background-repeat: no-repeat;
+  background-size: 1000px 100%;
+  animation: shimmer 1.5s infinite linear;
 }
-article.product-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px -4px rgba(117, 91, 0, 0.15);
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+/* Card hover lift */
+.product-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(117, 91, 0, 0.12);
 }

@@ -14,10 +14,56 @@
   <script>tailwind.config = {"darkMode":"class","theme":{"extend":{"colors":{"primary":"#755b00","primary-container":"#c9a84c","primary-fixed":"#ffe08f","primary-fixed-dim":"#e6c364","on-primary":"#ffffff","on-primary-container":"#503d00","on-primary-fixed":"#241a00","on-primary-fixed-variant":"#584400","secondary":"#5f5e5e","secondary-container":"#e2dfde","secondary-fixed":"#e5e2e1","secondary-fixed-dim":"#c8c6c5","on-secondary":"#ffffff","on-secondary-container":"#636262","on-secondary-fixed":"#1c1b1b","on-secondary-fixed-variant":"#474746","tertiary":"#765b00","tertiary-container":"#cda740","tertiary-fixed":"#ffdf93","tertiary-fixed-dim":"#eac258","on-tertiary":"#ffffff","on-tertiary-container":"#503d00","on-tertiary-fixed":"#241a00","on-tertiary-fixed-variant":"#594400","error":"#ba1a1a","error-container":"#ffdad6","on-error":"#ffffff","on-error-container":"#93000a","background":"#f9f9f9","on-background":"#1a1c1c","surface":"#f9f9f9","surface-dim":"#dadada","surface-bright":"#f9f9f9","surface-container-lowest":"#ffffff","surface-container-low":"#f3f3f3","surface-container":"#eeeeee","surface-container-high":"#e8e8e8","surface-container-highest":"#e2e2e2","surface-variant":"#e2e2e2","surface-tint":"#755b00","on-surface":"#1a1c1c","on-surface-variant":"#4d4637","outline":"#7e7665","outline-variant":"#d0c5b2","inverse-surface":"#2f3131","inverse-on-surface":"#f0f1f1","inverse-primary":"#e6c364"}}}}</script>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body class="bg-background text-on-surface min-h-screen pb-24" style="font-family:'Inter',sans-serif">
+<body class="bg-background text-on-surface min-h-screen" style="font-family:'Inter',sans-serif">
 
-  <!-- ── TOP APP BAR (fixed) ──────────────────────────────────────────── -->
-  <header id="top-bar" class="fixed top-0 w-full z-50 bg-surface shadow-sm">
+  <!-- ══ DESKTOP TOP NAV (hidden on mobile) ══════════════════════════════ -->
+  <header class="hidden md:flex sticky top-0 z-50 bg-surface-container-lowest shadow-sm">
+    <div class="flex justify-between items-center w-full max-w-[1440px] mx-auto px-16 py-3 gap-6">
+
+      <!-- Brand -->
+      <a href="#" id="brand-link-desktop"
+         class="text-xl font-bold text-primary select-none whitespace-nowrap shrink-0">
+        Aether Global
+      </a>
+
+      <!-- Search -->
+      <div class="flex-1 max-w-xl relative">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none" style="font-size:18px">search</span>
+        <input id="search-input-desktop" type="search" autocomplete="off"
+               class="w-full bg-surface-container rounded-full border border-outline-variant pl-10 pr-4 py-2 text-sm text-on-surface placeholder:text-on-surface-variant outline-none focus:border-primary transition-colors"
+               placeholder="Search products...">
+      </div>
+
+      <!-- Desktop nav links (lg+) -->
+      <nav class="hidden lg:flex items-center gap-1 shrink-0">
+        <button onclick="App.navShop()"
+                class="px-3 py-1.5 text-sm text-on-surface hover:text-primary hover:bg-surface-container-low rounded-lg transition-colors">
+          <span id="desktop-nav-shop-label">Shop All</span>
+        </button>
+        <button onclick="App.navTrends()"
+                class="px-3 py-1.5 text-sm text-on-surface hover:text-primary hover:bg-surface-container-low rounded-lg transition-colors">
+          <span id="desktop-nav-trends-label">Trending</span>
+        </button>
+        <button onclick="App.navShop()"
+                class="px-3 py-1.5 text-sm text-on-surface hover:text-primary hover:bg-surface-container-low rounded-lg transition-colors">
+          <span id="desktop-nav-deals-label">Daily Deals</span>
+        </button>
+      </nav>
+
+      <!-- Right icons -->
+      <div class="flex items-center gap-2 shrink-0">
+        <button id="lang-cycle-desktop" aria-label="Language"
+                class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors">
+          <span class="material-symbols-outlined" style="font-size:18px">language</span>
+          <span id="lang-display-desktop" class="text-xs font-semibold">EN</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ══ MOBILE TOP APP BAR (hidden on desktop) ══════════════════════════ -->
+  <header id="top-bar" class="md:hidden fixed top-0 w-full z-50 bg-surface shadow-sm">
     <div class="flex justify-between items-center px-5 h-16">
       <button id="search-toggle" aria-label="Search"
               class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors active:scale-95">
@@ -32,7 +78,7 @@
         <span id="lang-display" class="text-xs font-semibold">EN</span>
       </button>
     </div>
-    <!-- Search bar (collapsible) -->
+    <!-- Mobile search bar (collapsible) -->
     <div id="search-bar" class="hidden px-5 pb-3">
       <div class="flex items-center bg-surface-container rounded-full px-4 py-2 gap-2">
         <span class="material-symbols-outlined text-on-surface-variant" style="font-size:18px">search</span>
@@ -47,54 +93,125 @@
     </div>
   </header>
 
-  <!-- ── MAIN CONTENT ──────────────────────────────────────────────────── -->
-  <main id="main-content" class="pt-16 px-5">
+  <!-- ══ MAIN ════════════════════════════════════════════════════════════ -->
+  <main class="md:max-w-[1440px] md:mx-auto md:px-16 px-5 pb-24 md:pb-10">
 
-    <!-- Page header -->
-    <div class="py-6 animate-in">
+    <!-- DESKTOP HERO (md+) -->
+    <section class="hidden md:block my-8">
+      <div class="bg-gradient-to-r from-surface-container via-surface to-surface-container rounded-xl p-10 relative overflow-hidden">
+        <!-- Decorative circles -->
+        <div class="absolute -top-12 right-8 w-48 h-48 bg-primary-container opacity-20 blur-3xl rounded-full pointer-events-none"></div>
+        <div class="absolute top-4 right-32 w-32 h-32 bg-primary-container opacity-15 blur-2xl rounded-full pointer-events-none"></div>
+        <!-- Content -->
+        <div class="relative z-10 max-w-xl">
+          <div class="inline-flex items-center gap-2 bg-primary-container bg-opacity-20 border border-primary-container text-primary rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest mb-4">
+            <span class="material-symbols-outlined" style="font-size:14px;font-variation-settings:'FILL' 1">auto_awesome</span>
+            <span id="hero-badge">CURATED EXCELLENCE</span>
+          </div>
+          <h1 id="page-title-desktop" class="text-3xl font-bold text-on-surface mb-2 leading-tight">Curated Premium Deals</h1>
+          <p id="page-subtitle-desktop" class="text-base text-on-surface-variant leading-relaxed">Hand-picked products. Updated daily.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOBILE PAGE HEADER -->
+    <div class="md:hidden py-6 pt-20 animate-in">
       <h2 id="page-title" class="text-xl font-semibold text-on-surface">Curated Premium Deals</h2>
       <p id="page-subtitle" class="text-sm text-on-surface-variant mt-1">Hand-picked products. Updated daily.</p>
     </div>
 
-    <!-- Filter chips (categories) -->
-    <div id="filter-bar" class="flex items-center gap-2 mb-4 overflow-x-auto no-scrollbar pb-2"></div>
+    <!-- CONTENT FLEX ROW: sidebar + product area -->
+    <div class="flex gap-8 md:mt-2">
 
-    <!-- Sort + count row -->
-    <div class="flex justify-between items-center mb-5">
-      <span id="products-count" class="text-xs text-on-surface-variant"></span>
-      <select id="sort-select"
-              class="text-xs text-on-surface bg-surface-container-lowest border border-outline-variant rounded-full px-3 py-1.5 outline-none cursor-pointer">
-        <option value="default">Featured</option>
-        <option value="trending">Trending</option>
-        <option value="bestseller">Best Sellers</option>
-        <option value="rating">Top Rated</option>
-        <option value="price-low">Price ↑</option>
-        <option value="price-high">Price ↓</option>
-      </select>
-    </div>
+      <!-- SIDEBAR (lg+) -->
+      <aside class="hidden lg:block w-64 flex-shrink-0 pt-2">
+        <div class="sticky top-20 space-y-8">
 
-    <!-- Product feed -->
-    <div id="product-grid" class="flex flex-col gap-6"></div>
+          <!-- Category filter -->
+          <div>
+            <h3 id="sidebar-category-heading" class="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">Category</h3>
+            <div id="sidebar-categories" class="space-y-1"></div>
+          </div>
 
-    <!-- No results -->
-    <div id="no-results" class="hidden py-16 text-center">
-      <span class="material-symbols-outlined text-4xl text-on-surface-variant block mb-3">search_off</span>
-      <p id="no-results-text" class="text-on-surface-variant text-sm">No products found</p>
+          <!-- Sort -->
+          <div class="border-t border-outline-variant pt-6">
+            <h3 id="sidebar-sort-heading" class="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">Sort By</h3>
+            <div id="sidebar-sort" class="space-y-1"></div>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- PRODUCT AREA -->
+      <div class="flex-grow min-w-0">
+
+        <!-- Mobile filter chips (hidden on lg sidebar) -->
+        <div id="filter-bar" class="lg:hidden flex items-center gap-2 mb-4 overflow-x-auto no-scrollbar pb-2"></div>
+
+        <!-- Count + sort row -->
+        <div class="flex justify-between items-center mb-5">
+          <span id="products-count" class="text-xs text-on-surface-variant"></span>
+          <select id="sort-select"
+                  class="text-xs text-on-surface bg-surface-container-lowest border border-outline-variant rounded-full px-3 py-1.5 outline-none cursor-pointer">
+            <option value="default">Featured</option>
+            <option value="trending">Trending</option>
+            <option value="bestseller">Best Sellers</option>
+            <option value="rating">Top Rated</option>
+            <option value="price-low">Price &#8593;</option>
+            <option value="price-high">Price &#8595;</option>
+          </select>
+        </div>
+
+        <!-- Product grid: 1-col mobile, 2-col sm, 3-col lg -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"></div>
+
+        <!-- No results -->
+        <div id="no-results" class="hidden py-16 text-center">
+          <span class="material-symbols-outlined text-4xl text-on-surface-variant block mb-3">search_off</span>
+          <p id="no-results-text" class="text-on-surface-variant text-sm">No products found</p>
+        </div>
+
+      </div>
     </div>
 
   </main>
 
-  <!-- ── FOOTER ────────────────────────────────────────────────────────── -->
-  <footer class="mt-10 pt-6 pb-6 px-5 border-t border-surface-container text-center">
-    <p class="text-xl font-bold text-primary mb-2">Aether Global</p>
-    <p id="footer-disclaimer" class="text-xs text-secondary max-w-xs mx-auto leading-relaxed">
-      As an Amazon Associate we earn from qualifying purchases.
-    </p>
-    <p class="text-xs text-secondary mt-2">Updated: 2026-05-28 20:45</p>
+  <!-- ══ FOOTER ══════════════════════════════════════════════════════════ -->
+  <footer class="mt-10 border-t border-surface-container">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-[1440px] mx-auto px-5 md:px-16 py-10">
+
+      <!-- Brand + disclaimer -->
+      <div class="md:col-span-2">
+        <p class="text-xl font-bold text-primary mb-2">Aether Global</p>
+        <p id="footer-disclaimer" class="text-xs text-secondary leading-relaxed max-w-sm">
+          As an Amazon Associate we earn from qualifying purchases.
+        </p>
+        <p class="text-xs text-secondary mt-2">Updated: 2026-05-28 20:55</p>
+      </div>
+
+      <!-- Links col 1 -->
+      <div>
+        <p class="text-xs font-semibold text-on-surface uppercase tracking-widest mb-3">Shop</p>
+        <ul class="space-y-2">
+          <li><button onclick="App.navShop()" class="text-xs text-secondary hover:text-primary transition-colors">All Products</button></li>
+          <li><button onclick="App.navTrends()" class="text-xs text-secondary hover:text-primary transition-colors">Trending Now</button></li>
+        </ul>
+      </div>
+
+      <!-- Links col 2 -->
+      <div>
+        <p class="text-xs font-semibold text-on-surface uppercase tracking-widest mb-3">About</p>
+        <ul class="space-y-2">
+          <li><span class="text-xs text-secondary">affiliate disclosure</span></li>
+          <li><span class="text-xs text-secondary">privacy policy</span></li>
+        </ul>
+      </div>
+
+    </div>
   </footer>
 
-  <!-- ── BOTTOM NAV BAR (fixed) ────────────────────────────────────────── -->
-  <nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-4 pb-2 bg-surface-container-lowest shadow-md border-t border-surface-container">
+  <!-- ══ MOBILE BOTTOM NAV (hidden on desktop) ═══════════════════════════ -->
+  <nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-4 pb-2 bg-surface-container-lowest shadow-md border-t border-surface-container">
     <button id="nav-shop" onclick="App.navShop()"
             class="flex flex-col items-center justify-center px-4 py-1 rounded-xl text-xs bg-primary-container text-on-primary-container transition-all active:scale-90">
       <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">shopping_bag</span>
@@ -117,9 +234,9 @@
     </button>
   </nav>
 
-  <!-- ── DATA ─────────────────────────────────────────────────────────── -->
-  <script id="products-data" type="application/json">{"generated_at": "2026-05-28T20:45:36.812155+00:00", "categories": ["beauty", "electronics", "fashion", "home"], "products": [{"id": "B08N5WRWNW", "title": "Apple AirPods Pro 2", "price": 199.99, "image": "https://m.media-amazon.com/images/P/B08N5WRWNW.01._SL400_.jpg", "imageUrls": ["https://m.media-amazon.com/images/P/B08N5WRWNW.01._SL400_.jpg", "https://m.media-amazon.com/images/P/B08N5WRWNW.02._SL400_.jpg", "https://m.media-amazon.com/images/P/B08N5WRWNW.03._SL400_.jpg"], "rating": 4.8, "reviews": 15234, "category": "electronics", "affiliateUrl": "https://www.amazon.com/dp/B08N5WRWNW?tag=aetherglobal-20", "description": {"en": "Electronics", "es": "Electrónica y tecnología premium", "fr": "Électronique et high-tech premium"}, "tags": ["bestseller"], "section": "hero"}, {"id": "B0C5J5WZNP", "title": "Dyson Airwrap Multi-Styler", "price": 499.99, "image": "https://m.media-amazon.com/images/P/B0C5J5WZNP.01._SL400_.jpg", "imageUrls": ["https://m.media-amazon.com/images/P/B0C5J5WZNP.01._SL400_.jpg", "https://m.media-amazon.com/images/P/B0C5J5WZNP.02._SL400_.jpg", "https://m.media-amazon.com/images/P/B0C5J5WZNP.03._SL400_.jpg"], "rating": 4.5, "reviews": 8765, "category": "beauty", "affiliateUrl": "https://www.amazon.com/dp/B0C5J5WZNP?tag=aetherglobal-20", "description": {"en": "Beauty", "es": "Belleza y cuidado personal de lujo", "fr": "Beauté et soins personnels de luxe"}, "tags": ["trending"], "section": "trending"}, {"id": "B09G9D7K6R", "title": "Nespresso Vertuo Next", "price": 149.0, "image": "https://m.media-amazon.com/images/P/B09G9D7K6R.01._SL400_.jpg", "imageUrls": ["https://m.media-amazon.com/images/P/B09G9D7K6R.01._SL400_.jpg", "https://m.media-amazon.com/images/P/B09G9D7K6R.02._SL400_.jpg", "https://m.media-amazon.com/images/P/B09G9D7K6R.03._SL400_.jpg"], "rating": 4.3, "reviews": 3420, "category": "home", "affiliateUrl": "https://www.amazon.com/dp/B09G9D7K6R?tag=aetherglobal-20", "description": {"en": "Home", "es": "Esenciales para el hogar y la cocina", "fr": "Indispensables pour la maison et la cuisine"}, "tags": ["trending"], "section": "trending"}, {"id": "B0BXQ1LVS3", "title": "Stanley Quencher H2.0", "price": 35.0, "image": "https://m.media-amazon.com/images/P/B0BXQ1LVS3.01._SL400_.jpg", "imageUrls": ["https://m.media-amazon.com/images/P/B0BXQ1LVS3.01._SL400_.jpg", "https://m.media-amazon.com/images/P/B0BXQ1LVS3.02._SL400_.jpg", "https://m.media-amazon.com/images/P/B0BXQ1LVS3.03._SL400_.jpg"], "rating": 4.7, "reviews": 8921, "category": "home", "affiliateUrl": "https://www.amazon.com/dp/B0BXQ1LVS3?tag=aetherglobal-20", "description": {"en": "Home", "es": "Esenciales para el hogar y la cocina", "fr": "Indispensables pour la maison et la cuisine"}, "tags": ["trending"], "section": "trending"}, {"id": "B0C1GZ9KRM", "title": "Owala FreeSip 24oz", "price": 27.99, "image": "https://m.media-amazon.com/images/P/B0C1GZ9KRM.01._SL400_.jpg", "imageUrls": ["https://m.media-amazon.com/images/P/B0C1GZ9KRM.01._SL400_.jpg", "https://m.media-amazon.com/images/P/B0C1GZ9KRM.02._SL400_.jpg", "https://m.media-amazon.com/images/P/B0C1GZ9KRM.03._SL400_.jpg"], "rating": 4.6, "reviews": 4520, "category": "home", "affiliateUrl": "https://www.amazon.com/dp/B0C1GZ9KRM?tag=aetherglobal-20", "description": {"en": "Home", "es": "Esenciales para el hogar y la cocina", "fr": "Indispensables pour la maison et la cuisine"}, "tags": [], "section": "evergreen"}, {"id": "B0CDW5L234", "title": "Kindle Paperwhite 2024", "price": 149.99, "image": "https://m.media-amazon.com/images/P/B0CDW5L234.01._SL400_.jpg", "imageUrls": ["https://m.media-amazon.com/images/P/B0CDW5L234.01._SL400_.jpg", "https://m.media-amazon.com/images/P/B0CDW5L234.02._SL400_.jpg", "https://m.media-amazon.com/images/P/B0CDW5L234.03._SL400_.jpg"], "rating": 4.6, "reviews": 2340, "category": "electronics", "affiliateUrl": "https://www.amazon.com/dp/B0CDW5L234?tag=aetherglobal-20", "description": {"en": "Electronics", "es": "Electrónica y tecnología premium", "fr": "Électronique et high-tech premium"}, "tags": [], "section": "recent"}, {"id": "B0CLM8BNWJ", "title": "Lululemon Everywhere Belt Bag", "price": 38.0, "image": "https://m.media-amazon.com/images/P/B0CLM8BNWJ.01._SL400_.jpg", "imageUrls": ["https://m.media-amazon.com/images/P/B0CLM8BNWJ.01._SL400_.jpg", "https://m.media-amazon.com/images/P/B0CLM8BNWJ.02._SL400_.jpg", "https://m.media-amazon.com/images/P/B0CLM8BNWJ.03._SL400_.jpg"], "rating": 4.4, "reviews": 1890, "category": "fashion", "affiliateUrl": "https://www.amazon.com/dp/B0CLM8BNWJ?tag=aetherglobal-20", "description": {"en": "Fashion", "es": "Moda y accesorios con estilo", "fr": "Mode et accessoires élégants"}, "tags": [], "section": "recent"}]}</script>
-  <script id="translations-data" type="application/json">{"en": {"siteTagline": "Premium Deals", "pageTitle": "Curated Premium Deals", "pageSubtitle": "Hand-picked products. Updated daily.", "allCategories": "All", "buyOnAmazon": "View Deal", "bestseller": "Top Pick", "limitedOffer": "Limited", "trendingLabel": "Trending", "footerDisclaimer": "As an Amazon Associate we earn from qualifying purchases.", "updated": "Updated", "noResults": "No products found", "productsFound": "products", "sortLabel": "Sort", "sortDefault": "Featured", "sortTrending": "Trending", "sortBestseller": "Best Sellers", "sortPriceLow": "Price ↑", "sortPriceHigh": "Price ↓", "sortRating": "Top Rated", "navShop": "Shop", "navTrends": "Trends", "navSaved": "Saved", "navAccount": "Account"}, "es": {"siteTagline": "Ofertas Premium", "pageTitle": "Ofertas Premium Seleccionadas", "pageSubtitle": "Productos seleccionados. Actualizados diariamente.", "allCategories": "Todos", "buyOnAmazon": "Ver Oferta", "bestseller": "Top Pick", "limitedOffer": "Limitado", "trendingLabel": "Tendencia", "footerDisclaimer": "Como Asociado de Amazon, ganamos comisiones por compras que califican.", "updated": "Actualizado", "noResults": "No se encontraron productos", "productsFound": "productos", "sortLabel": "Ordenar", "sortDefault": "Destacados", "sortTrending": "Tendencias", "sortBestseller": "Más Vendidos", "sortPriceLow": "Precio ↑", "sortPriceHigh": "Precio ↓", "sortRating": "Mejor Valorados", "navShop": "Tienda", "navTrends": "Tendencias", "navSaved": "Guardados", "navAccount": "Cuenta"}, "fr": {"siteTagline": "Offres Premium", "pageTitle": "Sélections Premium", "pageSubtitle": "Produits sélectionnés. Mis à jour quotidiennement.", "allCategories": "Tout", "buyOnAmazon": "Voir l'offre", "bestseller": "Top Pick", "limitedOffer": "Limité", "trendingLabel": "Tendance", "footerDisclaimer": "En tant qu'Associé Amazon, nous gagnons des commissions sur les achats éligibles.", "updated": "Mis à jour", "noResults": "Aucun produit trouvé", "productsFound": "produits", "sortLabel": "Trier", "sortDefault": "Vedette", "sortTrending": "Tendance", "sortBestseller": "Meilleures ventes", "sortPriceLow": "Prix ↑", "sortPriceHigh": "Prix ↓", "sortRating": "Mieux notés", "navShop": "Boutique", "navTrends": "Tendances", "navSaved": "Sauvegardés", "navAccount": "Compte"}}</script>
+  <!-- ══ DATA ══════════════════════════════════════════════════════════════ -->
+  <script id="products-data" type="application/json">{"generated_at": "2026-05-28T20:55:36.203654+00:00", "categories": ["beauty", "electronics", "fashion", "home"], "products": [{"id": "B08N5WRWNW", "title": "Apple AirPods Pro 2", "price": 199.99, "image": "https://m.media-amazon.com/images/P/B08N5WRWNW.01._SL400_.jpg", "imageUrls": ["https://m.media-amazon.com/images/P/B08N5WRWNW.01._SL400_.jpg", "https://m.media-amazon.com/images/P/B08N5WRWNW.02._SL400_.jpg", "https://m.media-amazon.com/images/P/B08N5WRWNW.03._SL400_.jpg"], "rating": 4.8, "reviews": 15234, "category": "electronics", "affiliateUrl": "https://www.amazon.com/dp/B08N5WRWNW?tag=aetherglobal-20", "description": {"en": "Electronics", "es": "Electrónica y tecnología premium", "fr": "Électronique et high-tech premium"}, "tags": ["bestseller"], "section": "hero"}, {"id": "B0C5J5WZNP", "title": "Dyson Airwrap Multi-Styler", "price": 499.99, "image": "https://m.media-amazon.com/images/P/B0C5J5WZNP.01._SL400_.jpg", "imageUrls": ["https://m.media-amazon.com/images/P/B0C5J5WZNP.01._SL400_.jpg", "https://m.media-amazon.com/images/P/B0C5J5WZNP.02._SL400_.jpg", "https://m.media-amazon.com/images/P/B0C5J5WZNP.03._SL400_.jpg"], "rating": 4.5, "reviews": 8765, "category": "beauty", "affiliateUrl": "https://www.amazon.com/dp/B0C5J5WZNP?tag=aetherglobal-20", "description": {"en": "Beauty", "es": "Belleza y cuidado personal de lujo", "fr": "Beauté et soins personnels de luxe"}, "tags": ["trending"], "section": "trending"}, {"id": "B09G9D7K6R", "title": "Nespresso Vertuo Next", "price": 149.0, "image": "https://m.media-amazon.com/images/P/B09G9D7K6R.01._SL400_.jpg", "imageUrls": ["https://m.media-amazon.com/images/P/B09G9D7K6R.01._SL400_.jpg", "https://m.media-amazon.com/images/P/B09G9D7K6R.02._SL400_.jpg", "https://m.media-amazon.com/images/P/B09G9D7K6R.03._SL400_.jpg"], "rating": 4.3, "reviews": 3420, "category": "home", "affiliateUrl": "https://www.amazon.com/dp/B09G9D7K6R?tag=aetherglobal-20", "description": {"en": "Home", "es": "Esenciales para el hogar y la cocina", "fr": "Indispensables pour la maison et la cuisine"}, "tags": ["trending"], "section": "trending"}, {"id": "B0BXQ1LVS3", "title": "Stanley Quencher H2.0", "price": 35.0, "image": "https://m.media-amazon.com/images/P/B0BXQ1LVS3.01._SL400_.jpg", "imageUrls": ["https://m.media-amazon.com/images/P/B0BXQ1LVS3.01._SL400_.jpg", "https://m.media-amazon.com/images/P/B0BXQ1LVS3.02._SL400_.jpg", "https://m.media-amazon.com/images/P/B0BXQ1LVS3.03._SL400_.jpg"], "rating": 4.7, "reviews": 8921, "category": "home", "affiliateUrl": "https://www.amazon.com/dp/B0BXQ1LVS3?tag=aetherglobal-20", "description": {"en": "Home", "es": "Esenciales para el hogar y la cocina", "fr": "Indispensables pour la maison et la cuisine"}, "tags": ["trending"], "section": "trending"}, {"id": "B0C1GZ9KRM", "title": "Owala FreeSip 24oz", "price": 27.99, "image": "https://m.media-amazon.com/images/P/B0C1GZ9KRM.01._SL400_.jpg", "imageUrls": ["https://m.media-amazon.com/images/P/B0C1GZ9KRM.01._SL400_.jpg", "https://m.media-amazon.com/images/P/B0C1GZ9KRM.02._SL400_.jpg", "https://m.media-amazon.com/images/P/B0C1GZ9KRM.03._SL400_.jpg"], "rating": 4.6, "reviews": 4520, "category": "home", "affiliateUrl": "https://www.amazon.com/dp/B0C1GZ9KRM?tag=aetherglobal-20", "description": {"en": "Home", "es": "Esenciales para el hogar y la cocina", "fr": "Indispensables pour la maison et la cuisine"}, "tags": [], "section": "evergreen"}, {"id": "B0CDW5L234", "title": "Kindle Paperwhite 2024", "price": 149.99, "image": "https://m.media-amazon.com/images/P/B0CDW5L234.01._SL400_.jpg", "imageUrls": ["https://m.media-amazon.com/images/P/B0CDW5L234.01._SL400_.jpg", "https://m.media-amazon.com/images/P/B0CDW5L234.02._SL400_.jpg", "https://m.media-amazon.com/images/P/B0CDW5L234.03._SL400_.jpg"], "rating": 4.6, "reviews": 2340, "category": "electronics", "affiliateUrl": "https://www.amazon.com/dp/B0CDW5L234?tag=aetherglobal-20", "description": {"en": "Electronics", "es": "Electrónica y tecnología premium", "fr": "Électronique et high-tech premium"}, "tags": [], "section": "recent"}, {"id": "B0CLM8BNWJ", "title": "Lululemon Everywhere Belt Bag", "price": 38.0, "image": "https://m.media-amazon.com/images/P/B0CLM8BNWJ.01._SL400_.jpg", "imageUrls": ["https://m.media-amazon.com/images/P/B0CLM8BNWJ.01._SL400_.jpg", "https://m.media-amazon.com/images/P/B0CLM8BNWJ.02._SL400_.jpg", "https://m.media-amazon.com/images/P/B0CLM8BNWJ.03._SL400_.jpg"], "rating": 4.4, "reviews": 1890, "category": "fashion", "affiliateUrl": "https://www.amazon.com/dp/B0CLM8BNWJ?tag=aetherglobal-20", "description": {"en": "Fashion", "es": "Moda y accesorios con estilo", "fr": "Mode et accessoires élégants"}, "tags": [], "section": "recent"}]}</script>
+  <script id="translations-data" type="application/json">{"en": {"siteTagline": "Premium Deals", "pageTitle": "Curated Premium Deals", "pageSubtitle": "Hand-picked products. Updated daily.", "allCategories": "All", "buyOnAmazon": "View Deal", "bestseller": "Top Pick", "limitedOffer": "Limited", "trendingLabel": "Trending", "footerDisclaimer": "As an Amazon Associate we earn from qualifying purchases.", "updated": "Updated", "noResults": "No products found", "productsFound": "products", "sortLabel": "Sort", "sortDefault": "Featured", "sortTrending": "Trending", "sortBestseller": "Best Sellers", "sortPriceLow": "Price ↑", "sortPriceHigh": "Price ↓", "sortRating": "Top Rated", "navShop": "Shop", "navTrends": "Trends", "navSaved": "Saved", "navAccount": "Account", "navShopAll": "Shop All", "navTrending": "Trending", "navDailyDeals": "Daily Deals", "herobadge": "CURATED EXCELLENCE", "category": "Category", "sortBy": "Sort By"}, "es": {"siteTagline": "Ofertas Premium", "pageTitle": "Ofertas Premium Seleccionadas", "pageSubtitle": "Productos seleccionados. Actualizados diariamente.", "allCategories": "Todos", "buyOnAmazon": "Ver Oferta", "bestseller": "Top Pick", "limitedOffer": "Limitado", "trendingLabel": "Tendencia", "footerDisclaimer": "Como Asociado de Amazon, ganamos comisiones por compras que califican.", "updated": "Actualizado", "noResults": "No se encontraron productos", "productsFound": "productos", "sortLabel": "Ordenar", "sortDefault": "Destacados", "sortTrending": "Tendencias", "sortBestseller": "Más Vendidos", "sortPriceLow": "Precio ↑", "sortPriceHigh": "Precio ↓", "sortRating": "Mejor Valorados", "navShop": "Tienda", "navTrends": "Tendencias", "navSaved": "Guardados", "navAccount": "Cuenta", "navShopAll": "Ver Todo", "navTrending": "Tendencias", "navDailyDeals": "Ofertas del Día", "herobage": "EXCELENCIA CURADA", "herobadge": "EXCELENCIA CURADA", "category": "Categoría", "sortBy": "Ordenar Por"}, "fr": {"siteTagline": "Offres Premium", "pageTitle": "Sélections Premium", "pageSubtitle": "Produits sélectionnés. Mis à jour quotidiennement.", "allCategories": "Tout", "buyOnAmazon": "Voir l'offre", "bestseller": "Top Pick", "limitedOffer": "Limité", "trendingLabel": "Tendance", "footerDisclaimer": "En tant qu'Associé Amazon, nous gagnons des commissions sur les achats éligibles.", "updated": "Mis à jour", "noResults": "Aucun produit trouvé", "productsFound": "produits", "sortLabel": "Trier", "sortDefault": "Vedette", "sortTrending": "Tendance", "sortBestseller": "Meilleures ventes", "sortPriceLow": "Prix ↑", "sortPriceHigh": "Prix ↓", "sortRating": "Mieux notés", "navShop": "Boutique", "navTrends": "Tendances", "navSaved": "Sauvegardés", "navAccount": "Compte", "navShopAll": "Tout voir", "navTrending": "Tendances", "navDailyDeals": "Offres du jour", "herobage": "EXCELLENCE CURATED", "herobadge": "EXCELLENCE CURATED", "category": "Catégorie", "sortBy": "Trier Par"}}</script>
   <script src="assets/app.js"></script>
 </body>
 </html>
