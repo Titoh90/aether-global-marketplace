@@ -223,6 +223,9 @@ _TRANSLATIONS = {
         "navDailyDeals":  "Daily Deals",
         "herobadge":      "CURATED EXCELLENCE",
         "searchPlaceholder": "Search products...",
+        "backToResults":  "Back to Results",
+        "productDetails": "Product Details",
+        "relatedProducts": "More Like This",
         "category":       "Category",
         "sortBy":         "Sort By",
     },
@@ -267,6 +270,9 @@ _TRANSLATIONS = {
         "herobage":       "EXCELENCIA CURADA",
         "herobadge":      "EXCELENCIA CURADA",
         "searchPlaceholder": "Buscar productos...",
+        "backToResults":  "Volver a Resultados",
+        "productDetails": "Detalles del Producto",
+        "relatedProducts": "Más Productos",
         "category":       "Categor\u00eda",
         "sortBy":         "Ordenar Por",
     },
@@ -315,6 +321,9 @@ _TRANSLATIONS = {
         "herobage":       "EXCELLENCE CURATED",
         "herobadge":      "EXCELLENCE CURATED",
         "searchPlaceholder": "Rechercher des produits...",
+        "backToResults":  "Retour aux R\u00e9sultats",
+        "productDetails": "D\u00e9tails du Produit",
+        "relatedProducts": "Plus de Produits",
         "category":       "Cat\u00e9gorie",
         "sortBy":         "Trier Par",
     },
@@ -1222,9 +1231,15 @@ function _renderDetail(p) {
   var priceEl = document.getElementById('detail-price');
   if (priceEl) priceEl.textContent = p.price ? '$' + p.price.toFixed(2) : '';
 
-  // Description
+  // Description (may be {en,es,fr} dict or plain string)
   var descEl = document.getElementById('detail-description');
-  if (descEl) descEl.textContent = p.description || '';
+  if (descEl) {
+    var desc = p.description;
+    if (desc && typeof desc === 'object') {
+      desc = desc[App.lang] || desc['en'] || '';
+    }
+    descEl.textContent = desc || '';
+  }
 
   // Buy button
   var buyBtn = document.getElementById('detail-buy-btn');
