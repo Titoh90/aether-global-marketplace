@@ -501,9 +501,15 @@ function _renderDetail(p) {
   var priceEl = document.getElementById('detail-price');
   if (priceEl) priceEl.textContent = p.price ? '$' + p.price.toFixed(2) : '';
 
-  // Description
+  // Description (may be {en,es,fr} dict or plain string)
   var descEl = document.getElementById('detail-description');
-  if (descEl) descEl.textContent = p.description || '';
+  if (descEl) {
+    var desc = p.description;
+    if (desc && typeof desc === 'object') {
+      desc = desc[App.lang] || desc['en'] || '';
+    }
+    descEl.textContent = desc || '';
+  }
 
   // Buy button
   var buyBtn = document.getElementById('detail-buy-btn');
