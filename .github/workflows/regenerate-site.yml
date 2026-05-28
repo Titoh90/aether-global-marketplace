@@ -1,4 +1,4 @@
-name: Regenerate Conversion Surface
+name: Regenerate + Deploy to GitHub Pages
 
 on:
   schedule:
@@ -11,12 +11,12 @@ permissions:
   contents: write
 
 jobs:
-  regenerate:
+  regenerate-and-deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
-      - name: Checkout repository
+      - name: Checkout aether-global-marketplace
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -27,12 +27,12 @@ jobs:
       - name: Regenerate static site
         env:
           PYTHONPATH: .
+          CI_TEST_MODE: "1"
         run: |
           python -c "
           import sys, os
           from pathlib import Path
 
-          # Ensure repo root is on path (belt and suspenders)
           sys.path.insert(0, os.getcwd())
 
           from conversion_surface.hub_generator import rebuild_hub
@@ -44,7 +44,7 @@ jobs:
           print(f'Site regenerated: {path}')
           "
 
-      - name: Commit and push if changed
+      - name: Commit generated files back to aether-global-marketplace
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -52,9 +52,49 @@ jobs:
           git add -f public/conversion_surface/
 
           if git diff --staged --quiet; then
-            echo "No changes to commit"
+            echo "No changes to commit in source repo"
           else
             git commit -m "chore: auto-regenerate conversion surface [skip ci]"
             git push
-            echo "Changes committed and pushed"
+            echo "Changes committed and pushed to aether-global-marketplace"
+          fi
+
+      # ── Cross-repo deploy to Titoh90.github.io/hub/ ───────────────────────
+
+      - name: Checkout Titoh90.github.io
+        uses: actions/checkout@v4
+        with:
+          repository: Titoh90/Titoh90.github.io
+          token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          path: pages-repo
+          ref: main
+
+      - name: Copy generated site to hub/
+        run: |
+          # Clear existing hub/ contents (full replacement)
+          rm -rf pages-repo/hub/
+          mkdir -p pages-repo/hub/
+
+          # Copy all generated output
+          cp -r public/conversion_surface/. pages-repo/hub/
+
+          echo "Files copied to hub/:"
+          ls -la pages-repo/hub/
+
+      - name: Commit and push to Titoh90.github.io
+        run: |
+          cd pages-repo
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add -A hub/
+
+          if git diff --staged --quiet; then
+            echo "No changes to deploy — hub/ already up to date"
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            git commit -m "deploy: update marketplace hub/ [$TIMESTAMP]"
+            git push
+            echo "Deployed to Titoh90.github.io/hub/"
           fi
