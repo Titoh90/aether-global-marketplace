@@ -7,6 +7,7 @@ rebuild_hub()  → str (path to index.html)
 from __future__ import annotations
 
 import json
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -31,6 +32,10 @@ def build_hub(worker_base_url: str = "") -> HubSurface:
     Reads all data sources, ranks products, builds HubSurface.
     Never raises — returns minimal hub on failure.
     """
+    # CI_TEST_MODE: return a rich test hub with video/carousel/product types
+    if os.environ.get("CI_TEST_MODE"):
+        return _make_test_hub(worker_base_url)
+
     brief      = _load_json(_BRIEF_FILE,     {"products": []})
     campaigns  = _load_json(_CAMPAIGNS_FILE, {}).get("campaigns", {})
     click_log  = _load_json(_CLICK_FILE,     {"clicks": []})
@@ -127,4 +132,41 @@ def _fallback_product(worker_base_url: str) -> SurfaceProduct:
         evergreen_status= "active",
         rating          = 0.0,
         reviews         = 0,
+    )
+
+
+def _make_test_hub(worker_base_url: str) -> HubSurface:
+    """Rich test hub with video (hero), carousel (trending), and product cards."""
+    def _tp(asin, name, price, category, section, rating, reviews):
+        aff = f"https://www.amazon.com/dp/{asin}?tag=aetherglobal-20"
+        trk = f"{worker_base_url.rstrip('/')}/go/{asin}?src=hub" if worker_base_url else aff
+        return SurfaceProduct(
+            asin=asin, name=name, price=price, category=category,
+            affiliate_url=aff, tracking_url=trk,
+            image_url="", final_score=0.8 + rating/10,
+            section=section, archetype_label=category.title(),
+            creative_mode="", evergreen_status="active",
+            rating=rating, reviews=reviews,
+        )
+
+    hero = _tp("B08N5WRWNW", "Apple AirPods Pro 2", 199.99, "electronics", "hero", 4.8, 15234)
+    t1   = _tp("B0C5J5WZNP", "Dyson Airwrap Multi-Styler", 499.99, "beauty", "trending", 4.5, 8765)
+    t2   = _tp("B09G9D7K6R", "Nespresso Vertuo Next", 149.00, "home", "trending", 4.3, 3420)
+    t3   = _tp("B0BXQ1LVS3", "Stanley Quencher H2.0", 35.00, "home", "trending", 4.7, 8921)
+    ev1  = _tp("B0C1GZ9KRM", "Owala FreeSip 24oz", 27.99, "home", "evergreen", 4.6, 4520)
+    r1   = _tp("B0CDW5L234", "Kindle Paperwhite 2024", 149.99, "electronics", "recent", 4.6, 2340)
+    r2   = _tp("B0CLM8BNWJ", "Lululemon Everywhere Belt Bag", 38.00, "fashion", "recent", 4.4, 1890)
+
+    return HubSurface(
+        generated_at = datetime.now(timezone.utc).isoformat(),
+        hero         = hero,
+        trending     = (t1, t2, t3),
+        evergreen    = (ev1,),
+        by_category  = {
+            "electronics": (hero, r1),
+            "beauty": (t1,),
+            "home": (t2, t3, ev1),
+            "fashion": (r2,),
+        },
+        recent       = (r1, r2),
     )

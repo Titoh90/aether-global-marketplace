@@ -56,8 +56,8 @@ def _make_surface_product(**kwargs) -> SurfaceProduct:
 
 
 def _make_hub() -> HubSurface:
-    hero = _make_surface_product(asin="B000000001", section="hero")
-    t1   = _make_surface_product(asin="B000000002", section="trending", category="beauty")
+    hero = _make_surface_product(asin="B000000001", section="hero", rating=4.7, reviews=2340)
+    t1   = _make_surface_product(asin="B000000002", section="trending", category="beauty", rating=4.3, reviews=890)
     t2   = _make_surface_product(asin="B000000003", section="trending", category="sports")
     ev1  = _make_surface_product(asin="B000000004", section="evergreen", evergreen_status="evergreen")
     r1   = _make_surface_product(asin="B000000005", section="recent")
