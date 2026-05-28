@@ -159,6 +159,90 @@ def _build_carousel_image_urls(asin: str, primary_url: str) -> list:
                 urls.append(alt)
     return urls
 
+# ── Product Description i18n ────────────────────────────────────────────────────
+
+# Mapping: English archetype/category name → {es, fr} marketing descriptions.
+# Keys are matched case-insensitively. Falls back to auto-generated text.
+_DESCRIPTIONS: dict[str, dict[str, str]] = {
+    # Categories
+    "electronics": {
+        "es": "Electrónica y tecnología premium",
+        "fr": "Électronique et high-tech premium",
+    },
+    "beauty": {
+        "es": "Belleza y cuidado personal de lujo",
+        "fr": "Beauté et soins personnels de luxe",
+    },
+    "home": {
+        "es": "Esenciales para el hogar y la cocina",
+        "fr": "Indispensables pour la maison et la cuisine",
+    },
+    "fashion": {
+        "es": "Moda y accesorios con estilo",
+        "fr": "Mode et accessoires élégants",
+    },
+    "kitchen": {
+        "es": "Innovación para tu cocina",
+        "fr": "Innovation pour votre cuisine",
+    },
+    "sports": {
+        "es": "Equipamiento deportivo de alto rendimiento",
+        "fr": "Équipement sportif haute performance",
+    },
+    "office": {
+        "es": "Productividad y ergonomía para tu oficina",
+        "fr": "Productivité et ergonomie pour votre bureau",
+    },
+    "toys": {
+        "es": "Juguetes y entretenimiento para todas las edades",
+        "fr": "Jouets et divertissement pour tous les âges",
+    },
+    "garden": {
+        "es": "Herramientas y decoración para exteriores",
+        "fr": "Outils et décoration d'extérieur",
+    },
+    "automotive": {
+        "es": "Accesorios y cuidado automotriz",
+        "fr": "Accessoires et entretien automobile",
+    },
+    "health": {
+        "es": "Salud y bienestar personal",
+        "fr": "Santé et bien-être personnel",
+    },
+    "books": {
+        "es": "Libros y conocimiento al mejor precio",
+        "fr": "Livres et savoir au meilleur prix",
+    },
+    "general": {
+        "es": "Producto seleccionado por su calidad",
+        "fr": "Produit sélectionné pour sa qualité",
+    },
+}
+
+
+def _build_product_description(desc_en: str, category: str = "") -> dict[str, str]:
+    """Build {"en": ..., "es": ..., "fr": ...} with real translations.
+
+    Strategy:
+    1. Match desc_en (archetype label) or category against _DESCRIPTIONS (case-insensitive).
+    2. Fall back to auto-generated text: "Premium {category} products" pattern.
+    """
+    key = desc_en.lower().strip()
+    if key in _DESCRIPTIONS:
+        return {"en": desc_en, "es": _DESCRIPTIONS[key]["es"], "fr": _DESCRIPTIONS[key]["fr"]}
+
+    # Try matching category
+    cat_key = category.lower().strip()
+    if cat_key in _DESCRIPTIONS:
+        return {"en": desc_en, "es": _DESCRIPTIONS[cat_key]["es"], "fr": _DESCRIPTIONS[cat_key]["fr"]}
+
+    # Fallback: auto-generate from category name
+    cat_title = category.title() if category else desc_en
+    fallback_es = f"{cat_title} — producto premium seleccionado"
+    fallback_fr = f"{cat_title} — produit premium sélectionné"
+    return {"en": desc_en, "es": fallback_es, "fr": fallback_fr}
+
+
 def _build_products_json(surface: HubSurface) -> str:
     """Build enriched products JSON matching the JS frontend schema."""
     all_products = [surface.hero]
@@ -209,7 +293,7 @@ def _build_products_json(surface: HubSurface) -> str:
             "reviews": p.reviews,
             "category": p.category,
             "affiliateUrl": p.tracking_url or p.affiliate_url,
-            "description": {"en": desc_en, "es": "", "fr": ""},
+            "description": _build_product_description(desc_en, p.category),
             "tags": tags,
             "section": p.section,
             "type": ptype,

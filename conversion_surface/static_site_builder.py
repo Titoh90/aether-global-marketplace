@@ -113,16 +113,39 @@ _TRANSLATIONS = {
 }
 
 
-def _product_description(p) -> dict:
-    """Build multi-language description from available metadata."""
-    en = ""
-    if p.archetype_label:
-        en = p.archetype_label
-    elif p.creative_mode:
-        en = p.creative_mode.replace("_", " ").title()
-    if not en:
-        en = p.category
-    return {"en": en, "es": "", "fr": ""}
+# ── Product Description i18n ────────────────────────────────────────────────────
+
+# Mapping: English archetype/category name → {es, fr} marketing descriptions.
+# Keys are matched case-insensitively. Falls back to auto-generated text.
+_DESCRIPTIONS: dict[str, dict[str, str]] = {
+    "electronics": {"es": "Electrónica y tecnología premium", "fr": "Électronique et high-tech premium"},
+    "beauty": {"es": "Belleza y cuidado personal de lujo", "fr": "Beauté et soins personnels de luxe"},
+    "home": {"es": "Esenciales para el hogar y la cocina", "fr": "Indispensables pour la maison et la cuisine"},
+    "fashion": {"es": "Moda y accesorios con estilo", "fr": "Mode et accessoires élégants"},
+    "kitchen": {"es": "Innovación para tu cocina", "fr": "Innovation pour votre cuisine"},
+    "sports": {"es": "Equipamiento deportivo de alto rendimiento", "fr": "Équipement sportif haute performance"},
+    "office": {"es": "Productividad y ergonomía para tu oficina", "fr": "Productivité et ergonomie pour votre bureau"},
+    "toys": {"es": "Juguetes y entretenimiento para todas las edades", "fr": "Jouets et divertissement pour tous les âges"},
+    "garden": {"es": "Herramientas y decoración para exteriores", "fr": "Outils et décoration d'extérieur"},
+    "automotive": {"es": "Accesorios y cuidado automotriz", "fr": "Accessoires et entretien automobile"},
+    "health": {"es": "Salud y bienestar personal", "fr": "Santé et bien-être personnel"},
+    "books": {"es": "Libros y conocimiento al mejor precio", "fr": "Livres et savoir au meilleur prix"},
+    "general": {"es": "Producto seleccionado por su calidad", "fr": "Produit sélectionné pour sa qualité"},
+}
+
+
+def _product_description(desc_en: str, category: str = "") -> dict:
+    """Build {"en": ..., "es": ..., "fr": ...} with real ES/FR translations."""
+    key = desc_en.lower().strip()
+    if key in _DESCRIPTIONS:
+        return {"en": desc_en, "es": _DESCRIPTIONS[key]["es"], "fr": _DESCRIPTIONS[key]["fr"]}
+
+    cat_key = category.lower().strip()
+    if cat_key in _DESCRIPTIONS:
+        return {"en": desc_en, "es": _DESCRIPTIONS[cat_key]["es"], "fr": _DESCRIPTIONS[cat_key]["fr"]}
+
+    cat_title = category.title() if category else desc_en
+    return {"en": desc_en, "es": f"{cat_title} — producto premium seleccionado", "fr": f"{cat_title} — produit premium sélectionné"}
 
 
 def _product_tags(p) -> list:
@@ -252,7 +275,7 @@ def _build_enriched_products(surface: HubSurface) -> dict:
             "reviews": p.reviews,
             "category": p.category,
             "affiliateUrl": p.tracking_url or p.affiliate_url,
-            "description": {"en": desc_en, "es": "", "fr": ""},
+            "description": _product_description(desc_en, p.category),
             "tags": tags,
             "section": p.section,
             "type": ptype,
