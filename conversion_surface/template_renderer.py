@@ -2,7 +2,7 @@
 template_renderer.py — AffilioLux premium affiliate marketplace renderer.
 
 Design: Tailwind CDN + Material Symbols + Inter font.
-Mobile-first, gold/warm color system, bottom nav bar.
+Responsive: Mobile-first bottom nav + Desktop top nav with sidebar + 3-col grid.
 Output: self-contained index.html with embedded products JSON.
 """
 from __future__ import annotations
@@ -208,13 +208,19 @@ _TRANSLATIONS = {
         "sortDefault":    "Featured",
         "sortTrending":   "Trending",
         "sortBestseller": "Best Sellers",
-        "sortPriceLow":   "Price ↑",
-        "sortPriceHigh":  "Price ↓",
+        "sortPriceLow":   "Price \u2191",
+        "sortPriceHigh":  "Price \u2193",
         "sortRating":     "Top Rated",
         "navShop":        "Shop",
         "navTrends":      "Trends",
         "navSaved":       "Saved",
         "navAccount":     "Account",
+        "navShopAll":     "Shop All",
+        "navTrending":    "Trending",
+        "navDailyDeals":  "Daily Deals",
+        "herobadge":      "CURATED EXCELLENCE",
+        "category":       "Category",
+        "sortBy":         "Sort By",
     },
     "es": {
         "siteTagline":    "Ofertas Premium",
@@ -232,39 +238,79 @@ _TRANSLATIONS = {
         "sortLabel":      "Ordenar",
         "sortDefault":    "Destacados",
         "sortTrending":   "Tendencias",
-        "sortBestseller": "Más Vendidos",
-        "sortPriceLow":   "Precio ↑",
-        "sortPriceHigh":  "Precio ↓",
+        "sortBestseller": "M\u00e1s Vendidos",
+        "sortPriceLow":   "Precio \u2191",
+        "sortPriceHigh":  "Precio \u2193",
         "sortRating":     "Mejor Valorados",
         "navShop":        "Tienda",
         "navTrends":      "Tendencias",
         "navSaved":       "Guardados",
         "navAccount":     "Cuenta",
+        "navShopAll":     "Ver Todo",
+        "navTrending":    "Tendencias",
+        "navDailyDeals":  "Ofertas del D\u00eda",
+        "herobage":       "EXCELENCIA CURADA",
+        "herobage":       "EXCELENCIA CURADA",
+        "herobage":       "EXCELENCIA CURADA",
+        "herobage":       "EXCELENCIA CURADA",
+        "herobage":       "EXCELENCIA CURADA",
+        "herobage":       "EXCELENCIA CURADA",
+        "herobage":       "EXCELENCIA CURADA",
+        "herobage":       "EXCELENCIA CURADA",
+        "herobage":       "EXCELENCIA CURADA",
+        "herobage":       "EXCELENCIA CURADA",
+        "herobage":       "EXCELENCIA CURADA",
+        "herobage":       "EXCELENCIA CURADA",
+        "herobadge":      "EXCELENCIA CURADA",
+        "category":       "Categor\u00eda",
+        "sortBy":         "Ordenar Por",
     },
     "fr": {
         "siteTagline":    "Offres Premium",
-        "pageTitle":      "Sélections Premium",
-        "pageSubtitle":   "Produits sélectionnés. Mis à jour quotidiennement.",
+        "pageTitle":      "S\u00e9lections Premium",
+        "pageSubtitle":   "Produits s\u00e9lectionn\u00e9s. Mis \u00e0 jour quotidiennement.",
         "allCategories":  "Tout",
         "buyOnAmazon":    "Voir l'offre",
         "bestseller":     "Top Pick",
-        "limitedOffer":   "Limité",
+        "limitedOffer":   "Limit\u00e9",
         "trendingLabel":  "Tendance",
-        "footerDisclaimer": "En tant qu'Associé Amazon, nous gagnons des commissions sur les achats éligibles.",
-        "updated":        "Mis à jour",
-        "noResults":      "Aucun produit trouvé",
+        "footerDisclaimer": "En tant qu'Associ\u00e9 Amazon, nous gagnons des commissions sur les achats \u00e9ligibles.",
+        "updated":        "Mis \u00e0 jour",
+        "noResults":      "Aucun produit trouv\u00e9",
         "productsFound":  "produits",
         "sortLabel":      "Trier",
         "sortDefault":    "Vedette",
         "sortTrending":   "Tendance",
         "sortBestseller": "Meilleures ventes",
-        "sortPriceLow":   "Prix ↑",
-        "sortPriceHigh":  "Prix ↓",
-        "sortRating":     "Mieux notés",
+        "sortPriceLow":   "Prix \u2191",
+        "sortPriceHigh":  "Prix \u2193",
+        "sortRating":     "Mieux not\u00e9s",
         "navShop":        "Boutique",
         "navTrends":      "Tendances",
-        "navSaved":       "Sauvegardés",
+        "navSaved":       "Sauvegard\u00e9s",
         "navAccount":     "Compte",
+        "navShopAll":     "Tout voir",
+        "navTrending":    "Tendances",
+        "navDailyDeals":  "Offres du jour",
+        "herobage":       "EXCELLENCE CURATED",
+        "herobage":       "EXCELLENCE CURATED",
+        "herobage":       "EXCELLENCE CURATED",
+        "herobage":       "EXCELLENCE CURATED",
+        "herobage":       "EXCELLENCE CURATED",
+        "herobage":       "EXCELLENCE CURATED",
+        "herobage":       "EXCELLENCE CURATED",
+        "herobage":       "EXCELLENCE CURATED",
+        "herobage":       "EXCELLENCE CURATED",
+        "herobage":       "EXCELLENCE CURATED",
+        "herobage":       "EXCELLENCE CURATED",
+        "herobage":       "EXCELLENCE CURATED",
+        "herobage":       "EXCELLENCE CURATED",
+        "herobage":       "EXCELLENCE CURATED",
+        "herobage":       "EXCELLENCE CURATED",
+        "herobage":       "EXCELLENCE CURATED",
+        "herobadge":      "EXCELLENCE CURATED",
+        "category":       "Cat\u00e9gorie",
+        "sortBy":         "Trier Par",
     },
 }
 
@@ -291,10 +337,56 @@ _SHELL_HEAD = f"""<!DOCTYPE html>
 </head>"""
 
 _SHELL_BODY = """
-<body class="bg-background text-on-surface min-h-screen pb-24" style="font-family:'Inter',sans-serif">
+<body class="bg-background text-on-surface min-h-screen" style="font-family:'Inter',sans-serif">
 
-  <!-- ── TOP APP BAR (fixed) ──────────────────────────────────────────── -->
-  <header id="top-bar" class="fixed top-0 w-full z-50 bg-surface shadow-sm">
+  <!-- ══ DESKTOP TOP NAV (hidden on mobile) ══════════════════════════════ -->
+  <header class="hidden md:flex sticky top-0 z-50 bg-surface-container-lowest shadow-sm">
+    <div class="flex justify-between items-center w-full max-w-[1440px] mx-auto px-16 py-3 gap-6">
+
+      <!-- Brand -->
+      <a href="#" id="brand-link-desktop"
+         class="text-xl font-bold text-primary select-none whitespace-nowrap shrink-0">
+        Aether Global
+      </a>
+
+      <!-- Search -->
+      <div class="flex-1 max-w-xl relative">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none" style="font-size:18px">search</span>
+        <input id="search-input-desktop" type="search" autocomplete="off"
+               class="w-full bg-surface-container rounded-full border border-outline-variant pl-10 pr-4 py-2 text-sm text-on-surface placeholder:text-on-surface-variant outline-none focus:border-primary transition-colors"
+               placeholder="Search products...">
+      </div>
+
+      <!-- Desktop nav links (lg+) -->
+      <nav class="hidden lg:flex items-center gap-1 shrink-0">
+        <button onclick="App.navShop()"
+                class="px-3 py-1.5 text-sm text-on-surface hover:text-primary hover:bg-surface-container-low rounded-lg transition-colors">
+          <span id="desktop-nav-shop-label">Shop All</span>
+        </button>
+        <button onclick="App.navTrends()"
+                class="px-3 py-1.5 text-sm text-on-surface hover:text-primary hover:bg-surface-container-low rounded-lg transition-colors">
+          <span id="desktop-nav-trends-label">Trending</span>
+        </button>
+        <button onclick="App.navShop()"
+                class="px-3 py-1.5 text-sm text-on-surface hover:text-primary hover:bg-surface-container-low rounded-lg transition-colors">
+          <span id="desktop-nav-deals-label">Daily Deals</span>
+        </button>
+      </nav>
+
+      <!-- Right icons -->
+      <div class="flex items-center gap-2 shrink-0">
+        <button id="lang-cycle-desktop" aria-label="Language"
+                class="flex items-center gap-1 px-2 py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors">
+          <span class="material-symbols-outlined" style="font-size:18px">language</span>
+          <span id="lang-display-desktop" class="text-xs font-semibold">EN</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ══ MOBILE TOP APP BAR (hidden on desktop) ══════════════════════════ -->
+  <header id="top-bar" class="md:hidden fixed top-0 w-full z-50 bg-surface shadow-sm">
     <div class="flex justify-between items-center px-5 h-16">
       <button id="search-toggle" aria-label="Search"
               class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors active:scale-95">
@@ -309,7 +401,7 @@ _SHELL_BODY = """
         <span id="lang-display" class="text-xs font-semibold">EN</span>
       </button>
     </div>
-    <!-- Search bar (collapsible) -->
+    <!-- Mobile search bar (collapsible) -->
     <div id="search-bar" class="hidden px-5 pb-3">
       <div class="flex items-center bg-surface-container rounded-full px-4 py-2 gap-2">
         <span class="material-symbols-outlined text-on-surface-variant" style="font-size:18px">search</span>
@@ -324,54 +416,125 @@ _SHELL_BODY = """
     </div>
   </header>
 
-  <!-- ── MAIN CONTENT ──────────────────────────────────────────────────── -->
-  <main id="main-content" class="pt-16 px-5">
+  <!-- ══ MAIN ════════════════════════════════════════════════════════════ -->
+  <main class="md:max-w-[1440px] md:mx-auto md:px-16 px-5 pb-24 md:pb-10">
 
-    <!-- Page header -->
-    <div class="py-6 animate-in">
+    <!-- DESKTOP HERO (md+) -->
+    <section class="hidden md:block my-8">
+      <div class="bg-gradient-to-r from-surface-container via-surface to-surface-container rounded-xl p-10 relative overflow-hidden">
+        <!-- Decorative circles -->
+        <div class="absolute -top-12 right-8 w-48 h-48 bg-primary-container opacity-20 blur-3xl rounded-full pointer-events-none"></div>
+        <div class="absolute top-4 right-32 w-32 h-32 bg-primary-container opacity-15 blur-2xl rounded-full pointer-events-none"></div>
+        <!-- Content -->
+        <div class="relative z-10 max-w-xl">
+          <div class="inline-flex items-center gap-2 bg-primary-container bg-opacity-20 border border-primary-container text-primary rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest mb-4">
+            <span class="material-symbols-outlined" style="font-size:14px;font-variation-settings:'FILL' 1">auto_awesome</span>
+            <span id="hero-badge">CURATED EXCELLENCE</span>
+          </div>
+          <h1 id="page-title-desktop" class="text-3xl font-bold text-on-surface mb-2 leading-tight">Curated Premium Deals</h1>
+          <p id="page-subtitle-desktop" class="text-base text-on-surface-variant leading-relaxed">Hand-picked products. Updated daily.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOBILE PAGE HEADER -->
+    <div class="md:hidden py-6 pt-20 animate-in">
       <h2 id="page-title" class="text-xl font-semibold text-on-surface">Curated Premium Deals</h2>
       <p id="page-subtitle" class="text-sm text-on-surface-variant mt-1">Hand-picked products. Updated daily.</p>
     </div>
 
-    <!-- Filter chips (categories) -->
-    <div id="filter-bar" class="flex items-center gap-2 mb-4 overflow-x-auto no-scrollbar pb-2"></div>
+    <!-- CONTENT FLEX ROW: sidebar + product area -->
+    <div class="flex gap-8 md:mt-2">
 
-    <!-- Sort + count row -->
-    <div class="flex justify-between items-center mb-5">
-      <span id="products-count" class="text-xs text-on-surface-variant"></span>
-      <select id="sort-select"
-              class="text-xs text-on-surface bg-surface-container-lowest border border-outline-variant rounded-full px-3 py-1.5 outline-none cursor-pointer">
-        <option value="default">Featured</option>
-        <option value="trending">Trending</option>
-        <option value="bestseller">Best Sellers</option>
-        <option value="rating">Top Rated</option>
-        <option value="price-low">Price ↑</option>
-        <option value="price-high">Price ↓</option>
-      </select>
-    </div>
+      <!-- SIDEBAR (lg+) -->
+      <aside class="hidden lg:block w-64 flex-shrink-0 pt-2">
+        <div class="sticky top-20 space-y-8">
 
-    <!-- Product feed -->
-    <div id="product-grid" class="flex flex-col gap-6"></div>
+          <!-- Category filter -->
+          <div>
+            <h3 id="sidebar-category-heading" class="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">Category</h3>
+            <div id="sidebar-categories" class="space-y-1"></div>
+          </div>
 
-    <!-- No results -->
-    <div id="no-results" class="hidden py-16 text-center">
-      <span class="material-symbols-outlined text-4xl text-on-surface-variant block mb-3">search_off</span>
-      <p id="no-results-text" class="text-on-surface-variant text-sm">No products found</p>
+          <!-- Sort -->
+          <div class="border-t border-outline-variant pt-6">
+            <h3 id="sidebar-sort-heading" class="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">Sort By</h3>
+            <div id="sidebar-sort" class="space-y-1"></div>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- PRODUCT AREA -->
+      <div class="flex-grow min-w-0">
+
+        <!-- Mobile filter chips (hidden on lg sidebar) -->
+        <div id="filter-bar" class="lg:hidden flex items-center gap-2 mb-4 overflow-x-auto no-scrollbar pb-2"></div>
+
+        <!-- Count + sort row -->
+        <div class="flex justify-between items-center mb-5">
+          <span id="products-count" class="text-xs text-on-surface-variant"></span>
+          <select id="sort-select"
+                  class="text-xs text-on-surface bg-surface-container-lowest border border-outline-variant rounded-full px-3 py-1.5 outline-none cursor-pointer">
+            <option value="default">Featured</option>
+            <option value="trending">Trending</option>
+            <option value="bestseller">Best Sellers</option>
+            <option value="rating">Top Rated</option>
+            <option value="price-low">Price &#8593;</option>
+            <option value="price-high">Price &#8595;</option>
+          </select>
+        </div>
+
+        <!-- Product grid: 1-col mobile, 2-col sm, 3-col lg -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"></div>
+
+        <!-- No results -->
+        <div id="no-results" class="hidden py-16 text-center">
+          <span class="material-symbols-outlined text-4xl text-on-surface-variant block mb-3">search_off</span>
+          <p id="no-results-text" class="text-on-surface-variant text-sm">No products found</p>
+        </div>
+
+      </div>
     </div>
 
   </main>
 
-  <!-- ── FOOTER ────────────────────────────────────────────────────────── -->
-  <footer class="mt-10 pt-6 pb-6 px-5 border-t border-surface-container text-center">
-    <p class="text-xl font-bold text-primary mb-2">Aether Global</p>
-    <p id="footer-disclaimer" class="text-xs text-secondary max-w-xs mx-auto leading-relaxed">
-      As an Amazon Associate we earn from qualifying purchases.
-    </p>
-    <p class="text-xs text-secondary mt-2">Updated: __UPDATED__</p>
+  <!-- ══ FOOTER ══════════════════════════════════════════════════════════ -->
+  <footer class="mt-10 border-t border-surface-container">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-[1440px] mx-auto px-5 md:px-16 py-10">
+
+      <!-- Brand + disclaimer -->
+      <div class="md:col-span-2">
+        <p class="text-xl font-bold text-primary mb-2">Aether Global</p>
+        <p id="footer-disclaimer" class="text-xs text-secondary leading-relaxed max-w-sm">
+          As an Amazon Associate we earn from qualifying purchases.
+        </p>
+        <p class="text-xs text-secondary mt-2">Updated: __UPDATED__</p>
+      </div>
+
+      <!-- Links col 1 -->
+      <div>
+        <p class="text-xs font-semibold text-on-surface uppercase tracking-widest mb-3">Shop</p>
+        <ul class="space-y-2">
+          <li><button onclick="App.navShop()" class="text-xs text-secondary hover:text-primary transition-colors">All Products</button></li>
+          <li><button onclick="App.navTrends()" class="text-xs text-secondary hover:text-primary transition-colors">Trending Now</button></li>
+        </ul>
+      </div>
+
+      <!-- Links col 2 -->
+      <div>
+        <p class="text-xs font-semibold text-on-surface uppercase tracking-widest mb-3">About</p>
+        <ul class="space-y-2">
+          <li><span class="text-xs text-secondary">affiliate disclosure</span></li>
+          <li><span class="text-xs text-secondary">privacy policy</span></li>
+        </ul>
+      </div>
+
+    </div>
   </footer>
 
-  <!-- ── BOTTOM NAV BAR (fixed) ────────────────────────────────────────── -->
-  <nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-4 pb-2 bg-surface-container-lowest shadow-md border-t border-surface-container">
+  <!-- ══ MOBILE BOTTOM NAV (hidden on desktop) ═══════════════════════════ -->
+  <nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-4 pb-2 bg-surface-container-lowest shadow-md border-t border-surface-container">
     <button id="nav-shop" onclick="App.navShop()"
             class="flex flex-col items-center justify-center px-4 py-1 rounded-xl text-xs bg-primary-container text-on-primary-container transition-all active:scale-90">
       <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">shopping_bag</span>
@@ -394,7 +557,7 @@ _SHELL_BODY = """
     </button>
   </nav>
 
-  <!-- ── DATA ─────────────────────────────────────────────────────────── -->
+  <!-- ══ DATA ══════════════════════════════════════════════════════════════ -->
   <script id="products-data" type="application/json">__PRODUCTS__</script>
   <script id="translations-data" type="application/json">__TRANSLATIONS__</script>
   <script src="assets/app.js"></script>
@@ -443,13 +606,26 @@ _CSS = """
   -webkit-box-orient: vertical;
 }
 
-/* Product card hover lift */
-article.product-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* Shimmer loading skeleton */
+.shimmer-bg {
+  background: #f6f7f8;
+  background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+  background-repeat: no-repeat;
+  background-size: 1000px 100%;
+  animation: shimmer 1.5s infinite linear;
 }
-article.product-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px -4px rgba(117, 91, 0, 0.15);
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+/* Card hover lift */
+.product-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(117, 91, 0, 0.12);
 }
 """
 
@@ -465,7 +641,8 @@ _JS = r"""
 /* ═══════════════════════════════════════════════════════════════════════
    Aether Global — AffilioLux client app
    Features: i18n (EN/ES/FR), search, category filter chips,
-             sort, IntersectionObserver lazy loading, bottom nav
+             sidebar category/sort (desktop), sort, IntersectionObserver
+             lazy loading, shimmer skeleton, bottom nav (mobile)
    ═══════════════════════════════════════════════════════════════════════ */
 
 // ── Data ─────────────────────────────────────────────────────────────────────
@@ -499,6 +676,8 @@ var App = {
     if (sortSel) sortSel.value = 'default';
     var input = document.getElementById('search-input');
     if (input) input.value = '';
+    var inputD = document.getElementById('search-input-desktop');
+    if (inputD) inputD.value = '';
     var clear = document.getElementById('search-clear');
     if (clear) clear.classList.add('hidden');
     _updateNavUI('shop');
@@ -511,6 +690,8 @@ var App = {
     _saveLang(lang);
     var display = document.getElementById('lang-display');
     if (display) display.textContent = lang.toUpperCase();
+    var displayD = document.getElementById('lang-display-desktop');
+    if (displayD) displayD.textContent = lang.toUpperCase();
     this.render();
   },
 
@@ -518,6 +699,8 @@ var App = {
     this.query = '';
     var input = document.getElementById('search-input');
     if (input) input.value = '';
+    var inputD = document.getElementById('search-input-desktop');
+    if (inputD) inputD.value = '';
     var clear = document.getElementById('search-clear');
     if (clear) clear.classList.add('hidden');
     this.render();
@@ -530,6 +713,8 @@ var App = {
 
   setSort: function(val) {
     this.sort = val;
+    var sortSel = document.getElementById('sort-select');
+    if (sortSel) sortSel.value = val;
     this.render();
   },
 
@@ -610,6 +795,8 @@ var App = {
   render: function() {
     _updateI18nText();
     _renderCategories();
+    _renderSidebarCategories();
+    _renderSidebarSort();
     _renderProducts();
   },
 };
@@ -631,21 +818,47 @@ function _updateNavUI(active) {
 // ── i18n text updates ─────────────────────────────────────────────────────────
 
 function _updateI18nText() {
+  // Mobile page header
   var pageTitle    = document.getElementById('page-title');
   var pageSubtitle = document.getElementById('page-subtitle');
-  var footerDisc   = document.getElementById('footer-disclaimer');
-  var noResText    = document.getElementById('no-results-text');
-
   if (pageTitle)    pageTitle.textContent    = App.t('pageTitle');
   if (pageSubtitle) pageSubtitle.textContent = App.t('pageSubtitle');
-  if (footerDisc)   footerDisc.textContent   = App.t('footerDisclaimer');
-  if (noResText)    noResText.textContent    = App.t('noResults');
 
-  // Nav labels
+  // Desktop hero
+  var pageTitleD    = document.getElementById('page-title-desktop');
+  var pageSubtitleD = document.getElementById('page-subtitle-desktop');
+  var heroBadge     = document.getElementById('hero-badge');
+  if (pageTitleD)    pageTitleD.textContent    = App.t('pageTitle');
+  if (pageSubtitleD) pageSubtitleD.textContent = App.t('pageSubtitle');
+  if (heroBadge)     heroBadge.textContent     = App.t('herobage') || 'CURATED EXCELLENCE';
+
+  // Footer
+  var footerDisc = document.getElementById('footer-disclaimer');
+  if (footerDisc) footerDisc.textContent = App.t('footerDisclaimer');
+
+  // No results
+  var noResText = document.getElementById('no-results-text');
+  if (noResText) noResText.textContent = App.t('noResults');
+
+  // Mobile nav labels
   ['shop','trends','saved','account'].forEach(function(id) {
     var el = document.getElementById('nav-' + id + '-label');
     if (el) el.textContent = App.t('nav' + id.charAt(0).toUpperCase() + id.slice(1));
   });
+
+  // Desktop nav labels
+  var dShop = document.getElementById('desktop-nav-shop-label');
+  var dTrends = document.getElementById('desktop-nav-trends-label');
+  var dDeals = document.getElementById('desktop-nav-deals-label');
+  if (dShop)   dShop.textContent   = App.t('navShopAll');
+  if (dTrends) dTrends.textContent = App.t('navTrending');
+  if (dDeals)  dDeals.textContent  = App.t('navDailyDeals');
+
+  // Sidebar headings
+  var sbCat  = document.getElementById('sidebar-category-heading');
+  var sbSort = document.getElementById('sidebar-sort-heading');
+  if (sbCat)  sbCat.textContent  = App.t('category');
+  if (sbSort) sbSort.textContent = App.t('sortBy');
 
   // Sort options
   var sortSel = document.getElementById('sort-select');
@@ -655,12 +868,16 @@ function _updateI18nText() {
     opts.forEach(function(opt, i) { if (labels[i]) opt.textContent = labels[i]; });
   }
 
-  // Search placeholder
+  // Search placeholder (mobile)
   var input = document.getElementById('search-input');
   if (input) input.placeholder = App.t('searchPlaceholder') || 'Search products...';
+
+  // Search placeholder (desktop)
+  var inputD = document.getElementById('search-input-desktop');
+  if (inputD) inputD.placeholder = App.t('searchPlaceholder') || 'Search products...';
 }
 
-// ── Category filter chips ─────────────────────────────────────────────────────
+// ── Mobile category filter chips ──────────────────────────────────────────────
 
 function _renderCategories() {
   var bar = document.getElementById('filter-bar');
@@ -680,6 +897,64 @@ function _renderCategories() {
   });
 
   bar.innerHTML = chips;
+}
+
+// ── Desktop sidebar: categories ───────────────────────────────────────────────
+
+function _renderSidebarCategories() {
+  var container = document.getElementById('sidebar-categories');
+  if (!container) return;
+
+  var ACTIVE   = 'flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer text-sm font-semibold text-primary bg-surface-container-low transition-colors';
+  var INACTIVE = 'flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer text-sm text-on-surface hover:text-primary hover:bg-surface-container-low transition-colors';
+
+  var html = '';
+
+  // "All" item
+  html += '<div class="' + (App.category === 'all' ? ACTIVE : INACTIVE) + '" '
+       + 'onclick="App.filterCategory(\'all\')">'
+       + '<span class="material-symbols-outlined" style="font-size:18px">apps</span>'
+       + '<span>' + _escHtml(App.t('allCategories')) + '</span>'
+       + '</div>';
+
+  CATEGORIES.forEach(function(cat) {
+    html += '<div class="' + (App.category === cat ? ACTIVE : INACTIVE) + '" '
+          + 'onclick="App.filterCategory(\'' + _escAttr(cat) + '\')">'
+          + '<span class="material-symbols-outlined" style="font-size:18px">label</span>'
+          + '<span>' + _escHtml(cat) + '</span>'
+          + '</div>';
+  });
+
+  container.innerHTML = html;
+}
+
+// ── Desktop sidebar: sort ─────────────────────────────────────────────────────
+
+function _renderSidebarSort() {
+  var container = document.getElementById('sidebar-sort');
+  if (!container) return;
+
+  var ACTIVE   = 'flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer text-sm font-semibold text-primary bg-surface-container-low transition-colors';
+  var INACTIVE = 'flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer text-sm text-on-surface hover:text-primary hover:bg-surface-container-low transition-colors';
+
+  var sorts = [
+    {val: 'default',    label: App.t('sortDefault')},
+    {val: 'trending',   label: App.t('sortTrending')},
+    {val: 'bestseller', label: App.t('sortBestseller')},
+    {val: 'rating',     label: App.t('sortRating')},
+    {val: 'price-low',  label: App.t('sortPriceLow')},
+    {val: 'price-high', label: App.t('sortPriceHigh')},
+  ];
+
+  var html = '';
+  sorts.forEach(function(s) {
+    html += '<div class="' + (App.sort === s.val ? ACTIVE : INACTIVE) + '" '
+          + 'onclick="App.setSort(\'' + _escAttr(s.val) + '\')">'
+          + _escHtml(s.label)
+          + '</div>';
+  });
+
+  container.innerHTML = html;
 }
 
 // ── Product rendering ─────────────────────────────────────────────────────────
@@ -715,7 +990,6 @@ function _renderProducts() {
 
 function _renderCard(p, idx) {
   var url      = _escAttr(p.affiliateUrl || '#');
-  var urlRaw   = p.affiliateUrl || '#';
   var title    = _escHtml(p.title || '');
   var category = _escHtml(p.category || '');
   var price    = p.price ? '$' + p.price.toFixed(2) : '';
@@ -753,11 +1027,13 @@ function _renderCard(p, idx) {
   return '<article class="product-card bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col animate-in" '
        + 'style="animation-delay:' + delay + 's">'
 
-       // Image area — clicking opens affiliate link
-       + '<div class="relative w-full aspect-square bg-surface-container-low cursor-pointer" '
+       // Image area with shimmer
+       + '<div class="relative w-full aspect-square bg-surface-container-low cursor-pointer shimmer-bg" '
        + 'onclick="window.open(\'' + url + '\',\'_blank\')">'
        + '<img data-src="' + imgSrc + '" alt="' + title + '" '
-       + 'class="card-img w-full h-full object-contain mix-blend-multiply p-4" onerror="this.hidden=true">'
+       + 'class="card-img w-full h-full object-contain mix-blend-multiply p-4" '
+       + 'onload="this.parentElement.classList.remove(\'shimmer-bg\')" '
+       + 'onerror="this.hidden=true;this.parentElement.classList.remove(\'shimmer-bg\')">'
        + badge
        + '</div>'
 
@@ -817,6 +1093,7 @@ function _setupLazyImages() {
 // ── Search ────────────────────────────────────────────────────────────────────
 
 function _setupSearch() {
+  // Mobile search toggle
   var toggle    = document.getElementById('search-toggle');
   var searchBar = document.getElementById('search-bar');
   var input     = document.getElementById('search-input');
@@ -856,6 +1133,28 @@ function _setupSearch() {
       App.clearSearch();
     });
   }
+
+  // Desktop search input
+  var inputD = document.getElementById('search-input-desktop');
+  if (inputD) {
+    var debounceD;
+    inputD.addEventListener('input', function() {
+      clearTimeout(debounceD);
+      debounceD = setTimeout(function() {
+        App.query = inputD.value.trim();
+        // Sync mobile input
+        if (input) input.value = inputD.value;
+        App.render();
+      }, 220);
+    });
+
+    inputD.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        inputD.value = '';
+        App.clearSearch();
+      }
+    });
+  }
 }
 
 // ── Sort ──────────────────────────────────────────────────────────────────────
@@ -874,13 +1173,25 @@ function _setupSort() {
 var _LANGS = ['en', 'es', 'fr'];
 
 function _setupLang() {
+  // Mobile lang button
   var btn = document.getElementById('lang-cycle');
-  if (!btn) return;
-  btn.addEventListener('click', function() {
-    var idx  = _LANGS.indexOf(App.lang);
-    var next = _LANGS[(idx + 1) % _LANGS.length];
-    App.setLang(next);
-  });
+  if (btn) {
+    btn.addEventListener('click', function() {
+      var idx  = _LANGS.indexOf(App.lang);
+      var next = _LANGS[(idx + 1) % _LANGS.length];
+      App.setLang(next);
+    });
+  }
+
+  // Desktop lang button
+  var btnD = document.getElementById('lang-cycle-desktop');
+  if (btnD) {
+    btnD.addEventListener('click', function() {
+      var idx  = _LANGS.indexOf(App.lang);
+      var next = _LANGS[(idx + 1) % _LANGS.length];
+      App.setLang(next);
+    });
+  }
 }
 
 function _detectLang() {
@@ -896,12 +1207,19 @@ function _saveLang(lang) {
   try { localStorage.setItem('aether_lang', lang); } catch(e) {}
 }
 
-// ── Brand link ────────────────────────────────────────────────────────────────
+// ── Brand links ───────────────────────────────────────────────────────────────
 
 function _setupBrandLink() {
   var link = document.getElementById('brand-link');
   if (link) {
     link.addEventListener('click', function(e) {
+      e.preventDefault();
+      App.reset();
+    });
+  }
+  var linkD = document.getElementById('brand-link-desktop');
+  if (linkD) {
+    linkD.addEventListener('click', function(e) {
       e.preventDefault();
       App.reset();
     });
@@ -932,6 +1250,8 @@ function _escAttr(s) {
 document.addEventListener('DOMContentLoaded', function() {
   var display = document.getElementById('lang-display');
   if (display) display.textContent = App.lang.toUpperCase();
+  var displayD = document.getElementById('lang-display-desktop');
+  if (displayD) displayD.textContent = App.lang.toUpperCase();
 
   _setupSearch();
   _setupSort();
