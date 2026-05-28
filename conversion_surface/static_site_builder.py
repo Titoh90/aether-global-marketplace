@@ -19,6 +19,7 @@ import json
 from pathlib import Path
 
 from .schemas import HubSurface
+from .descriptions import product_description
 
 _IMPERIO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_OUT   = _IMPERIO_ROOT / "public" / "conversion_surface"
@@ -113,40 +114,6 @@ _TRANSLATIONS = {
 }
 
 
-# ── Product Description i18n ────────────────────────────────────────────────────
-
-# Mapping: English archetype/category name → {es, fr} marketing descriptions.
-# Keys are matched case-insensitively. Falls back to auto-generated text.
-_DESCRIPTIONS: dict[str, dict[str, str]] = {
-    "electronics": {"es": "Electrónica y tecnología premium", "fr": "Électronique et high-tech premium"},
-    "beauty": {"es": "Belleza y cuidado personal de lujo", "fr": "Beauté et soins personnels de luxe"},
-    "home": {"es": "Esenciales para el hogar y la cocina", "fr": "Indispensables pour la maison et la cuisine"},
-    "fashion": {"es": "Moda y accesorios con estilo", "fr": "Mode et accessoires élégants"},
-    "kitchen": {"es": "Innovación para tu cocina", "fr": "Innovation pour votre cuisine"},
-    "sports": {"es": "Equipamiento deportivo de alto rendimiento", "fr": "Équipement sportif haute performance"},
-    "office": {"es": "Productividad y ergonomía para tu oficina", "fr": "Productivité et ergonomie pour votre bureau"},
-    "toys": {"es": "Juguetes y entretenimiento para todas las edades", "fr": "Jouets et divertissement pour tous les âges"},
-    "garden": {"es": "Herramientas y decoración para exteriores", "fr": "Outils et décoration d'extérieur"},
-    "automotive": {"es": "Accesorios y cuidado automotriz", "fr": "Accessoires et entretien automobile"},
-    "health": {"es": "Salud y bienestar personal", "fr": "Santé et bien-être personnel"},
-    "books": {"es": "Libros y conocimiento al mejor precio", "fr": "Livres et savoir au meilleur prix"},
-    "general": {"es": "Producto seleccionado por su calidad", "fr": "Produit sélectionné pour sa qualité"},
-}
-
-
-def _product_description(desc_en: str, category: str = "") -> dict:
-    """Build {"en": ..., "es": ..., "fr": ...} with real ES/FR translations."""
-    key = desc_en.lower().strip()
-    if key in _DESCRIPTIONS:
-        return {"en": desc_en, "es": _DESCRIPTIONS[key]["es"], "fr": _DESCRIPTIONS[key]["fr"]}
-
-    cat_key = category.lower().strip()
-    if cat_key in _DESCRIPTIONS:
-        return {"en": desc_en, "es": _DESCRIPTIONS[cat_key]["es"], "fr": _DESCRIPTIONS[cat_key]["fr"]}
-
-    cat_title = category.title() if category else desc_en
-    return {"en": desc_en, "es": f"{cat_title} — producto premium seleccionado", "fr": f"{cat_title} — produit premium sélectionné"}
-
 
 def _product_tags(p) -> list:
     """Derive display tags from section and status."""
@@ -160,21 +127,21 @@ def _product_tags(p) -> list:
     return tags
 
 
-def _amazon_image_url(asin: str, size: str = "SL400", img_id: str = "AsinImage") -> str:
+def _amazon_image_url(asin: str, size: str = "SL400") -> str:
     if not asin:
         return ""
-    return f"https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN={asin}&Format=_{size}_&ID={img_id}&MarketPlace=US&ServiceVersion=20070822&WS=1"
+    return f"https://m.media-amazon.com/images/P/{asin}.01._{size}_.jpg"
 
 
 def _build_carousel_image_urls(asin: str, primary_url: str) -> list:
-    """Generate up to 3 image URLs for carousel slides using Amazon alternate image IDs."""
-    urls = [primary_url] if primary_url else []
-    if asin:
-        for suffix in (".01", ".02"):
-            alt = _amazon_image_url(asin, img_id=f"AsinImage{suffix}")
-            if alt and alt not in urls:
-                urls.append(alt)
-    return urls
+    """Up to 3 Amazon CDN image variants (.01 / .02 / .03)."""
+    if not asin:
+        return [primary_url] if primary_url else []
+    return [
+        f"https://m.media-amazon.com/images/P/{asin}.01._SL400_.jpg",
+        f"https://m.media-amazon.com/images/P/{asin}.02._SL400_.jpg",
+        f"https://m.media-amazon.com/images/P/{asin}.03._SL400_.jpg",
+    ]
 
 
 def build_static_site(
@@ -275,7 +242,7 @@ def _build_enriched_products(surface: HubSurface) -> dict:
             "reviews": p.reviews,
             "category": p.category,
             "affiliateUrl": p.tracking_url or p.affiliate_url,
-            "description": _product_description(desc_en, p.category),
+            "description": product_description(desc_en, p.category),
             "tags": tags,
             "section": p.section,
             "type": ptype,
