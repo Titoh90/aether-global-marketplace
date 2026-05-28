@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aether Global — Premium Deals</title>
+  <meta name="description" content="Curated premium products with affiliate links. Quality you can trust.">
+  <link rel="preconnect" href="https://ws-na.amazon-adsystem.com" crossorigin>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <noscript><div style="text-align:center;padding:3rem 1rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"><p style="color:#9CA3AF;font-size:1rem">JavaScript is required to view our curated product deals.</p></div></noscript>
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="#" class="brand" aria-label="Aether Global Home" onclick="App.reset();return false">
+        <span class="brand-icon">◆</span>
+        <span class="brand-text">AETHER</span>
+        <span class="brand-sub">GLOBAL</span>
+      </a>
+      <div class="header-right">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search-input" class="search-input" placeholder="Search products..." autocomplete="off">
+          <button class="search-clear" id="search-clear" aria-label="Clear search" onclick="App.clearSearch()">&times;</button>
+        </div>
+        <div class="lang-selector">
+          <button class="lang-btn" data-lang="en" onclick="App.setLang('en')" id="lang-en">EN</button>
+          <button class="lang-btn" data-lang="es" onclick="App.setLang('es')" id="lang-es">ES</button>
+          <button class="lang-btn" data-lang="fr" onclick="App.setLang('fr')" id="lang-fr">FR</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title" data-i18n="heroTitle">Curated Premium Deals</h1>
+        <p class="hero-subtitle" data-i18n="heroSubtitle">Hand-picked products from Amazon's best sellers. Quality you can trust.</p>
+        <button class="hero-cta" onclick="document.getElementById('search-input').focus()" data-i18n="heroCTA">Explore Deals</button>
+      </div>
+    </section>
+
+    <nav class="category-nav" id="category-nav">
+      <div class="category-inner">
+        <button class="cat-pill active" data-category="all" onclick="App.filterCategory('all')">
+          <span data-i18n="allCategories">All</span>
+        </button>
+      </div>
+    </nav>
+
+    <section class="products-section">
+      <div class="section-header">
+        <div class="header-left">
+          <h2 class="products-count" id="products-count"></h2>
+        </div>
+        <div class="header-right">
+          <div class="sort-bar">
+            <label class="sort-label" for="sort-select" data-i18n="sortLabel">Sort by</label>
+            <select id="sort-select" class="sort-select" onchange="App.setSort(this.value)">
+              <option value="default">—</option>
+              <option value="trending">Trending</option>
+              <option value="bestseller">Best Sellers</option>
+              <option value="rating">Top Rated</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+            </select>
+          </div>
+          <div class="view-toggle">
+            <button class="view-btn active" data-view="grid" onclick="App.setView('grid')" title="Grid view" aria-label="Grid view">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+            </button>
+            <button class="view-btn" data-view="list" onclick="App.setView('list')" title="List view" aria-label="List view">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="2" width="14" height="3" rx="1"/><rect x="1" y="7" width="14" height="3" rx="1"/><rect x="1" y="12" width="14" height="3" rx="1"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-grid" id="product-grid"></div>
+      <div class="no-results" id="no-results" style="display:none">
+        <p data-i18n="noResults">No products found</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">◆ AETHER GLOBAL</p>
+      <p class="footer-disclaimer" data-i18n="footerDisclaimer">As an Amazon Associate we earn from qualifying purchases.</p>
+      <p class="footer-updated"><span data-i18n="updated">Updated</span>: 2026-05-28 19:29</p>
+    </div>
+  </footer>
+
+  <script id="products-data" type="application/json">{"generated_at": "2026-05-28T19:29:56.427722+00:00", "categories": ["beauty", "electronics", "fashion", "home"], "products": [{"id": "B08N5WRWNW", "title": "Apple AirPods Pro 2", "price": 199.99, "image": "https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B08N5WRWNW&Format=_SL400_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1", "imageUrls": ["https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B08N5WRWNW&Format=_SL400_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1", "https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B08N5WRWNW&Format=_SL400_&ID=AsinImage.01&MarketPlace=US&ServiceVersion=20070822&WS=1", "https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B08N5WRWNW&Format=_SL400_&ID=AsinImage.02&MarketPlace=US&ServiceVersion=20070822&WS=1"], "rating": 4.8, "reviews": 15234, "category": "electronics", "affiliateUrl": "https://www.amazon.com/dp/B08N5WRWNW?tag=aetherglobal-20", "description": {"en": "Electronics", "es": "Electrónica y tecnología premium", "fr": "Électronique et high-tech premium"}, "tags": ["bestseller"], "section": "hero", "type": "video"}, {"id": "B0C5J5WZNP", "title": "Dyson Airwrap Multi-Styler", "price": 499.99, "image": "https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0C5J5WZNP&Format=_SL400_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1", "imageUrls": ["https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0C5J5WZNP&Format=_SL400_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1", "https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0C5J5WZNP&Format=_SL400_&ID=AsinImage.01&MarketPlace=US&ServiceVersion=20070822&WS=1", "https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0C5J5WZNP&Format=_SL400_&ID=AsinImage.02&MarketPlace=US&ServiceVersion=20070822&WS=1"], "rating": 4.5, "reviews": 8765, "category": "beauty", "affiliateUrl": "https://www.amazon.com/dp/B0C5J5WZNP?tag=aetherglobal-20", "description": {"en": "Beauty", "es": "Belleza y cuidado personal de lujo", "fr": "Beauté et soins personnels de luxe"}, "tags": ["trending"], "section": "trending", "type": "carousel"}, {"id": "B09G9D7K6R", "title": "Nespresso Vertuo Next", "price": 149.0, "image": "https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B09G9D7K6R&Format=_SL400_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1", "imageUrls": ["https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B09G9D7K6R&Format=_SL400_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1", "https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B09G9D7K6R&Format=_SL400_&ID=AsinImage.01&MarketPlace=US&ServiceVersion=20070822&WS=1", "https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B09G9D7K6R&Format=_SL400_&ID=AsinImage.02&MarketPlace=US&ServiceVersion=20070822&WS=1"], "rating": 4.3, "reviews": 3420, "category": "home", "affiliateUrl": "https://www.amazon.com/dp/B09G9D7K6R?tag=aetherglobal-20", "description": {"en": "Home", "es": "Esenciales para el hogar y la cocina", "fr": "Indispensables pour la maison et la cuisine"}, "tags": ["trending"], "section": "trending", "type": "carousel"}, {"id": "B0BXQ1LVS3", "title": "Stanley Quencher H2.0", "price": 35.0, "image": "https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0BXQ1LVS3&Format=_SL400_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1", "imageUrls": ["https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0BXQ1LVS3&Format=_SL400_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1", "https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0BXQ1LVS3&Format=_SL400_&ID=AsinImage.01&MarketPlace=US&ServiceVersion=20070822&WS=1", "https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0BXQ1LVS3&Format=_SL400_&ID=AsinImage.02&MarketPlace=US&ServiceVersion=20070822&WS=1"], "rating": 4.7, "reviews": 8921, "category": "home", "affiliateUrl": "https://www.amazon.com/dp/B0BXQ1LVS3?tag=aetherglobal-20", "description": {"en": "Home", "es": "Esenciales para el hogar y la cocina", "fr": "Indispensables pour la maison et la cuisine"}, "tags": ["trending"], "section": "trending", "type": "carousel"}, {"id": "B0C1GZ9KRM", "title": "Owala FreeSip 24oz", "price": 27.99, "image": "https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0C1GZ9KRM&Format=_SL400_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1", "imageUrls": ["https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0C1GZ9KRM&Format=_SL400_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1"], "rating": 4.6, "reviews": 4520, "category": "home", "affiliateUrl": "https://www.amazon.com/dp/B0C1GZ9KRM?tag=aetherglobal-20", "description": {"en": "Home", "es": "Esenciales para el hogar y la cocina", "fr": "Indispensables pour la maison et la cuisine"}, "tags": [], "section": "evergreen", "type": "product"}, {"id": "B0CDW5L234", "title": "Kindle Paperwhite 2024", "price": 149.99, "image": "https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0CDW5L234&Format=_SL400_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1", "imageUrls": ["https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0CDW5L234&Format=_SL400_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1"], "rating": 4.6, "reviews": 2340, "category": "electronics", "affiliateUrl": "https://www.amazon.com/dp/B0CDW5L234?tag=aetherglobal-20", "description": {"en": "Electronics", "es": "Electrónica y tecnología premium", "fr": "Électronique et high-tech premium"}, "tags": [], "section": "recent", "type": "product"}, {"id": "B0CLM8BNWJ", "title": "Lululemon Everywhere Belt Bag", "price": 38.0, "image": "https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0CLM8BNWJ&Format=_SL400_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1", "imageUrls": ["https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0CLM8BNWJ&Format=_SL400_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1"], "rating": 4.4, "reviews": 1890, "category": "fashion", "affiliateUrl": "https://www.amazon.com/dp/B0CLM8BNWJ?tag=aetherglobal-20", "description": {"en": "Fashion", "es": "Moda y accesorios con estilo", "fr": "Mode et accessoires élégants"}, "tags": [], "section": "recent", "type": "product"}]}</script>
+  <script id="translations-data" type="application/json">{"en": {"siteTagline": "Premium Deals", "searchPlaceholder": "Search products...", "allCategories": "All", "buyOnAmazon": "Buy on Amazon", "heroTitle": "Curated Premium Deals", "heroSubtitle": "Hand-picked products from Amazon's best sellers. Quality you can trust.", "heroCTA": "Explore Deals", "bestseller": "Best Seller", "limitedOffer": "Limited Offer", "trendingLabel": "Trending", "footerDisclaimer": "As an Amazon Associate we earn from qualifying purchases.", "updated": "Updated", "noResults": "No products found", "productsFound": "products", "sortLabel": "Sort by", "sortDefault": "Featured", "sortTrending": "Trending", "sortBestseller": "Best Sellers", "sortPriceLow": "Price: Low to High", "sortPriceHigh": "Price: High to Low", "sortRating": "Top Rated", "viewGrid": "Grid", "viewList": "List", "watchVideo": "Watch Video", "closePreview": "Close", "watchOnAmazon": "Watch on Amazon"}, "es": {"siteTagline": "Ofertas Premium", "searchPlaceholder": "Buscar productos...", "allCategories": "Todos", "buyOnAmazon": "Comprar en Amazon", "heroTitle": "Ofertas Premium Seleccionadas", "heroSubtitle": "Productos seleccionados de los más vendidos de Amazon. Calidad en la que puedes confiar.", "heroCTA": "Explorar Ofertas", "bestseller": "Más Vendido", "limitedOffer": "Oferta Limitada", "trendingLabel": "Tendencia", "footerDisclaimer": "Como Asociado de Amazon, ganamos comisiones por compras que califican.", "updated": "Actualizado", "noResults": "No se encontraron productos", "productsFound": "productos", "sortLabel": "Ordenar por", "sortDefault": "Destacados", "sortTrending": "Tendencias", "sortBestseller": "Más Vendidos", "sortPriceLow": "Precio: Menor a Mayor", "sortPriceHigh": "Precio: Mayor a Menor", "sortRating": "Mejor Valorados", "viewGrid": "Cuadrícula", "viewList": "Lista", "watchVideo": "Ver Video", "closePreview": "Cerrar", "watchOnAmazon": "Ver en Amazon"}, "fr": {"siteTagline": "Offres Premium", "searchPlaceholder": "Rechercher des produits...", "allCategories": "Tous", "buyOnAmazon": "Acheter sur Amazon", "heroTitle": "Offres Premium Sélectionnées", "heroSubtitle": "Produits triés sur le volet parmi les meilleures ventes d'Amazon. Une qualité de confiance.", "heroCTA": "Explorer les Offres", "bestseller": "Meilleure Vente", "limitedOffer": "Offre Limitée", "trendingLabel": "Tendance", "footerDisclaimer": "En tant que Partenaire Amazon, nous gagnons des commissions sur les achats éligibles.", "updated": "Mis à jour", "noResults": "Aucun produit trouvé", "productsFound": "produits", "sortLabel": "Trier par", "sortDefault": "En vedette", "sortTrending": "Tendances", "sortBestseller": "Meilleures Ventes", "sortPriceLow": "Prix: Croissant", "sortPriceHigh": "Prix: Décroissant", "sortRating": "Mieux Notés", "viewGrid": "Grille", "viewList": "Liste", "watchVideo": "Voir Vidéo", "closePreview": "Fermer", "watchOnAmazon": "Voir sur Amazon"}}</script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
