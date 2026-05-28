@@ -1,0 +1,60 @@
+name: Regenerate Conversion Surface
+
+on:
+  schedule:
+    # Daily at 06:00 UTC — runs after overnight brief generation
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    # Manual trigger from GitHub UI
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Regenerate static site
+        env:
+          PYTHONPATH: .
+        run: |
+          python -c "
+          import sys, os
+          from pathlib import Path
+
+          # Ensure repo root is on path (belt and suspenders)
+          sys.path.insert(0, os.getcwd())
+
+          from conversion_surface.hub_generator import rebuild_hub
+
+          out_dir = Path('public/conversion_surface').resolve()
+          out_dir.mkdir(parents=True, exist_ok=True)
+
+          path = rebuild_hub(output_dir=out_dir)
+          print(f'Site regenerated: {path}')
+          "
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add public/conversion_surface/
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: auto-regenerate conversion surface [skip ci]"
+            git push
+            echo "Changes committed and pushed"
+          fi

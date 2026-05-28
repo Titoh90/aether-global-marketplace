@@ -1,0 +1,52 @@
+# Aether Global Marketplace
+# Only track source code, tests, and workflow.
+# Generated output is rebuilt on CI.
+
+# Generated output
+public/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.eggs/
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project-specific data (large / auto-generated)
+REVENUE/
+leads_raw.json
+nohup.out
+*.log
+
+# Other non-marketplace directories
+APPLIO/
+SISTEMA_FORENSICS/
+Respaldo_IA/
+AI_TOOLS/
+LTX-2/
+ollama_models/
+Movies/
+.fseventsd/
+.playwright-mcp/
+
+# Temp / cache
+*.plist
+aionui-config.txt
