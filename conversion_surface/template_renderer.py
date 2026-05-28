@@ -165,19 +165,29 @@ def _build_products_json(surface: HubSurface) -> str:
 
         img_src = p.image_url or _amazon_image_url(p.asin)
 
+        # Build correct affiliate URL with /?tag= format
+        raw_url = p.tracking_url or p.affiliate_url or ""
+        if "amazon.com/dp/" in raw_url and "?tag=" in raw_url and "/?tag=" not in raw_url:
+            raw_url = raw_url.replace("?tag=", "/?tag=")
+
+        # Extract English string for description, keep dict under descriptionI18n
+        desc_result = product_description(desc_en, p.category)
+        desc_str = desc_result.get("en", desc_en) if isinstance(desc_result, dict) else str(desc_result)
+
         products_out.append({
-            "id":          p.asin,
-            "title":       p.name,
-            "price":       p.price,
-            "image":       img_src,
-            "imageUrls":   _build_carousel_image_urls(p.asin, img_src),
-            "rating":      p.rating,
-            "reviews":     p.reviews,
-            "category":    p.category,
-            "affiliateUrl": p.tracking_url or p.affiliate_url,
-            "description": product_description(desc_en, p.category),
-            "tags":        tags,
-            "section":     p.section,
+            "id":              p.asin,
+            "title":           p.name,
+            "price":           p.price,
+            "image":           img_src,
+            "imageUrls":       _build_carousel_image_urls(p.asin, img_src),
+            "rating":          p.rating,
+            "reviews":         p.reviews,
+            "category":        p.category,
+            "affiliateUrl":    raw_url,
+            "description":     desc_str,
+            "descriptionI18n": desc_result if isinstance(desc_result, dict) else {"en": desc_str, "es": desc_str, "fr": desc_str},
+            "tags":            tags,
+            "section":         p.section,
         })
 
     return json.dumps({
@@ -1228,14 +1238,18 @@ function _renderDetail(p) {
   var priceEl = document.getElementById('detail-price');
   if (priceEl) priceEl.textContent = p.price ? '$' + p.price.toFixed(2) : '';
 
-  // Description (may be {en,es,fr} dict or plain string)
+  // Description — prefer descriptionI18n dict, fallback to description field
   var descEl = document.getElementById('detail-description');
   if (descEl) {
-    var desc = p.description;
-    if (desc && typeof desc === 'object') {
-      desc = desc[App.lang] || desc['en'] || '';
+    var desc = '';
+    if (p.descriptionI18n) {
+      desc = p.descriptionI18n[App.lang] || p.descriptionI18n['en'] || '';
+    } else if (p.description) {
+      desc = typeof p.description === 'object'
+        ? (p.description[App.lang] || p.description['en'] || '')
+        : p.description;
     }
-    descEl.textContent = desc || '';
+    descEl.textContent = desc;
   }
 
   // Buy button

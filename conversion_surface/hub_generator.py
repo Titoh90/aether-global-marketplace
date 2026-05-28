@@ -115,7 +115,7 @@ def _load_json(path: Path, default) -> dict:
 
 def _fallback_product(worker_base_url: str) -> SurfaceProduct:
     asin = "B085DTZQNZ"  # Owala as default
-    aff  = f"https://www.amazon.com/dp/{asin}?tag=aetherglobal-20"
+    aff  = f"https://www.amazon.com/dp/{asin}/?tag=aetherglobal-20"
     trk  = f"{worker_base_url.rstrip('/')}/go/{asin}?src=hub" if worker_base_url else aff
     return SurfaceProduct(
         asin            = asin,
@@ -136,9 +136,22 @@ def _fallback_product(worker_base_url: str) -> SurfaceProduct:
 
 
 def _make_test_hub(worker_base_url: str) -> HubSurface:
-    """Rich test hub with video (hero), carousel (trending), and product cards."""
+    """Rich test hub with verified ASINs (image + title confirmed)."""
+    VERIFIED_PRODUCTS = [
+        # (asin, name, price, category, section, rating, reviews)
+        ("B0BDHWDR12", "Apple AirPods Pro (2nd Generation)", 199.99, "electronics", "hero", 4.8, 89432),
+        ("B08KTZ8249", "Kindle Paperwhite (11th Gen) – 6.8 display", 139.99, "electronics", "trending", 4.7, 45231),
+        ("B09XS7JWHH", "Sony WH-1000XM5 Noise Canceling Headphones", 279.99, "electronics", "trending", 4.7, 28654),
+        ("B09B8V1LZ3", "Amazon Echo Show 5 (3rd Gen)", 89.99, "electronics", "trending", 4.6, 19823),
+        ("B00TTD9BRC", "CeraVe Moisturizing Cream (19 oz)", 16.99, "beauty", "evergreen", 4.8, 156432),
+        ("B085DTZQNZ", "Owala FreeSip Insulated Water Bottle (24oz)", 34.99, "home", "evergreen", 4.7, 47821),
+        ("B00FLYWNYQ", "Instant Pot Duo 7-in-1 Electric Pressure Cooker (6 Qt)", 99.99, "home", "recent", 4.7, 132456),
+        ("B07XJ8C8F5", "Ninja 4 Qt Air Fryer", 99.99, "home", "recent", 4.7, 31287),
+        ("B09V3KXJPB", "Apple MagSafe Charger (1m Cable)", 38.99, "electronics", "recent", 4.6, 12934),
+    ]
+
     def _tp(asin, name, price, category, section, rating, reviews):
-        aff = f"https://www.amazon.com/dp/{asin}?tag=aetherglobal-20"
+        aff = f"https://www.amazon.com/dp/{asin}/?tag=aetherglobal-20"
         trk = f"{worker_base_url.rstrip('/')}/go/{asin}?src=hub" if worker_base_url else aff
         return SurfaceProduct(
             asin=asin, name=name, price=price, category=category,
@@ -149,24 +162,24 @@ def _make_test_hub(worker_base_url: str) -> HubSurface:
             rating=rating, reviews=reviews,
         )
 
-    hero = _tp("B08N5WRWNW", "Apple AirPods Pro 2", 199.99, "electronics", "hero", 4.8, 15234)
-    t1   = _tp("B0C5J5WZNP", "Dyson Airwrap Multi-Styler", 499.99, "beauty", "trending", 4.5, 8765)
-    t2   = _tp("B09G9D7K6R", "Nespresso Vertuo Next", 149.00, "home", "trending", 4.3, 3420)
-    t3   = _tp("B0BXQ1LVS3", "Stanley Quencher H2.0", 35.00, "home", "trending", 4.7, 8921)
-    ev1  = _tp("B0C1GZ9KRM", "Owala FreeSip 24oz", 27.99, "home", "evergreen", 4.6, 4520)
-    r1   = _tp("B0CDW5L234", "Kindle Paperwhite 2024", 149.99, "electronics", "recent", 4.6, 2340)
-    r2   = _tp("B0CLM8BNWJ", "Lululemon Everywhere Belt Bag", 38.00, "fashion", "recent", 4.4, 1890)
+    products = [_tp(*row) for row in VERIFIED_PRODUCTS]
+
+    hero     = products[0]
+    trending = tuple(p for p in products if p.section == "trending")
+    evgreens = tuple(p for p in products if p.section == "evergreen")
+    recent   = tuple(p for p in products if p.section == "recent")
+
+    by_category: dict = {}
+    for p in products:
+        by_category.setdefault(p.category, ())
+        if len(by_category[p.category]) < 4:
+            by_category[p.category] = by_category[p.category] + (p,)
 
     return HubSurface(
         generated_at = datetime.now(timezone.utc).isoformat(),
         hero         = hero,
-        trending     = (t1, t2, t3),
-        evergreen    = (ev1,),
-        by_category  = {
-            "electronics": (hero, r1),
-            "beauty": (t1,),
-            "home": (t2, t3, ev1),
-            "fashion": (r2,),
-        },
-        recent       = (r1, r2),
+        trending     = trending,
+        evergreen    = evgreens,
+        by_category  = by_category,
+        recent       = recent,
     )

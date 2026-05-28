@@ -232,6 +232,16 @@ def _build_enriched_products(surface: HubSurface) -> dict:
         else:
             image_urls = [img_src] if img_src else []
 
+        # Build correct affiliate URL with /?tag= format
+        raw_url = p.tracking_url or p.affiliate_url or ""
+        # Normalize: ensure /dp/ASIN/?tag= not /dp/ASIN?tag=
+        if "amazon.com/dp/" in raw_url and "?tag=" in raw_url and "/?tag=" not in raw_url:
+            raw_url = raw_url.replace("?tag=", "/?tag=")
+
+        # Extract English string for description, keep dict under descriptionI18n
+        desc_result = product_description(desc_en, p.category)
+        desc_str = desc_result.get("en", desc_en) if isinstance(desc_result, dict) else str(desc_result)
+
         products_out.append({
             "id": p.asin,
             "title": p.name,
@@ -241,8 +251,9 @@ def _build_enriched_products(surface: HubSurface) -> dict:
             "rating": p.rating,
             "reviews": p.reviews,
             "category": p.category,
-            "affiliateUrl": p.tracking_url or p.affiliate_url,
-            "description": product_description(desc_en, p.category),
+            "affiliateUrl": raw_url,
+            "description": desc_str,
+            "descriptionI18n": desc_result if isinstance(desc_result, dict) else {"en": desc_str, "es": desc_str, "fr": desc_str},
             "tags": tags,
             "section": p.section,
             "type": ptype,
