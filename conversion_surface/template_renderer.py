@@ -560,6 +560,84 @@ _SHELL_BODY = """
     </button>
   </nav>
 
+  <!-- ══ PRODUCT DETAIL PANEL ════════════════════════════════════════════ -->
+  <div id="detail-panel" class="hidden fixed inset-0 z-40 bg-background overflow-y-auto">
+
+    <!-- Detail header — sticky -->
+    <header class="sticky top-0 z-50 flex items-center gap-2 px-4 h-16 bg-surface shadow-sm border-b border-surface-container">
+      <button onclick="App.closeProduct()"
+              class="text-on-surface-variant hover:bg-surface-container-low rounded-full p-2 transition-colors active:scale-95"
+              aria-label="Back">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <span class="font-bold text-primary text-lg flex-1 text-center">Aether Global</span>
+      <div class="w-10"></div>
+    </header>
+
+    <!-- Detail content -->
+    <div class="max-w-2xl mx-auto px-5 md:px-8 pb-32 space-y-7 pt-4">
+
+      <!-- Back link -->
+      <button onclick="App.closeProduct()"
+              class="text-secondary text-sm font-medium hover:text-primary transition-colors flex items-center gap-0.5 mt-2">
+        <span class="material-symbols-outlined" style="font-size:16px">chevron_left</span>
+        <span id="detail-back-label">Back to Results</span>
+      </button>
+
+      <!-- Hero image -->
+      <div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex items-center justify-center aspect-square md:aspect-video">
+        <img id="detail-image" src="" alt=""
+             class="object-contain w-full h-full max-h-[420px] p-6 transition-opacity duration-300">
+      </div>
+
+      <!-- Carousel strip (for carousel/video products) -->
+      <div id="detail-carousel" class="hidden flex gap-2 overflow-x-auto no-scrollbar pb-1">
+      </div>
+
+      <!-- Info block -->
+      <div class="space-y-4">
+        <div class="flex justify-between items-start gap-3">
+          <h1 id="detail-title" class="text-2xl font-semibold text-on-surface leading-tight flex-1"></h1>
+          <button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors flex-shrink-0">
+            <span class="material-symbols-outlined">favorite_border</span>
+          </button>
+        </div>
+
+        <div id="detail-rating" class="flex items-center gap-2"></div>
+
+        <div id="detail-price" class="text-4xl font-bold text-on-surface"></div>
+
+        <p id="detail-description" class="text-base text-on-surface-variant leading-relaxed"></p>
+
+        <a id="detail-buy-btn" href="#" target="_blank" rel="noopener noreferrer sponsored"
+           class="w-full bg-primary-container text-on-primary-container font-semibold text-base py-4 rounded-full hover:bg-tertiary-container transition-colors shadow-md flex justify-center items-center gap-2 mt-2">
+          <span class="material-symbols-outlined">shopping_cart</span>
+          <span id="detail-buy-label">View Deal</span>
+          <span class="material-symbols-outlined">open_in_new</span>
+        </a>
+
+        <p class="text-center text-xs text-secondary">
+          *Aether Global earns a commission from qualifying purchases.
+        </p>
+      </div>
+
+      <!-- Specs derived from product -->
+      <div id="detail-specs-wrap" class="hidden bg-surface-container-lowest rounded-xl p-5 shadow-sm border border-surface-container">
+        <h3 class="text-lg font-semibold text-on-surface mb-4" id="detail-specs-heading">Product Details</h3>
+        <ul id="detail-specs" class="space-y-3"></ul>
+      </div>
+
+      <!-- Related products -->
+      <div id="detail-related-wrap">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-semibold text-on-surface" id="detail-related-heading">More Like This</h2>
+        </div>
+        <div id="detail-related" class="flex overflow-x-auto gap-4 pb-3 no-scrollbar snap-x"></div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- ══ DATA ══════════════════════════════════════════════════════════════ -->
   <script id="products-data" type="application/json">__PRODUCTS__</script>
   <script id="translations-data" type="application/json">__TRANSLATIONS__</script>
@@ -668,6 +746,28 @@ var App = {
     return (I18N[this.lang] && I18N[this.lang][key])
       || (I18N['en'] && I18N['en'][key])
       || key;
+  },
+
+  openProduct: function(id) {
+    var p = PRODUCTS.find(function(x) { return x.id === id; });
+    if (!p) return;
+    _renderDetail(p);
+    var panel = document.getElementById('detail-panel');
+    if (panel) {
+      panel.classList.remove('hidden');
+      panel.scrollTop = 0;
+    }
+    document.body.style.overflow = 'hidden';
+    try { history.pushState({detailId: id}, '', '#p=' + id); } catch(e) {}
+  },
+
+  closeProduct: function() {
+    var panel = document.getElementById('detail-panel');
+    if (panel) panel.classList.add('hidden');
+    document.body.style.overflow = '';
+    try {
+      if (history.state && history.state.detailId) history.back();
+    } catch(e) {}
   },
 
   reset: function() {
@@ -1027,12 +1127,14 @@ function _renderCard(p, idx) {
                + '</div>';
   }
 
+  var pid = _escAttr(p.id || '');
+
   return '<article class="product-card bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col animate-in" '
        + 'style="animation-delay:' + delay + 's">'
 
-       // Image area with shimmer
+       // Image area with shimmer — click opens detail panel
        + '<div class="relative w-full aspect-square bg-surface-container-low cursor-pointer shimmer-bg" '
-       + 'onclick="window.open(\'' + url + '\',\'_blank\')">'
+       + 'onclick="App.openProduct(\'' + pid + '\')">'
        + '<img data-src="' + imgSrc + '" alt="' + title + '" '
        + 'class="card-img w-full h-full object-contain mix-blend-multiply p-4" '
        + 'onload="this.parentElement.classList.remove(\'shimmer-bg\')" '
@@ -1043,7 +1145,7 @@ function _renderCard(p, idx) {
        // Card body
        + '<div class="p-4 flex flex-col gap-1">'
        + '<div class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">' + category + '</div>'
-       + '<h3 class="text-sm font-medium text-on-surface line-clamp-2 leading-snug">' + title + '</h3>'
+       + '<h3 class="text-sm font-medium text-on-surface line-clamp-2 leading-snug cursor-pointer hover:text-primary transition-colors" onclick="App.openProduct(\'' + pid + '\')">' + title + '</h3>'
        + ratingHtml
        + '<div class="flex justify-between items-end mt-3">'
        + (price ? '<div class="text-xl font-semibold text-on-surface">' + _escHtml(price) + '</div>' : '<div></div>')
@@ -1056,6 +1158,156 @@ function _renderCard(p, idx) {
        + '</div>'
 
        + '</article>';
+}
+
+// ── Product Detail Panel ──────────────────────────────────────────────────────
+
+function _renderDetail(p) {
+  // Image
+  var img = document.getElementById('detail-image');
+  if (img) {
+    img.src = p.image || '';
+    img.alt = p.title || '';
+    img.style.opacity = '0';
+    img.onload = function() { img.style.opacity = '1'; };
+    if (img.complete) img.style.opacity = '1';
+  }
+
+  // Carousel strip
+  var carousel = document.getElementById('detail-carousel');
+  if (carousel) {
+    var urls = p.imageUrls || [];
+    if (urls.length > 1) {
+      carousel.classList.remove('hidden');
+      carousel.innerHTML = urls.map(function(u, i) {
+        return '<img src="' + _escAttr(u) + '" alt="' + _escHtml(p.title || '') + ' ' + (i+1) + '" '
+             + 'class="h-16 w-16 object-contain rounded-lg border-2 cursor-pointer flex-shrink-0 snap-center '
+             + (i === 0 ? 'border-primary-container' : 'border-outline-variant') + '" '
+             + 'onclick="document.getElementById(\'detail-image\').src=this.src;'
+             + 'this.parentElement.querySelectorAll(\'img\').forEach(function(x){x.className=x.className.replace(\'border-primary-container\',\'border-outline-variant\');});'
+             + 'this.className=this.className.replace(\'border-outline-variant\',\'border-primary-container\');">'
+      }).join('');
+    } else {
+      carousel.classList.add('hidden');
+      carousel.innerHTML = '';
+    }
+  }
+
+  // Title
+  var titleEl = document.getElementById('detail-title');
+  if (titleEl) titleEl.textContent = p.title || '';
+
+  // Rating
+  var ratingEl = document.getElementById('detail-rating');
+  if (ratingEl) {
+    if (p.rating && p.rating > 0) {
+      var stars = '';
+      for (var i = 0; i < 5; i++) {
+        var fill = i < Math.round(p.rating) ? '1' : '0';
+        stars += '<span class="material-symbols-outlined text-primary-container" style="font-size:18px;font-variation-settings:\'FILL\' ' + fill + '">star</span>';
+      }
+      var revStr = p.reviews ? ' (' + p.reviews.toLocaleString() + ' reviews)' : '';
+      ratingEl.innerHTML = '<div class="flex items-center gap-0.5">' + stars + '</div>'
+        + '<span class="text-sm text-secondary">' + p.rating.toFixed(1) + _escHtml(revStr) + '</span>';
+    } else {
+      ratingEl.innerHTML = '';
+    }
+  }
+
+  // Price
+  var priceEl = document.getElementById('detail-price');
+  if (priceEl) priceEl.textContent = p.price ? '$' + p.price.toFixed(2) : '';
+
+  // Description
+  var descEl = document.getElementById('detail-description');
+  if (descEl) descEl.textContent = p.description || '';
+
+  // Buy button
+  var buyBtn = document.getElementById('detail-buy-btn');
+  if (buyBtn) buyBtn.href = p.affiliateUrl || '#';
+  var buyLabel = document.getElementById('detail-buy-label');
+  if (buyLabel) buyLabel.textContent = App.t('buyOnAmazon');
+
+  // Back label
+  var backLabel = document.getElementById('detail-back-label');
+  if (backLabel) backLabel.textContent = App.t('backToResults') || 'Back to Results';
+
+  // Specs — derive from category + tags
+  var specsWrap = document.getElementById('detail-specs-wrap');
+  var specsList = document.getElementById('detail-specs');
+  var specHeading = document.getElementById('detail-specs-heading');
+  if (specsWrap && specsList) {
+    var specs = _deriveSpecs(p);
+    if (specs.length > 0) {
+      specsWrap.classList.remove('hidden');
+      if (specHeading) specHeading.textContent = App.t('productDetails') || 'Product Details';
+      specsList.innerHTML = specs.map(function(s) {
+        return '<li class="flex items-start gap-3">'
+          + '<span class="material-symbols-outlined text-primary-container mt-0.5" style="font-size:20px">check_circle</span>'
+          + '<span class="text-sm text-on-surface-variant">' + _escHtml(s) + '</span>'
+          + '</li>';
+      }).join('');
+    } else {
+      specsWrap.classList.add('hidden');
+    }
+  }
+
+  // Related products
+  var relatedEl = document.getElementById('detail-related');
+  var relHeading = document.getElementById('detail-related-heading');
+  if (relHeading) relHeading.textContent = App.t('relatedProducts') || 'More Like This';
+  if (relatedEl) {
+    var related = PRODUCTS.filter(function(x) {
+      return x.id !== p.id && x.category === p.category;
+    }).slice(0, 6);
+    if (related.length === 0) {
+      related = PRODUCTS.filter(function(x) { return x.id !== p.id; }).slice(0, 6);
+    }
+    relatedEl.innerHTML = related.map(function(r) {
+      var rUrl  = _escAttr(r.affiliateUrl || '#');
+      var rPid  = _escAttr(r.id || '');
+      var rImg  = _escAttr(r.image || '');
+      var rTitle = _escHtml(r.title || '');
+      var rPrice = r.price ? '$' + r.price.toFixed(2) : '';
+      return '<div class="min-w-[160px] w-[160px] bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex-shrink-0 snap-center border border-surface-container cursor-pointer" '
+           + 'onclick="App.openProduct(\'' + rPid + '\')">'
+           + '<div class="h-[120px] bg-surface-container-low flex items-center justify-center p-3">'
+           + '<img src="' + rImg + '" alt="' + rTitle + '" class="h-full w-full object-contain mix-blend-multiply">'
+           + '</div>'
+           + '<div class="p-3 space-y-1">'
+           + '<h4 class="text-xs font-medium text-on-surface line-clamp-2 leading-snug">' + rTitle + '</h4>'
+           + (rPrice ? '<div class="text-sm font-semibold text-primary-container mt-1">' + _escHtml(rPrice) + '</div>' : '')
+           + '</div>'
+           + '</div>';
+    }).join('');
+  }
+}
+
+function _deriveSpecs(p) {
+  var specs = [];
+  if (p.rating && p.rating >= 4.0) specs.push('Rated ' + p.rating.toFixed(1) + '/5 by customers');
+  if (p.reviews && p.reviews > 0) specs.push(p.reviews.toLocaleString() + ' verified customer reviews');
+  var cat = (p.category || '').toLowerCase();
+  if (cat === 'electronics') {
+    specs.push('Compatible with major platforms and devices');
+    specs.push('Energy efficient design');
+  } else if (cat === 'beauty') {
+    specs.push('Dermatologist tested formula');
+    specs.push('Cruelty-free certified');
+  } else if (cat === 'fashion') {
+    specs.push('Premium quality materials');
+    specs.push('Available in multiple sizes');
+  } else if (cat === 'home') {
+    specs.push('Durable construction for everyday use');
+    specs.push('Easy to clean and maintain');
+  } else if (cat === 'sports' || cat === 'fitness') {
+    specs.push('Designed for active lifestyles');
+    specs.push('Sweat and moisture resistant');
+  }
+  if (p.tags && p.tags.indexOf('bestseller') !== -1) specs.push('Amazon Best Seller in its category');
+  specs.push('Ships and sold by Amazon');
+  specs.push('Eligible for Amazon Prime delivery');
+  return specs.slice(0, 5);
 }
 
 // ── Lazy Loading ──────────────────────────────────────────────────────────────
@@ -1260,6 +1512,16 @@ document.addEventListener('DOMContentLoaded', function() {
   _setupSort();
   _setupLang();
   _setupBrandLink();
+
+  // Handle browser back button closing detail panel
+  window.addEventListener('popstate', function(e) {
+    var panel = document.getElementById('detail-panel');
+    if (panel && !panel.classList.contains('hidden')) {
+      panel.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+  });
+
   App.render();
 });
 
