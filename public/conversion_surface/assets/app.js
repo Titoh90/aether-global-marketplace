@@ -501,14 +501,18 @@ function _renderDetail(p) {
   var priceEl = document.getElementById('detail-price');
   if (priceEl) priceEl.textContent = p.price ? '$' + p.price.toFixed(2) : '';
 
-  // Description (may be {en,es,fr} dict or plain string)
+  // Description — prefer descriptionI18n dict, fallback to description field
   var descEl = document.getElementById('detail-description');
   if (descEl) {
-    var desc = p.description;
-    if (desc && typeof desc === 'object') {
-      desc = desc[App.lang] || desc['en'] || '';
+    var desc = '';
+    if (p.descriptionI18n) {
+      desc = p.descriptionI18n[App.lang] || p.descriptionI18n['en'] || '';
+    } else if (p.description) {
+      desc = typeof p.description === 'object'
+        ? (p.description[App.lang] || p.description['en'] || '')
+        : p.description;
     }
-    descEl.textContent = desc || '';
+    descEl.textContent = desc;
   }
 
   // Buy button

@@ -1,27 +1,27 @@
 {
-  "generated_at": "2026-05-28T22:26:17.058741+00:00",
+  "generated_at": "2026-05-28T23:22:46.613115+00:00",
   "categories": [
     "beauty",
     "electronics",
-    "fashion",
     "home"
   ],
   "products": [
     {
-      "id": "B08N5WRWNW",
-      "title": "Apple AirPods Pro 2",
+      "id": "B0BDHWDR12",
+      "title": "Apple AirPods Pro (2nd Generation)",
       "price": 199.99,
-      "image": "https://m.media-amazon.com/images/P/B08N5WRWNW.01._SL400_.jpg",
+      "image": "https://m.media-amazon.com/images/P/B0BDHWDR12.01._SL400_.jpg",
       "imageUrls": [
-        "https://m.media-amazon.com/images/P/B08N5WRWNW.01._SL400_.jpg",
-        "https://m.media-amazon.com/images/P/B08N5WRWNW.02._SL400_.jpg",
-        "https://m.media-amazon.com/images/P/B08N5WRWNW.03._SL400_.jpg"
+        "https://m.media-amazon.com/images/P/B0BDHWDR12.01._SL400_.jpg",
+        "https://m.media-amazon.com/images/P/B0BDHWDR12.02._SL400_.jpg",
+        "https://m.media-amazon.com/images/P/B0BDHWDR12.03._SL400_.jpg"
       ],
       "rating": 4.8,
-      "reviews": 15234,
+      "reviews": 89432,
       "category": "electronics",
-      "affiliateUrl": "https://www.amazon.com/dp/B08N5WRWNW?tag=aetherglobal-20",
-      "description": {
+      "affiliateUrl": "https://www.amazon.com/dp/B0BDHWDR12/?tag=aetherglobal-20",
+      "description": "Electronics",
+      "descriptionI18n": {
         "en": "Electronics",
         "es": "Electrónica y tecnología premium",
         "fr": "Électronique et high-tech premium"
@@ -33,93 +33,119 @@
       "type": "video"
     },
     {
-      "id": "B0C5J5WZNP",
-      "title": "Dyson Airwrap Multi-Styler",
-      "price": 499.99,
-      "image": "https://m.media-amazon.com/images/P/B0C5J5WZNP.01._SL400_.jpg",
+      "id": "B08KTZ8249",
+      "title": "Kindle Paperwhite (11th Gen) – 6.8 display",
+      "price": 139.99,
+      "image": "https://m.media-amazon.com/images/P/B08KTZ8249.01._SL400_.jpg",
       "imageUrls": [
-        "https://m.media-amazon.com/images/P/B0C5J5WZNP.01._SL400_.jpg",
-        "https://m.media-amazon.com/images/P/B0C5J5WZNP.02._SL400_.jpg",
-        "https://m.media-amazon.com/images/P/B0C5J5WZNP.03._SL400_.jpg"
+        "https://m.media-amazon.com/images/P/B08KTZ8249.01._SL400_.jpg",
+        "https://m.media-amazon.com/images/P/B08KTZ8249.02._SL400_.jpg",
+        "https://m.media-amazon.com/images/P/B08KTZ8249.03._SL400_.jpg"
       ],
-      "rating": 4.5,
-      "reviews": 8765,
+      "rating": 4.7,
+      "reviews": 45231,
+      "category": "electronics",
+      "affiliateUrl": "https://www.amazon.com/dp/B08KTZ8249/?tag=aetherglobal-20",
+      "description": "Electronics",
+      "descriptionI18n": {
+        "en": "Electronics",
+        "es": "Electrónica y tecnología premium",
+        "fr": "Électronique et high-tech premium"
+      },
+      "tags": [
+        "trending"
+      ],
+      "section": "trending",
+      "type": "carousel"
+    },
+    {
+      "id": "B09XS7JWHH",
+      "title": "Sony WH-1000XM5 Noise Canceling Headphones",
+      "price": 279.99,
+      "image": "https://m.media-amazon.com/images/P/B09XS7JWHH.01._SL400_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/P/B09XS7JWHH.01._SL400_.jpg",
+        "https://m.media-amazon.com/images/P/B09XS7JWHH.02._SL400_.jpg",
+        "https://m.media-amazon.com/images/P/B09XS7JWHH.03._SL400_.jpg"
+      ],
+      "rating": 4.7,
+      "reviews": 28654,
+      "category": "electronics",
+      "affiliateUrl": "https://www.amazon.com/dp/B09XS7JWHH/?tag=aetherglobal-20",
+      "description": "Electronics",
+      "descriptionI18n": {
+        "en": "Electronics",
+        "es": "Electrónica y tecnología premium",
+        "fr": "Électronique et high-tech premium"
+      },
+      "tags": [
+        "trending"
+      ],
+      "section": "trending",
+      "type": "carousel"
+    },
+    {
+      "id": "B09B8V1LZ3",
+      "title": "Amazon Echo Show 5 (3rd Gen)",
+      "price": 89.99,
+      "image": "https://m.media-amazon.com/images/P/B09B8V1LZ3.01._SL400_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/P/B09B8V1LZ3.01._SL400_.jpg",
+        "https://m.media-amazon.com/images/P/B09B8V1LZ3.02._SL400_.jpg",
+        "https://m.media-amazon.com/images/P/B09B8V1LZ3.03._SL400_.jpg"
+      ],
+      "rating": 4.6,
+      "reviews": 19823,
+      "category": "electronics",
+      "affiliateUrl": "https://www.amazon.com/dp/B09B8V1LZ3/?tag=aetherglobal-20",
+      "description": "Electronics",
+      "descriptionI18n": {
+        "en": "Electronics",
+        "es": "Electrónica y tecnología premium",
+        "fr": "Électronique et high-tech premium"
+      },
+      "tags": [
+        "trending"
+      ],
+      "section": "trending",
+      "type": "carousel"
+    },
+    {
+      "id": "B00TTD9BRC",
+      "title": "CeraVe Moisturizing Cream (19 oz)",
+      "price": 16.99,
+      "image": "https://m.media-amazon.com/images/P/B00TTD9BRC.01._SL400_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/P/B00TTD9BRC.01._SL400_.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 156432,
       "category": "beauty",
-      "affiliateUrl": "https://www.amazon.com/dp/B0C5J5WZNP?tag=aetherglobal-20",
-      "description": {
+      "affiliateUrl": "https://www.amazon.com/dp/B00TTD9BRC/?tag=aetherglobal-20",
+      "description": "Beauty",
+      "descriptionI18n": {
         "en": "Beauty",
         "es": "Belleza y cuidado personal de lujo",
         "fr": "Beauté et soins personnels de luxe"
       },
-      "tags": [
-        "trending"
-      ],
-      "section": "trending",
-      "type": "carousel"
+      "tags": [],
+      "section": "evergreen",
+      "type": "product"
     },
     {
-      "id": "B09G9D7K6R",
-      "title": "Nespresso Vertuo Next",
-      "price": 149.0,
-      "image": "https://m.media-amazon.com/images/P/B09G9D7K6R.01._SL400_.jpg",
+      "id": "B085DTZQNZ",
+      "title": "Owala FreeSip Insulated Water Bottle (24oz)",
+      "price": 34.99,
+      "image": "https://m.media-amazon.com/images/P/B085DTZQNZ.01._SL400_.jpg",
       "imageUrls": [
-        "https://m.media-amazon.com/images/P/B09G9D7K6R.01._SL400_.jpg",
-        "https://m.media-amazon.com/images/P/B09G9D7K6R.02._SL400_.jpg",
-        "https://m.media-amazon.com/images/P/B09G9D7K6R.03._SL400_.jpg"
-      ],
-      "rating": 4.3,
-      "reviews": 3420,
-      "category": "home",
-      "affiliateUrl": "https://www.amazon.com/dp/B09G9D7K6R?tag=aetherglobal-20",
-      "description": {
-        "en": "Home",
-        "es": "Esenciales para el hogar y la cocina",
-        "fr": "Indispensables pour la maison et la cuisine"
-      },
-      "tags": [
-        "trending"
-      ],
-      "section": "trending",
-      "type": "carousel"
-    },
-    {
-      "id": "B0BXQ1LVS3",
-      "title": "Stanley Quencher H2.0",
-      "price": 35.0,
-      "image": "https://m.media-amazon.com/images/P/B0BXQ1LVS3.01._SL400_.jpg",
-      "imageUrls": [
-        "https://m.media-amazon.com/images/P/B0BXQ1LVS3.01._SL400_.jpg",
-        "https://m.media-amazon.com/images/P/B0BXQ1LVS3.02._SL400_.jpg",
-        "https://m.media-amazon.com/images/P/B0BXQ1LVS3.03._SL400_.jpg"
+        "https://m.media-amazon.com/images/P/B085DTZQNZ.01._SL400_.jpg"
       ],
       "rating": 4.7,
-      "reviews": 8921,
+      "reviews": 47821,
       "category": "home",
-      "affiliateUrl": "https://www.amazon.com/dp/B0BXQ1LVS3?tag=aetherglobal-20",
-      "description": {
-        "en": "Home",
-        "es": "Esenciales para el hogar y la cocina",
-        "fr": "Indispensables pour la maison et la cuisine"
-      },
-      "tags": [
-        "trending"
-      ],
-      "section": "trending",
-      "type": "carousel"
-    },
-    {
-      "id": "B0C1GZ9KRM",
-      "title": "Owala FreeSip 24oz",
-      "price": 27.99,
-      "image": "https://m.media-amazon.com/images/P/B0C1GZ9KRM.01._SL400_.jpg",
-      "imageUrls": [
-        "https://m.media-amazon.com/images/P/B0C1GZ9KRM.01._SL400_.jpg"
-      ],
-      "rating": 4.6,
-      "reviews": 4520,
-      "category": "home",
-      "affiliateUrl": "https://www.amazon.com/dp/B0C1GZ9KRM?tag=aetherglobal-20",
-      "description": {
+      "affiliateUrl": "https://www.amazon.com/dp/B085DTZQNZ/?tag=aetherglobal-20",
+      "description": "Home",
+      "descriptionI18n": {
         "en": "Home",
         "es": "Esenciales para el hogar y la cocina",
         "fr": "Indispensables pour la maison et la cuisine"
@@ -129,42 +155,66 @@
       "type": "product"
     },
     {
-      "id": "B0CDW5L234",
-      "title": "Kindle Paperwhite 2024",
-      "price": 149.99,
-      "image": "https://m.media-amazon.com/images/P/B0CDW5L234.01._SL400_.jpg",
+      "id": "B00FLYWNYQ",
+      "title": "Instant Pot Duo 7-in-1 Electric Pressure Cooker (6 Qt)",
+      "price": 99.99,
+      "image": "https://m.media-amazon.com/images/P/B00FLYWNYQ.01._SL400_.jpg",
       "imageUrls": [
-        "https://m.media-amazon.com/images/P/B0CDW5L234.01._SL400_.jpg"
+        "https://m.media-amazon.com/images/P/B00FLYWNYQ.01._SL400_.jpg"
       ],
-      "rating": 4.6,
-      "reviews": 2340,
-      "category": "electronics",
-      "affiliateUrl": "https://www.amazon.com/dp/B0CDW5L234?tag=aetherglobal-20",
-      "description": {
-        "en": "Electronics",
-        "es": "Electrónica y tecnología premium",
-        "fr": "Électronique et high-tech premium"
+      "rating": 4.7,
+      "reviews": 132456,
+      "category": "home",
+      "affiliateUrl": "https://www.amazon.com/dp/B00FLYWNYQ/?tag=aetherglobal-20",
+      "description": "Home",
+      "descriptionI18n": {
+        "en": "Home",
+        "es": "Esenciales para el hogar y la cocina",
+        "fr": "Indispensables pour la maison et la cuisine"
       },
       "tags": [],
       "section": "recent",
       "type": "product"
     },
     {
-      "id": "B0CLM8BNWJ",
-      "title": "Lululemon Everywhere Belt Bag",
-      "price": 38.0,
-      "image": "https://m.media-amazon.com/images/P/B0CLM8BNWJ.01._SL400_.jpg",
+      "id": "B07XJ8C8F5",
+      "title": "Ninja 4 Qt Air Fryer",
+      "price": 99.99,
+      "image": "https://m.media-amazon.com/images/P/B07XJ8C8F5.01._SL400_.jpg",
       "imageUrls": [
-        "https://m.media-amazon.com/images/P/B0CLM8BNWJ.01._SL400_.jpg"
+        "https://m.media-amazon.com/images/P/B07XJ8C8F5.01._SL400_.jpg"
       ],
-      "rating": 4.4,
-      "reviews": 1890,
-      "category": "fashion",
-      "affiliateUrl": "https://www.amazon.com/dp/B0CLM8BNWJ?tag=aetherglobal-20",
-      "description": {
-        "en": "Fashion",
-        "es": "Moda y accesorios con estilo",
-        "fr": "Mode et accessoires élégants"
+      "rating": 4.7,
+      "reviews": 31287,
+      "category": "home",
+      "affiliateUrl": "https://www.amazon.com/dp/B07XJ8C8F5/?tag=aetherglobal-20",
+      "description": "Home",
+      "descriptionI18n": {
+        "en": "Home",
+        "es": "Esenciales para el hogar y la cocina",
+        "fr": "Indispensables pour la maison et la cuisine"
+      },
+      "tags": [],
+      "section": "recent",
+      "type": "product"
+    },
+    {
+      "id": "B09V3KXJPB",
+      "title": "Apple MagSafe Charger (1m Cable)",
+      "price": 38.99,
+      "image": "https://m.media-amazon.com/images/P/B09V3KXJPB.01._SL400_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/P/B09V3KXJPB.01._SL400_.jpg"
+      ],
+      "rating": 4.6,
+      "reviews": 12934,
+      "category": "electronics",
+      "affiliateUrl": "https://www.amazon.com/dp/B09V3KXJPB/?tag=aetherglobal-20",
+      "description": "Electronics",
+      "descriptionI18n": {
+        "en": "Electronics",
+        "es": "Electrónica y tecnología premium",
+        "fr": "Électronique et high-tech premium"
       },
       "tags": [],
       "section": "recent",
