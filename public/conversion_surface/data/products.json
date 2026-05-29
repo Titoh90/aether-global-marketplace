@@ -1,8 +1,9 @@
 {
-  "generated_at": "2026-05-28T23:57:46.286002+00:00",
+  "generated_at": "2026-05-29T00:40:48.489880+00:00",
   "categories": [
     "beauty",
     "electronics",
+    "fashion",
     "home"
   ],
   "products": [
@@ -111,6 +112,136 @@
       "type": "carousel"
     },
     {
+      "id": "B0BXNRRN4Y",
+      "title": "Ray-Ban Classic Aviator RB3025 Sunglasses",
+      "price": 133.7,
+      "image": "https://m.media-amazon.com/images/I/21Vq5RWfHWL._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/21Vq5RWfHWL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/216PIkplq4L._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/21zh37OLDoL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.6,
+      "reviews": 24071,
+      "category": "fashion",
+      "affiliateUrl": "https://www.amazon.com/dp/B0BXNRRN4Y/?tag=aetherglobal-20",
+      "description": "Fashion",
+      "descriptionI18n": {
+        "en": "Fashion",
+        "es": "Moda y accesorios con estilo",
+        "fr": "Mode et accessoires élégants"
+      },
+      "tags": [
+        "trending"
+      ],
+      "section": "trending",
+      "type": "carousel"
+    },
+    {
+      "id": "B0D9KM5SFR",
+      "title": "Nike Pegasus 41 Men's Running Shoe",
+      "price": 89.99,
+      "image": "https://m.media-amazon.com/images/I/31xpQ4IwXvL._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/31xpQ4IwXvL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/31iEWGMUw7L._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/310EDmNrhCL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.6,
+      "reviews": 1129,
+      "category": "fashion",
+      "affiliateUrl": "https://www.amazon.com/dp/B0D9KM5SFR/?tag=aetherglobal-20",
+      "description": "Fashion",
+      "descriptionI18n": {
+        "en": "Fashion",
+        "es": "Moda y accesorios con estilo",
+        "fr": "Mode et accessoires élégants"
+      },
+      "tags": [
+        "trending"
+      ],
+      "section": "trending",
+      "type": "carousel"
+    },
+    {
+      "id": "B0018OQQBE",
+      "title": "Levi's 501 Original Fit Men's Jeans",
+      "price": 69.99,
+      "image": "https://m.media-amazon.com/images/I/3160cyoSYNL._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/3160cyoSYNL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/31Yr6Dex7KL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/31bzt8t+PXL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.5,
+      "reviews": 95932,
+      "category": "fashion",
+      "affiliateUrl": "https://www.amazon.com/dp/B0018OQQBE/?tag=aetherglobal-20",
+      "description": "Fashion",
+      "descriptionI18n": {
+        "en": "Fashion",
+        "es": "Moda y accesorios con estilo",
+        "fr": "Mode et accessoires élégants"
+      },
+      "tags": [
+        "trending"
+      ],
+      "section": "trending",
+      "type": "carousel"
+    },
+    {
+      "id": "B097DD3G8G",
+      "title": "Michael Kors Jet Set Large Crossbody Bag",
+      "price": 83.44,
+      "image": "https://m.media-amazon.com/images/I/417llnT8ZnL._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/417llnT8ZnL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/415-y8Z65gL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/21hUxmcIQ5L._AC_SL1500_.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 23254,
+      "category": "fashion",
+      "affiliateUrl": "https://www.amazon.com/dp/B097DD3G8G/?tag=aetherglobal-20",
+      "description": "Fashion",
+      "descriptionI18n": {
+        "en": "Fashion",
+        "es": "Moda y accesorios con estilo",
+        "fr": "Mode et accessoires élégants"
+      },
+      "tags": [
+        "trending"
+      ],
+      "section": "trending",
+      "type": "carousel"
+    },
+    {
+      "id": "B087FD9DSV",
+      "title": "adidas Ultraboost 21 Running Shoe",
+      "price": 99.99,
+      "image": "https://m.media-amazon.com/images/I/31oq+iAnWHS._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/31oq+iAnWHS._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/417P-uT2QhS._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/51wAfLBl72L._AC_SL1500_.jpg"
+      ],
+      "rating": 4.6,
+      "reviews": 3750,
+      "category": "fashion",
+      "affiliateUrl": "https://www.amazon.com/dp/B087FD9DSV/?tag=aetherglobal-20",
+      "description": "Fashion",
+      "descriptionI18n": {
+        "en": "Fashion",
+        "es": "Moda y accesorios con estilo",
+        "fr": "Mode et accessoires élégants"
+      },
+      "tags": [
+        "trending"
+      ],
+      "section": "trending",
+      "type": "carousel"
+    },
+    {
       "id": "B00TTD9BRC",
       "title": "CeraVe Moisturizing Cream (19 oz)",
       "price": 16.99,
@@ -152,6 +283,72 @@
       },
       "tags": [],
       "section": "evergreen",
+      "type": "product"
+    },
+    {
+      "id": "B07PGR1XGZ",
+      "title": "Calvin Klein Cotton Stretch Boxer Briefs 7-Pack",
+      "price": 76.99,
+      "image": "https://m.media-amazon.com/images/I/31QyJvLrLUL._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/31QyJvLrLUL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.5,
+      "reviews": 14170,
+      "category": "fashion",
+      "affiliateUrl": "https://www.amazon.com/dp/B07PGR1XGZ/?tag=aetherglobal-20",
+      "description": "Fashion",
+      "descriptionI18n": {
+        "en": "Fashion",
+        "es": "Moda y accesorios con estilo",
+        "fr": "Mode et accessoires élégants"
+      },
+      "tags": [],
+      "section": "evergreen",
+      "type": "product"
+    },
+    {
+      "id": "B017SN1OI8",
+      "title": "Fossil Grant Chronograph Stainless Steel Watch",
+      "price": 113.4,
+      "image": "https://m.media-amazon.com/images/I/41OHta3+sfL._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/41OHta3+sfL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.7,
+      "reviews": 21027,
+      "category": "fashion",
+      "affiliateUrl": "https://www.amazon.com/dp/B017SN1OI8/?tag=aetherglobal-20",
+      "description": "Fashion",
+      "descriptionI18n": {
+        "en": "Fashion",
+        "es": "Moda y accesorios con estilo",
+        "fr": "Mode et accessoires élégants"
+      },
+      "tags": [],
+      "section": "evergreen",
+      "type": "product"
+    },
+    {
+      "id": "B0DGJ4QQ5W",
+      "title": "Apple MagSafe Charger (1m)",
+      "price": 38.99,
+      "image": "https://m.media-amazon.com/images/I/21DcbviXOxL._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/21DcbviXOxL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.6,
+      "reviews": 12934,
+      "category": "electronics",
+      "affiliateUrl": "https://www.amazon.com/dp/B0DGJ4QQ5W/?tag=aetherglobal-20",
+      "description": "Electronics",
+      "descriptionI18n": {
+        "en": "Electronics",
+        "es": "Electrónica y tecnología premium",
+        "fr": "Électronique et high-tech premium"
+      },
+      "tags": [],
+      "section": "recent",
       "type": "product"
     },
     {
@@ -199,22 +396,66 @@
       "type": "product"
     },
     {
-      "id": "B0DGJ4QQ5W",
-      "title": "Apple MagSafe Charger (1m)",
-      "price": 38.99,
-      "image": "https://m.media-amazon.com/images/I/21DcbviXOxL._AC_SL1500_.jpg",
+      "id": "B000VUCLII",
+      "title": "Hanes Men's Soft Cotton T-Shirts Multipack",
+      "price": 23.79,
+      "image": "https://m.media-amazon.com/images/I/41-Kk2ZPzmL._AC_SL1500_.jpg",
       "imageUrls": [
-        "https://m.media-amazon.com/images/I/21DcbviXOxL._AC_SL1500_.jpg"
+        "https://m.media-amazon.com/images/I/41-Kk2ZPzmL._AC_SL1500_.jpg"
       ],
       "rating": 4.6,
-      "reviews": 12934,
-      "category": "electronics",
-      "affiliateUrl": "https://www.amazon.com/dp/B0DGJ4QQ5W/?tag=aetherglobal-20",
-      "description": "Electronics",
+      "reviews": 5470,
+      "category": "fashion",
+      "affiliateUrl": "https://www.amazon.com/dp/B000VUCLII/?tag=aetherglobal-20",
+      "description": "Fashion",
       "descriptionI18n": {
-        "en": "Electronics",
-        "es": "Electrónica y tecnología premium",
-        "fr": "Électronique et high-tech premium"
+        "en": "Fashion",
+        "es": "Moda y accesorios con estilo",
+        "fr": "Mode et accessoires élégants"
+      },
+      "tags": [],
+      "section": "recent",
+      "type": "product"
+    },
+    {
+      "id": "B06Y2ZW779",
+      "title": "New Balance 574 Core Men's Sneaker",
+      "price": 42.5,
+      "image": "https://m.media-amazon.com/images/I/31wHdsMEL-L._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/31wHdsMEL-L._AC_SL1500_.jpg"
+      ],
+      "rating": 4.6,
+      "reviews": 10406,
+      "category": "fashion",
+      "affiliateUrl": "https://www.amazon.com/dp/B06Y2ZW779/?tag=aetherglobal-20",
+      "description": "Fashion",
+      "descriptionI18n": {
+        "en": "Fashion",
+        "es": "Moda y accesorios con estilo",
+        "fr": "Mode et accessoires élégants"
+      },
+      "tags": [],
+      "section": "recent",
+      "type": "product"
+    },
+    {
+      "id": "B06XW16QMS",
+      "title": "Oakley Holbrook Matte Black Sunglasses",
+      "price": 121.8,
+      "image": "https://m.media-amazon.com/images/I/3170llwXGTL._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/3170llwXGTL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.7,
+      "reviews": 1287,
+      "category": "fashion",
+      "affiliateUrl": "https://www.amazon.com/dp/B06XW16QMS/?tag=aetherglobal-20",
+      "description": "Fashion",
+      "descriptionI18n": {
+        "en": "Fashion",
+        "es": "Moda y accesorios con estilo",
+        "fr": "Mode et accessoires élégants"
       },
       "tags": [],
       "section": "recent",
