@@ -140,15 +140,29 @@ def _make_test_hub(worker_base_url: str) -> HubSurface:
 
     # Verified HD image IDs per ASIN (Amazon I/ format, scraped from product pages)
     _HD_IMAGES: dict[str, list[str]] = {
+        # Electronics
         "B0BDHWDR12": ["21ttIrgHhTL", "31TmzlrWV2L", "21On7xikgOL"],
         "B08KTZ8249": ["41uqWaJH1aL", "415YFn0VOzL", "61w6XlassQL"],
         "B09XS7JWHH": ["31BXEEUVfFL", "41JkueTBELL", "41WAozqLfiL"],
         "B09B8V1LZ3": ["31vkCUuIWCL", "315PBUzfZiL", "41NkdsdZ3OL"],
+        "B0DGJ4QQ5W": ["21DcbviXOxL", "11RrezJCPgL", "11ZDMqH9n7L"],
+        # Beauty
         "B00TTD9BRC": ["41ba2zJNMXL", "41itoI7tueL", "51Sb3T4JXGL"],
+        # Home
         "B085DTZQNZ": ["718RbhzhVbL", "31iIKOIm46L", "41YVoy+qyXL"],
         "B00FLYWNYQ": ["71Z401LjFFL", "41OFXY6pMRL", "511i62OkshL"],
         "B07FDJMC9Q": ["71+8uTMDRFL", "31MBSKiZOPL", "410LYwPnZLL"],
-        "B0DGJ4QQ5W": ["21DcbviXOxL", "11RrezJCPgL", "11ZDMqH9n7L"],
+        # Fashion
+        "B0BXNRRN4Y": ["21Vq5RWfHWL", "216PIkplq4L", "21zh37OLDoL"],
+        "B0D9KM5SFR": ["31xpQ4IwXvL", "31iEWGMUw7L", "310EDmNrhCL"],
+        "B0018OQQBE": ["3160cyoSYNL", "31Yr6Dex7KL", "31bzt8t+PXL"],
+        "B07PGR1XGZ": ["31QyJvLrLUL", "31cpEQq83sL", "31QXM6rindL"],
+        "B097DD3G8G": ["417llnT8ZnL", "415-y8Z65gL", "21hUxmcIQ5L"],
+        "B017SN1OI8": ["41OHta3+sfL", "31iWq9upMXL", "31pSSkjhHXL"],
+        "B087FD9DSV": ["31oq+iAnWHS", "417P-uT2QhS", "51wAfLBl72L"],
+        "B000VUCLII": ["41-Kk2ZPzmL", "61n7Q7NSkKL", "61bIZNWiM8L"],
+        "B06Y2ZW779": ["31wHdsMEL-L", "51WiROyx-aL", "31UoMa-c0qL"],
+        "B06XW16QMS": ["3170llwXGTL", "31eqVtvlvrL", "31NdngKkqYL"],
     }
 
     def _hd_url(image_id: str) -> str:
@@ -156,15 +170,29 @@ def _make_test_hub(worker_base_url: str) -> HubSurface:
 
     # (asin, name, price, category, section, rating, reviews)
     VERIFIED_PRODUCTS = [
+        # Electronics
         ("B0BDHWDR12", "Apple AirPods Pro (2nd Generation)", 199.99, "electronics", "hero", 4.8, 89432),
         ("B08KTZ8249", "Kindle Paperwhite (11th Gen) – 6.8\" display", 139.99, "electronics", "trending", 4.7, 45231),
         ("B09XS7JWHH", "Sony WH-1000XM5 Noise Canceling Headphones", 279.99, "electronics", "trending", 4.7, 28654),
         ("B09B8V1LZ3", "Amazon Echo Show 5 (3rd Gen)", 89.99, "electronics", "trending", 4.6, 19823),
+        ("B0DGJ4QQ5W", "Apple MagSafe Charger (1m)", 38.99, "electronics", "recent", 4.6, 12934),
+        # Beauty
         ("B00TTD9BRC", "CeraVe Moisturizing Cream (19 oz)", 16.99, "beauty", "evergreen", 4.8, 156432),
+        # Home
         ("B085DTZQNZ", "Owala FreeSip Insulated Water Bottle (24oz)", 34.99, "home", "evergreen", 4.7, 47821),
         ("B00FLYWNYQ", "Instant Pot Duo 7-in-1 Electric Pressure Cooker (6 Qt)", 99.99, "home", "recent", 4.7, 132456),
         ("B07FDJMC9Q", "Ninja 4 Qt Air Fryer AF101", 99.99, "home", "recent", 4.7, 31287),
-        ("B0DGJ4QQ5W", "Apple MagSafe Charger (1m)", 38.99, "electronics", "recent", 4.6, 12934),
+        # Fashion — premium brands, high reviews, verified 2026-05-29
+        ("B0BXNRRN4Y", "Ray-Ban Classic Aviator RB3025 Sunglasses", 133.70, "fashion", "trending", 4.6, 24071),
+        ("B0D9KM5SFR", "Nike Pegasus 41 Men's Running Shoe", 89.99, "fashion", "trending", 4.6, 1129),
+        ("B0018OQQBE", "Levi's 501 Original Fit Men's Jeans", 69.99, "fashion", "trending", 4.5, 95932),
+        ("B07PGR1XGZ", "Calvin Klein Cotton Stretch Boxer Briefs 7-Pack", 76.99, "fashion", "evergreen", 4.5, 14170),
+        ("B097DD3G8G", "Michael Kors Jet Set Large Crossbody Bag", 83.44, "fashion", "trending", 4.8, 23254),
+        ("B017SN1OI8", "Fossil Grant Chronograph Stainless Steel Watch", 113.40, "fashion", "evergreen", 4.7, 21027),
+        ("B087FD9DSV", "adidas Ultraboost 21 Running Shoe", 99.99, "fashion", "trending", 4.6, 3750),
+        ("B000VUCLII", "Hanes Men's Soft Cotton T-Shirts Multipack", 23.79, "fashion", "recent", 4.6, 5470),
+        ("B06Y2ZW779", "New Balance 574 Core Men's Sneaker", 42.50, "fashion", "recent", 4.6, 10406),
+        ("B06XW16QMS", "Oakley Holbrook Matte Black Sunglasses", 121.80, "fashion", "recent", 4.7, 1287),
     ]
 
     def _tp(asin, name, price, category, section, rating, reviews):
@@ -191,7 +219,7 @@ def _make_test_hub(worker_base_url: str) -> HubSurface:
     by_category: dict = {}
     for p in products:
         by_category.setdefault(p.category, ())
-        if len(by_category[p.category]) < 4:
+        if len(by_category[p.category]) < 8:
             by_category[p.category] = by_category[p.category] + (p,)
 
     return HubSurface(

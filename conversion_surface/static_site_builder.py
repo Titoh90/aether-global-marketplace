@@ -129,15 +129,29 @@ def _product_tags(p) -> list:
 
 # Verified HD image IDs scraped from Amazon product pages (2026-05-28)
 _HD_IMAGE_IDS: dict[str, list[str]] = {
+    # Electronics
     "B0BDHWDR12": ["21ttIrgHhTL", "31TmzlrWV2L", "21On7xikgOL"],
     "B08KTZ8249": ["41uqWaJH1aL", "415YFn0VOzL", "61w6XlassQL"],
     "B09XS7JWHH": ["31BXEEUVfFL", "41JkueTBELL", "41WAozqLfiL"],
     "B09B8V1LZ3": ["31vkCUuIWCL", "315PBUzfZiL", "41NkdsdZ3OL"],
+    "B0DGJ4QQ5W": ["21DcbviXOxL", "11RrezJCPgL", "11ZDMqH9n7L"],
+    # Beauty
     "B00TTD9BRC": ["41ba2zJNMXL", "41itoI7tueL", "51Sb3T4JXGL"],
+    # Home
     "B085DTZQNZ": ["718RbhzhVbL", "31iIKOIm46L", "41YVoy+qyXL"],
     "B00FLYWNYQ": ["71Z401LjFFL", "41OFXY6pMRL", "511i62OkshL"],
     "B07FDJMC9Q": ["71+8uTMDRFL", "31MBSKiZOPL", "410LYwPnZLL"],
-    "B0DGJ4QQ5W": ["21DcbviXOxL", "11RrezJCPgL", "11ZDMqH9n7L"],
+    # Fashion
+    "B0BXNRRN4Y": ["21Vq5RWfHWL", "216PIkplq4L", "21zh37OLDoL"],
+    "B0D9KM5SFR": ["31xpQ4IwXvL", "31iEWGMUw7L", "310EDmNrhCL"],
+    "B0018OQQBE": ["3160cyoSYNL", "31Yr6Dex7KL", "31bzt8t+PXL"],
+    "B07PGR1XGZ": ["31QyJvLrLUL", "31cpEQq83sL", "31QXM6rindL"],
+    "B097DD3G8G": ["417llnT8ZnL", "415-y8Z65gL", "21hUxmcIQ5L"],
+    "B017SN1OI8": ["41OHta3+sfL", "31iWq9upMXL", "31pSSkjhHXL"],
+    "B087FD9DSV": ["31oq+iAnWHS", "417P-uT2QhS", "51wAfLBl72L"],
+    "B000VUCLII": ["41-Kk2ZPzmL", "61n7Q7NSkKL", "61bIZNWiM8L"],
+    "B06Y2ZW779": ["31wHdsMEL-L", "51WiROyx-aL", "31UoMa-c0qL"],
+    "B06XW16QMS": ["3170llwXGTL", "31eqVtvlvrL", "31NdngKkqYL"],
 }
 
 
