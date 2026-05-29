@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T01:29:18.505966+00:00",
+  "generated_at": "2026-05-29T03:00:04.801603+00:00",
   "categories": [
     "beauty",
     "electronics",
@@ -8,30 +8,26 @@
   ],
   "products": [
     {
-      "id": "B0BDHWDR12",
-      "title": "Apple AirPods Pro (2nd Generation)",
-      "price": 199.99,
-      "image": "https://m.media-amazon.com/images/I/61f1YfTkTDL._AC_SL1500_.jpg",
+      "id": "B09V7Z4TJG",
+      "title": "medicube Toner Pads Zero Pore Pad 2.0",
+      "price": 26.14,
+      "image": "https://m.media-amazon.com/images/I/71Mcspt-6AL._AC_SL1500_.jpg",
       "imageUrls": [
-        "https://m.media-amazon.com/images/I/61f1YfTkTDL._AC_SL1500_.jpg",
-        "https://m.media-amazon.com/images/I/617I3mDGmTL._AC_SL1500_.jpg",
-        "https://m.media-amazon.com/images/I/51OoKCakCfL._AC_SL1500_.jpg"
+        "https://m.media-amazon.com/images/I/71Mcspt-6AL._AC_SL1500_.jpg"
       ],
-      "rating": 4.8,
-      "reviews": 89432,
-      "category": "electronics",
-      "affiliateUrl": "https://www.amazon.com/dp/B0BDHWDR12/?tag=aetherglobal-20",
-      "description": "Electronics",
+      "rating": 4.6,
+      "reviews": 24639,
+      "category": "beauty",
+      "affiliateUrl": "https://www.amazon.com/dp/B09V7Z4TJG/?tag=aetherglobal-20",
+      "description": "beauty",
       "descriptionI18n": {
-        "en": "Electronics",
-        "es": "Electrónica y tecnología premium",
-        "fr": "Électronique et high-tech premium"
+        "en": "beauty",
+        "es": "Belleza y cuidado personal de lujo",
+        "fr": "Beauté et soins personnels de luxe"
       },
-      "tags": [
-        "bestseller"
-      ],
-      "section": "hero",
-      "type": "video"
+      "tags": [],
+      "section": "recent",
+      "type": "product"
     },
     {
       "id": "B08KTZ8249",
@@ -138,6 +134,208 @@
       "type": "carousel"
     },
     {
+      "id": "B00TTD9BRC",
+      "title": "CeraVe Moisturizing Cream (19 oz)",
+      "price": 16.99,
+      "image": "https://m.media-amazon.com/images/I/61EidjXUBrL._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/61EidjXUBrL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 156432,
+      "category": "beauty",
+      "affiliateUrl": "https://www.amazon.com/dp/B00TTD9BRC/?tag=aetherglobal-20",
+      "description": "Beauty",
+      "descriptionI18n": {
+        "en": "Beauty",
+        "es": "Belleza y cuidado personal de lujo",
+        "fr": "Beauté et soins personnels de luxe"
+      },
+      "tags": [],
+      "section": "evergreen",
+      "type": "product"
+    },
+    {
+      "id": "B07D5DN269",
+      "title": "Niagara Sleep Solution Ultra Soft Queen Size Mattress Topper - Rayon Derived from Bamboo Pillow Top Mattress Pad for Bac",
+      "price": 60.83,
+      "image": "https://m.media-amazon.com/images/I/813u1XQxDQL._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/813u1XQxDQL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.4,
+      "reviews": 48741,
+      "category": "home",
+      "affiliateUrl": "https://www.amazon.com/dp/B07D5DN269/?tag=aetherglobal-20",
+      "description": "home",
+      "descriptionI18n": {
+        "en": "home",
+        "es": "Esenciales para el hogar y la cocina",
+        "fr": "Indispensables pour la maison et la cuisine"
+      },
+      "tags": [],
+      "section": "recent",
+      "type": "product"
+    },
+    {
+      "id": "B0DR9S2DQR",
+      "title": "STANLEY Quencher ProTour Flip Straw Tumbler with Leakproof Lid 40 oz",
+      "price": 45.0,
+      "image": "https://m.media-amazon.com/images/I/614QBr7-g+L._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/614QBr7-g+L._AC_SL1500_.jpg"
+      ],
+      "rating": 4.7,
+      "reviews": 17106,
+      "category": "home",
+      "affiliateUrl": "https://www.amazon.com/dp/B0DR9S2DQR/?tag=aetherglobal-20",
+      "description": "home",
+      "descriptionI18n": {
+        "en": "home",
+        "es": "Esenciales para el hogar y la cocina",
+        "fr": "Indispensables pour la maison et la cuisine"
+      },
+      "tags": [],
+      "section": "recent",
+      "type": "product"
+    },
+    {
+      "id": "B085DTZQNZ",
+      "title": "Owala FreeSip Insulated Water Bottle (24oz)",
+      "price": 34.99,
+      "image": "https://m.media-amazon.com/images/I/718RbhzhVbL._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/718RbhzhVbL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.7,
+      "reviews": 47821,
+      "category": "home",
+      "affiliateUrl": "https://www.amazon.com/dp/B085DTZQNZ/?tag=aetherglobal-20",
+      "description": "Home",
+      "descriptionI18n": {
+        "en": "Home",
+        "es": "Esenciales para el hogar y la cocina",
+        "fr": "Indispensables pour la maison et la cuisine"
+      },
+      "tags": [],
+      "section": "evergreen",
+      "type": "product"
+    },
+    {
+      "id": "B00FLYWNYQ",
+      "title": "Instant Pot Duo 7-in-1 Electric Pressure Cooker (6 Qt)",
+      "price": 99.99,
+      "image": "https://m.media-amazon.com/images/I/71Z401LjFFL._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/71Z401LjFFL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.7,
+      "reviews": 132456,
+      "category": "home",
+      "affiliateUrl": "https://www.amazon.com/dp/B00FLYWNYQ/?tag=aetherglobal-20",
+      "description": "Home",
+      "descriptionI18n": {
+        "en": "Home",
+        "es": "Esenciales para el hogar y la cocina",
+        "fr": "Indispensables pour la maison et la cuisine"
+      },
+      "tags": [],
+      "section": "recent",
+      "type": "product"
+    },
+    {
+      "id": "B07FDJMC9Q",
+      "title": "Ninja 4 Qt Air Fryer AF101",
+      "price": 99.99,
+      "image": "https://m.media-amazon.com/images/I/71+8uTMDRFL._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/71+8uTMDRFL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.7,
+      "reviews": 31287,
+      "category": "home",
+      "affiliateUrl": "https://www.amazon.com/dp/B07FDJMC9Q/?tag=aetherglobal-20",
+      "description": "Home",
+      "descriptionI18n": {
+        "en": "Home",
+        "es": "Esenciales para el hogar y la cocina",
+        "fr": "Indispensables pour la maison et la cuisine"
+      },
+      "tags": [],
+      "section": "recent",
+      "type": "product"
+    },
+    {
+      "id": "B0GJTFXNRX",
+      "title": "Apple AirTag (2nd Generation): Tracker for Keychain, Wallet, and More; Locator with Sound; Simple One-Tap Setup with iPh",
+      "price": 36.41,
+      "image": "https://m.media-amazon.com/images/I/61Qd9Z9caRL._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/61Qd9Z9caRL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.6,
+      "reviews": 4190,
+      "category": "electronics",
+      "affiliateUrl": "https://www.amazon.com/dp/B0GJTFXNRX/?tag=aetherglobal-20",
+      "description": "electronics",
+      "descriptionI18n": {
+        "en": "electronics",
+        "es": "Electrónica y tecnología premium",
+        "fr": "Électronique et high-tech premium"
+      },
+      "tags": [],
+      "section": "recent",
+      "type": "product"
+    },
+    {
+      "id": "B0BDHWDR12",
+      "title": "Apple AirPods Pro (2nd Generation)",
+      "price": 199.99,
+      "image": "https://m.media-amazon.com/images/I/61f1YfTkTDL._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/61f1YfTkTDL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/617I3mDGmTL._AC_SL1500_.jpg",
+        "https://m.media-amazon.com/images/I/51OoKCakCfL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.8,
+      "reviews": 89432,
+      "category": "electronics",
+      "affiliateUrl": "https://www.amazon.com/dp/B0BDHWDR12/?tag=aetherglobal-20",
+      "description": "Electronics",
+      "descriptionI18n": {
+        "en": "Electronics",
+        "es": "Electrónica y tecnología premium",
+        "fr": "Électronique et high-tech premium"
+      },
+      "tags": [
+        "bestseller"
+      ],
+      "section": "hero",
+      "type": "video"
+    },
+    {
+      "id": "B0DGJ4QQ5W",
+      "title": "Apple MagSafe Charger (1m)",
+      "price": 38.99,
+      "image": "https://m.media-amazon.com/images/I/61QQUuYtWNL._AC_SL1500_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/61QQUuYtWNL._AC_SL1500_.jpg"
+      ],
+      "rating": 4.6,
+      "reviews": 12934,
+      "category": "electronics",
+      "affiliateUrl": "https://www.amazon.com/dp/B0DGJ4QQ5W/?tag=aetherglobal-20",
+      "description": "Electronics",
+      "descriptionI18n": {
+        "en": "Electronics",
+        "es": "Electrónica y tecnología premium",
+        "fr": "Électronique et high-tech premium"
+      },
+      "tags": [],
+      "section": "recent",
+      "type": "product"
+    },
+    {
       "id": "B0D9KM5SFR",
       "title": "Nike Pegasus 41 Men's Running Shoe",
       "price": 89.99,
@@ -242,50 +440,6 @@
       "type": "carousel"
     },
     {
-      "id": "B00TTD9BRC",
-      "title": "CeraVe Moisturizing Cream (19 oz)",
-      "price": 16.99,
-      "image": "https://m.media-amazon.com/images/I/61EidjXUBrL._AC_SL1500_.jpg",
-      "imageUrls": [
-        "https://m.media-amazon.com/images/I/61EidjXUBrL._AC_SL1500_.jpg"
-      ],
-      "rating": 4.8,
-      "reviews": 156432,
-      "category": "beauty",
-      "affiliateUrl": "https://www.amazon.com/dp/B00TTD9BRC/?tag=aetherglobal-20",
-      "description": "Beauty",
-      "descriptionI18n": {
-        "en": "Beauty",
-        "es": "Belleza y cuidado personal de lujo",
-        "fr": "Beauté et soins personnels de luxe"
-      },
-      "tags": [],
-      "section": "evergreen",
-      "type": "product"
-    },
-    {
-      "id": "B085DTZQNZ",
-      "title": "Owala FreeSip Insulated Water Bottle (24oz)",
-      "price": 34.99,
-      "image": "https://m.media-amazon.com/images/I/718RbhzhVbL._AC_SL1500_.jpg",
-      "imageUrls": [
-        "https://m.media-amazon.com/images/I/718RbhzhVbL._AC_SL1500_.jpg"
-      ],
-      "rating": 4.7,
-      "reviews": 47821,
-      "category": "home",
-      "affiliateUrl": "https://www.amazon.com/dp/B085DTZQNZ/?tag=aetherglobal-20",
-      "description": "Home",
-      "descriptionI18n": {
-        "en": "Home",
-        "es": "Esenciales para el hogar y la cocina",
-        "fr": "Indispensables pour la maison et la cuisine"
-      },
-      "tags": [],
-      "section": "evergreen",
-      "type": "product"
-    },
-    {
       "id": "B07PGR1XGZ",
       "title": "Calvin Klein Cotton Stretch Boxer Briefs 7-Pack",
       "price": 76.99,
@@ -327,72 +481,6 @@
       },
       "tags": [],
       "section": "evergreen",
-      "type": "product"
-    },
-    {
-      "id": "B0DGJ4QQ5W",
-      "title": "Apple MagSafe Charger (1m)",
-      "price": 38.99,
-      "image": "https://m.media-amazon.com/images/I/61QQUuYtWNL._AC_SL1500_.jpg",
-      "imageUrls": [
-        "https://m.media-amazon.com/images/I/61QQUuYtWNL._AC_SL1500_.jpg"
-      ],
-      "rating": 4.6,
-      "reviews": 12934,
-      "category": "electronics",
-      "affiliateUrl": "https://www.amazon.com/dp/B0DGJ4QQ5W/?tag=aetherglobal-20",
-      "description": "Electronics",
-      "descriptionI18n": {
-        "en": "Electronics",
-        "es": "Electrónica y tecnología premium",
-        "fr": "Électronique et high-tech premium"
-      },
-      "tags": [],
-      "section": "recent",
-      "type": "product"
-    },
-    {
-      "id": "B00FLYWNYQ",
-      "title": "Instant Pot Duo 7-in-1 Electric Pressure Cooker (6 Qt)",
-      "price": 99.99,
-      "image": "https://m.media-amazon.com/images/I/71Z401LjFFL._AC_SL1500_.jpg",
-      "imageUrls": [
-        "https://m.media-amazon.com/images/I/71Z401LjFFL._AC_SL1500_.jpg"
-      ],
-      "rating": 4.7,
-      "reviews": 132456,
-      "category": "home",
-      "affiliateUrl": "https://www.amazon.com/dp/B00FLYWNYQ/?tag=aetherglobal-20",
-      "description": "Home",
-      "descriptionI18n": {
-        "en": "Home",
-        "es": "Esenciales para el hogar y la cocina",
-        "fr": "Indispensables pour la maison et la cuisine"
-      },
-      "tags": [],
-      "section": "recent",
-      "type": "product"
-    },
-    {
-      "id": "B07FDJMC9Q",
-      "title": "Ninja 4 Qt Air Fryer AF101",
-      "price": 99.99,
-      "image": "https://m.media-amazon.com/images/I/71+8uTMDRFL._AC_SL1500_.jpg",
-      "imageUrls": [
-        "https://m.media-amazon.com/images/I/71+8uTMDRFL._AC_SL1500_.jpg"
-      ],
-      "rating": 4.7,
-      "reviews": 31287,
-      "category": "home",
-      "affiliateUrl": "https://www.amazon.com/dp/B07FDJMC9Q/?tag=aetherglobal-20",
-      "description": "Home",
-      "descriptionI18n": {
-        "en": "Home",
-        "es": "Esenciales para el hogar y la cocina",
-        "fr": "Indispensables pour la maison et la cuisine"
-      },
-      "tags": [],
-      "section": "recent",
       "type": "product"
     },
     {

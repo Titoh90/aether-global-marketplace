@@ -108,57 +108,24 @@ def render_js() -> str:
 # Image helpers — Amazon CDN HD images (I/ format, not P/ which returns 160x160)
 # ═══════════════════════════════════════════════════════════════════════════════
 
-# Verified HD image IDs scraped from Amazon product pages (2026-05-28)
-_HD_IMAGE_IDS: dict[str, list[str]] = {
-    # Electronics (hiRes from colorImages/data-old-hires, 2026-05-29)
-    "B0BDHWDR12": ["61f1YfTkTDL", "617I3mDGmTL", "51OoKCakCfL"],
-    "B08KTZ8249": ["61P+vrvFZ9L", "51QCk82iGcL", "71d6+Ib9muL"],
-    "B09XS7JWHH": ["61vJtKbAssL", "51QbrLdao0L", "81V1VCLb4oL"],
-    "B09B8V1LZ3": ["61J2sQtBYDL", "71hNp8d9WvL", "71kDL97LTgL"],
-    "B0DGJ4QQ5W": ["61QQUuYtWNL", "515oIieSmnL", "51yI62DIDmL"],
-    # Beauty
-    "B00TTD9BRC": ["61EidjXUBrL", "61-Ut3jOyyL", "91cwHnwUVEL"],
-    # Home
-    "B085DTZQNZ": ["718RbhzhVbL", "51B4ZbLNkOL", "512t1wfCMZL"],
-    "B00FLYWNYQ": ["71Z401LjFFL", "91V5r8X2VgL", "81s0Ow2f6sL"],
-    "B07FDJMC9Q": ["71+8uTMDRFL", "71wDCEfqZlL", "917o1KllOxL"],
-    # Fashion
-    "B0BXNRRN4Y": ["51+YqqbWIML", "513yiRQ4xwL", "51DXz1+d1mL"],
-    "B0D9KM5SFR": ["61WTJldtvgL", "61yUyjhKsLL", "71YkzMrd6ZL"],
-    "B0018OQQBE": ["41NgDv59BaL", "51WtUkd+bDL", "61ERUtlEPGL"],
-    "B07PGR1XGZ": ["51wCTS-vHXL", "717P2-hKtoL", "61D4PlHJmGL"],
-    "B097DD3G8G": ["71G65R-XC2L", "71dhTScRQgL", "61JRJjqnzSL"],
-    "B017SN1OI8": ["818lBoWqXtL", "61V+is+XpkL", "61dh4J4f8ML"],
-    "B087FD9DSV": ["61PGo56GK5S", "71a9nX2lPAS", "61IwyWsyO5S"],
-    "B000VUCLII": ["61bIZNWiM8L"],
-    "B06Y2ZW779": ["81j9yqr0R9L", "91+8pVW0mPL", "71Oe8HH5g2L"],
-    "B06XW16QMS": ["618RD2rf+UL", "511cl6-GKkL", "51GEvpRPsUL"],
-}
-
-
-def _hd_image_url(image_id: str) -> str:
-    return f"https://m.media-amazon.com/images/I/{image_id}._AC_SL1500_.jpg"
+# Image lookups delegated to image_cache (persistent HD image ID cache)
+from .image_cache import get_primary_image_url as _get_primary_image_url
+from .image_cache import get_carousel_urls as _get_carousel_urls
+from .image_cache import hd_image_url as _hd_image_url
 
 
 def _amazon_image_url(asin: str) -> str:
     if not asin:
         return ""
-    ids = _HD_IMAGE_IDS.get(asin)
-    if ids:
-        return _hd_image_url(ids[0])
-    # Fallback for unknown ASINs (160x160 but better than nothing)
-    return f"https://m.media-amazon.com/images/P/{asin}.01._SL1500_.jpg"
+    return _get_primary_image_url(asin, auto_scrape=False)
 
 
 def _build_carousel_image_urls(asin: str, primary_url: str) -> list:
-    """Up to 3 HD Amazon images. Uses verified I/ image IDs when available."""
+    """Up to 3 HD Amazon images via image_cache."""
     if not asin:
         return [primary_url] if primary_url else []
-    ids = _HD_IMAGE_IDS.get(asin)
-    if ids:
-        return [_hd_image_url(img_id) for img_id in ids[:3]]
-    # Fallback: use primary_url only (P/ format variants are all 160x160)
-    return [primary_url] if primary_url else []
+    urls = _get_carousel_urls(asin, auto_scrape=False)
+    return urls if urls else ([primary_url] if primary_url else [])
 
 
 # ═══════════════════════════════════════════════════════════════════════════════

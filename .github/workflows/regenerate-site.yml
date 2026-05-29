@@ -27,7 +27,6 @@ jobs:
       - name: Regenerate static site
         env:
           PYTHONPATH: .
-          CI_TEST_MODE: "1"
         run: |
           python -c "
           import sys, os

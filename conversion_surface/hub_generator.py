@@ -15,6 +15,19 @@ from .schemas import SurfaceProduct, HubSurface
 from .ranking_engine import rank_products
 from .template_renderer import render_html
 from .static_site_builder import build_static_site, DEFAULT_OUT
+from .image_cache import get_image_ids, get_primary_image_url, warm_cache, hd_image_url
+
+_CATEGORY_MAP = {
+    "Beauty & Personal Care": "beauty",
+    "Home & Kitchen": "home",
+    "Home & Garden": "home",
+    "Electronics": "electronics",
+    "Fashion": "fashion",
+    "Sports & Outdoors": "sports",
+}
+
+def _normalize_category(cat: str) -> str:
+    return _CATEGORY_MAP.get(cat, cat.lower())
 
 _PROJECT_ROOT  = Path(__file__).resolve().parent.parent
 _REVENUE_DIR   = _PROJECT_ROOT / "REVENUE"
@@ -30,53 +43,79 @@ _EVERGREEN_FILE = _REVENUE_DIR / "evergreen_store.json"
 def build_hub(worker_base_url: str = "") -> HubSurface:
     """
     Reads all data sources, ranks products, builds HubSurface.
+    Always includes verified evergreen base catalog.
+    Merges real products from daily_brief.json on top.
     Never raises — returns minimal hub on failure.
     """
-    # CI_TEST_MODE: return a rich test hub with video/carousel/product types
-    if os.environ.get("CI_TEST_MODE"):
-        return _make_test_hub(worker_base_url)
+    # Start with verified evergreen catalog (always available, HD images cached)
+    base_hub = _make_test_hub(worker_base_url)
+    base_products = [base_hub.hero] + list(base_hub.trending) + list(base_hub.evergreen) + list(base_hub.recent)
+    for cat_prods in base_hub.by_category.values():
+        base_products.extend(cat_prods)
+    base_asins = {p.asin for p in base_products}
 
+    # Load real data sources (may be empty in CI)
     brief      = _load_json(_BRIEF_FILE,     {"products": []})
     campaigns  = _load_json(_CAMPAIGNS_FILE, {}).get("campaigns", {})
     click_log  = _load_json(_CLICK_FILE,     {"clicks": []})
     memory     = _load_json(_MEMORY_FILE,    {})
     evergreen  = _load_json(_EVERGREEN_FILE, {})
 
-    products = list(brief.get("products", []))
+    # Build real products list from daily_brief
+    real_products = list(brief.get("products", []))
 
-    # Merge evergreen products not in brief
-    brief_asins = {p.get("asin") for p in products}
+    # Merge evergreen_store products not in brief
+    brief_asins = {p.get("asin") for p in real_products}
     for asin, ev in evergreen.items():
         if asin not in brief_asins and ev.get("status") in ("active", "evergreen"):
-            products.append({
+            real_products.append({
                 "asin":            asin,
                 "name":            ev.get("product_name", asin),
                 "price":           0.0,
                 "category":        ev.get("category", "general"),
-                "affiliate_url":   ev.get("affiliate_url", f"https://www.amazon.com/dp/{asin}?tag=aetherglobal-20"),
+                "affiliate_url":   ev.get("affiliate_url", f"https://www.amazon.com/dp/{asin}/?tag=aetherglobal-20"),
                 "evergreen_status": ev.get("status", "evergreen"),
                 "last_promoted":   ev.get("last_promoted", ""),
             })
 
-    ranked = rank_products(products, campaigns, click_log, memory, worker_base_url)
+    # If we have real products, rank and merge with base
+    if real_products:
+        # Normalize categories before ranking
+        for p in real_products:
+            if "category" in p:
+                p["category"] = _normalize_category(p["category"])
+        ranked = rank_products(real_products, campaigns, click_log, memory, worker_base_url)
+        # Deduplicate: real products take priority over base
+        ranked_asins = {p.asin for p in ranked}
+        deduped_base = [p for p in base_products if p.asin not in ranked_asins]
+        # Seen set for dedup within base
+        seen = set()
+        unique_base = []
+        for p in deduped_base:
+            if p.asin not in seen:
+                seen.add(p.asin)
+                unique_base.append(p)
+        all_products = ranked + unique_base
+    else:
+        # No real products — use base catalog as-is
+        return base_hub
 
-    if not ranked:
-        # Minimal fallback product
+    if not all_products:
         fallback = _fallback_product(worker_base_url)
-        ranked   = [fallback]
+        all_products = [fallback]
 
     # Assign sections
-    hero      = ranked[0]
-    trending  = tuple(p for p in ranked[1:] if p.section in ("trending",))[:4] or tuple(ranked[1:5])
-    evgreens  = tuple(p for p in ranked if p.evergreen_status == "evergreen" and p.asin != hero.asin)[:4]
-    recent    = tuple(ranked[-5:]) if len(ranked) > 5 else tuple(ranked[1:])
+    hero      = all_products[0]
+    trending  = tuple(p for p in all_products[1:] if p.section in ("trending",))[:4] or tuple(all_products[1:5])
+    evgreens  = tuple(p for p in all_products if p.evergreen_status == "evergreen" and p.asin != hero.asin)[:4]
+    recent    = tuple(all_products[-5:]) if len(all_products) > 5 else tuple(all_products[1:])
 
     by_category: dict[str, tuple] = {}
-    for p in ranked:
+    for p in all_products:
         cat = p.category
         if cat not in by_category:
             by_category[cat] = ()
-        if len(by_category[cat]) < 4:
+        if len(by_category[cat]) < 8:
             by_category[cat] = by_category[cat] + (p,)
 
     return HubSurface(
@@ -91,10 +130,19 @@ def build_hub(worker_base_url: str = "") -> HubSurface:
 
 def rebuild_hub(worker_base_url: str = "", output_dir: Path | None = None) -> str:
     """
-    Full pipeline: rank → generate → render → build static.
+    Full pipeline: warm image cache → rank → render → build static.
     Returns absolute path to index.html.
     Called from master_pipeline.py.
     """
+    # Warm image cache for daily_brief ASINs (local only, skipped in CI)
+    try:
+        brief = _load_json(_BRIEF_FILE, {"products": []})
+        asins = list({p.get("asin") for p in brief.get("products", []) if p.get("asin")})
+        if asins:
+            warm_cache(asins)
+    except Exception:
+        pass
+
     surface  = build_hub(worker_base_url=worker_base_url)
     html     = render_html(surface)
     out      = Path(output_dir) if output_dir else DEFAULT_OUT
@@ -136,37 +184,7 @@ def _fallback_product(worker_base_url: str) -> SurfaceProduct:
 
 
 def _make_test_hub(worker_base_url: str) -> HubSurface:
-    """Rich test hub with verified ASINs + HD Amazon image IDs (scraped & confirmed)."""
-
-    # hiRes image IDs per ASIN (Amazon I/ format, extracted from colorImages/data-old-hires)
-    _HD_IMAGES: dict[str, list[str]] = {
-        # Electronics
-        "B0BDHWDR12": ["61f1YfTkTDL", "617I3mDGmTL", "51OoKCakCfL"],
-        "B08KTZ8249": ["61P+vrvFZ9L", "51QCk82iGcL", "71d6+Ib9muL"],
-        "B09XS7JWHH": ["61vJtKbAssL", "51QbrLdao0L", "81V1VCLb4oL"],
-        "B09B8V1LZ3": ["61J2sQtBYDL", "71hNp8d9WvL", "71kDL97LTgL"],
-        "B0DGJ4QQ5W": ["61QQUuYtWNL", "515oIieSmnL", "51yI62DIDmL"],
-        # Beauty
-        "B00TTD9BRC": ["61EidjXUBrL", "61-Ut3jOyyL", "91cwHnwUVEL"],
-        # Home
-        "B085DTZQNZ": ["718RbhzhVbL", "51B4ZbLNkOL", "512t1wfCMZL"],
-        "B00FLYWNYQ": ["71Z401LjFFL", "91V5r8X2VgL", "81s0Ow2f6sL"],
-        "B07FDJMC9Q": ["71+8uTMDRFL", "71wDCEfqZlL", "917o1KllOxL"],
-        # Fashion
-        "B0BXNRRN4Y": ["51+YqqbWIML", "513yiRQ4xwL", "51DXz1+d1mL"],
-        "B0D9KM5SFR": ["61WTJldtvgL", "61yUyjhKsLL", "71YkzMrd6ZL"],
-        "B0018OQQBE": ["41NgDv59BaL", "51WtUkd+bDL", "61ERUtlEPGL"],
-        "B07PGR1XGZ": ["51wCTS-vHXL", "717P2-hKtoL", "61D4PlHJmGL"],
-        "B097DD3G8G": ["71G65R-XC2L", "71dhTScRQgL", "61JRJjqnzSL"],
-        "B017SN1OI8": ["818lBoWqXtL", "61V+is+XpkL", "61dh4J4f8ML"],
-        "B087FD9DSV": ["61PGo56GK5S", "71a9nX2lPAS", "61IwyWsyO5S"],
-        "B000VUCLII": ["61bIZNWiM8L"],
-        "B06Y2ZW779": ["81j9yqr0R9L", "91+8pVW0mPL", "71Oe8HH5g2L"],
-        "B06XW16QMS": ["618RD2rf+UL", "511cl6-GKkL", "51GEvpRPsUL"],
-    }
-
-    def _hd_url(image_id: str) -> str:
-        return f"https://m.media-amazon.com/images/I/{image_id}._AC_SL1500_.jpg"
+    """Rich test hub with verified ASINs + HD Amazon image IDs from image_cache."""
 
     # (asin, name, price, category, section, rating, reviews)
     VERIFIED_PRODUCTS = [
@@ -198,8 +216,7 @@ def _make_test_hub(worker_base_url: str) -> HubSurface:
     def _tp(asin, name, price, category, section, rating, reviews):
         aff = f"https://www.amazon.com/dp/{asin}/?tag=aetherglobal-20"
         trk = f"{worker_base_url.rstrip('/')}/go/{asin}?src=hub" if worker_base_url else aff
-        img_ids = _HD_IMAGES.get(asin, [])
-        primary_img = _hd_url(img_ids[0]) if img_ids else ""
+        primary_img = get_primary_image_url(asin, auto_scrape=False)
         return SurfaceProduct(
             asin=asin, name=name, price=price, category=category,
             affiliate_url=aff, tracking_url=trk,
