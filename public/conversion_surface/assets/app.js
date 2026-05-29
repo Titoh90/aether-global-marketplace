@@ -815,8 +815,113 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // Load collections
+  _loadCollections();
+
   App.render();
 });
+
+// ── Editorial Collections ──────────────────────────────────────────────────
+
+var COLLECTIONS = [];
+
+function _loadCollections() {
+  fetch('data/collections.json')
+    .then(function(r) { return r.ok ? r.json() : []; })
+    .then(function(data) {
+      COLLECTIONS = data || [];
+      _renderCollections();
+    })
+    .catch(function() { /* collections optional */ });
+}
+
+function _renderCollections() {
+  var strip = document.getElementById('collections-scroll');
+  if (!strip || !COLLECTIONS.length) return;
+
+  var gradients = [
+    'from-amber-900/90 to-amber-700/80',
+    'from-rose-900/90 to-pink-700/80',
+    'from-slate-900/90 to-slate-700/80',
+    'from-emerald-900/90 to-teal-700/80',
+    'from-violet-900/90 to-purple-700/80',
+    'from-sky-900/90 to-blue-700/80',
+  ];
+
+  var html = '';
+  COLLECTIONS.forEach(function(c, i) {
+    var grad = gradients[i % gradients.length];
+    var heroImg = c.hero_image ? '<img src="' + _escAttr(c.hero_image) + '" alt="" class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-luminosity">' : '';
+    var count = c.product_count || 0;
+
+    html += '<button onclick="App.showCollection(\'' + _escAttr(c.id) + '\')" '
+          + 'class="flex-shrink-0 snap-start relative w-72 h-40 rounded-2xl overflow-hidden group cursor-pointer transition-transform hover:scale-[1.02] active:scale-[0.98]">'
+          + heroImg
+          + '<div class="absolute inset-0 bg-gradient-to-br ' + grad + '"></div>'
+          + '<div class="relative z-10 p-5 h-full flex flex-col justify-between">'
+          + '<div>'
+          + '<p class="text-white/60 text-[10px] font-semibold uppercase tracking-[0.2em]">' + count + ' products</p>'
+          + '<h3 class="text-white text-base font-bold mt-1 leading-tight">' + _escHtml(c.title) + '</h3>'
+          + '</div>'
+          + '<p class="text-white/70 text-xs leading-snug line-clamp-2">' + _escHtml(c.theme || '') + '</p>'
+          + '</div>'
+          + '<div class="absolute bottom-3 right-3 z-10 bg-white/20 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">'
+          + '<span class="material-symbols-outlined text-white text-sm">arrow_forward</span>'
+          + '</div>'
+          + '</button>';
+  });
+  strip.innerHTML = html;
+}
+
+// Show collection — filter products to collection ASINs
+App.showCollection = function(collId) {
+  var coll = COLLECTIONS.find(function(c) { return c.id === collId; });
+  if (!coll) return;
+
+  // Get ASINs in this collection
+  var asins = (coll.products || []).map(function(p) { return p.asin; });
+
+  // Set filter
+  this.category = 'all';
+  this.query = '';
+  this.sort = 'default';
+  this._collectionFilter = asins;
+  this._collectionTitle = coll.title;
+  this._collectionStory = coll.editorial_story || '';
+
+  this.render();
+  window.scrollTo({top: document.getElementById('product-grid').offsetTop - 80, behavior: 'smooth'});
+};
+
+// Patch getFilteredProducts to support collection filter
+var _origGetFiltered = App.getFilteredProducts;
+App.getFilteredProducts = function() {
+  if (this._collectionFilter) {
+    var asins = this._collectionFilter;
+    var filtered = PRODUCTS.filter(function(p) { return asins.indexOf(p.id) !== -1; });
+    return filtered;
+  }
+  return _origGetFiltered.call(this);
+};
+
+// Patch render to show collection header
+var _origRender = App.render;
+App.render = function() {
+  _origRender.call(this);
+
+  var countEl = document.getElementById('products-count');
+  if (this._collectionFilter && countEl) {
+    countEl.innerHTML = '<button onclick="App.clearCollection()" class="text-primary hover:underline mr-2">&larr; All</button> '
+      + '<span class="font-semibold">' + _escHtml(this._collectionTitle || '') + '</span>';
+  }
+};
+
+App.clearCollection = function() {
+  this._collectionFilter = null;
+  this._collectionTitle = null;
+  this._collectionStory = null;
+  this.render();
+};
 
 window.App = App;
 

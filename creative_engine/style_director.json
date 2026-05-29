@@ -1,0 +1,102 @@
+{
+  "_meta": {
+    "description": "Per-category AI creative rules for Flow Director ad generation. Consumed by carousel_flow.py and flow_agent.py.",
+    "updated": "2026-05-29",
+    "schema_version": 1
+  },
+  "categories": {
+    "electronics": {
+      "style_name": "Apple Keynote",
+      "lighting_style": "soft studio key light, subtle rim light, no harsh shadows, high-key for white bg / low-key for dark bg",
+      "camera_style": "macro product detail, floating product perspective, center composition with massive negative space",
+      "pacing": "slow reveal → product hero → detail macro → logo/CTA. 2s-2s-2s-2s rhythm.",
+      "color_palette": {
+        "primary": "#000000",
+        "secondary": "#FFFFFF",
+        "accent": "#F5F5F7",
+        "text": "#1D1D1F"
+      },
+      "emotional_trigger": "aspiration + control — 'this is what premium feels like'",
+      "forbidden_styles": ["cluttered backgrounds", "text-heavy overlays", "neon colors", "busy patterns", "hands", "people", "faces"],
+      "prompt_prefix": "minimalist product photography, Apple-style, clean studio lighting, floating product, white background, commercial quality",
+      "prompt_suffix": "8K, ultra-sharp, professional product shot, no text, no watermark"
+    },
+    "fashion": {
+      "style_name": "Nike Campaign",
+      "lighting_style": "dramatic side lighting, high contrast, hard shadows on concrete, golden hour for outdoor",
+      "camera_style": "dynamic low angle, off-center composition, product in motion/action context, slight Dutch angle",
+      "pacing": "impact open → dynamic motion → product detail → bold CTA. 1.5s-2.5s-2s-2s rhythm.",
+      "color_palette": {
+        "primary": "#111111",
+        "secondary": "#FFFFFF",
+        "accent": "#FF4400",
+        "text": "#FFFFFF"
+      },
+      "emotional_trigger": "empowerment + identity — 'this is who you become'",
+      "forbidden_styles": ["soft pastel", "delicate/dainty", "clip art", "stock photo feel", "hands", "people", "models", "faces"],
+      "prompt_prefix": "Nike campaign aesthetic, dramatic product photography, urban concrete background, high contrast lighting, bold composition",
+      "prompt_suffix": "cinematic, 8K, commercial quality, no text, no watermark, no people"
+    },
+    "beauty": {
+      "style_name": "Sephora Luxury",
+      "lighting_style": "soft diffused beauty lighting, warm golden accents, dewy highlight reflections, butterfly lighting setup",
+      "camera_style": "extreme macro on texture (cream, serum droplets), product at slight angle, shallow DOF",
+      "pacing": "texture ASMR open → product reveal → application result → emotional close. 2s-2s-2s-2s rhythm.",
+      "color_palette": {
+        "primary": "#F5E6D3",
+        "secondary": "#FFFFFF",
+        "accent": "#D4A574",
+        "text": "#3D2B1F"
+      },
+      "emotional_trigger": "transformation + indulgence — 'you deserve this glow'",
+      "forbidden_styles": ["harsh clinical light", "blue/cold tones", "hands", "people", "skin", "faces", "before/after"],
+      "prompt_prefix": "luxury skincare photography, macro texture detail, soft golden lighting, marble surface, dewy water droplets, spa aesthetic",
+      "prompt_suffix": "editorial beauty, 8K, ultra-sharp macro, no text, no watermark, no people"
+    },
+    "home": {
+      "style_name": "IKEA Premium",
+      "lighting_style": "warm natural window light, soft directional shadows, golden hour warmth, hygge ambiance",
+      "camera_style": "lifestyle context shot, product in-situ on kitchen counter/bedside/shelf, styled scene with complementary props",
+      "pacing": "room establishing → zoom to product → detail/feature → lifestyle benefit. 2s-2s-2s-2s rhythm.",
+      "color_palette": {
+        "primary": "#F5F0E8",
+        "secondary": "#FFFFFF",
+        "accent": "#C9B896",
+        "text": "#3D3530"
+      },
+      "emotional_trigger": "comfort + upgrade — 'small change, big daily impact'",
+      "forbidden_styles": ["cold/clinical", "dark moody", "industrial", "hands", "people", "overly styled/fake"],
+      "prompt_prefix": "Scandinavian interior photography, warm natural light, product on wood surface, cozy home scene, lifestyle context",
+      "prompt_suffix": "editorial home, 8K, warm tones, no text, no watermark, no people"
+    },
+    "fitness": {
+      "style_name": "Under Armour",
+      "lighting_style": "high contrast directional, sweat-glow highlight, dramatic rim light, gymnasium ambient",
+      "camera_style": "dynamic angle, slight motion blur on background, product frozen in action, low perspective",
+      "pacing": "explosive open → action freeze → product hero → intensity close. 1s-2.5s-2.5s-2s rhythm.",
+      "color_palette": {
+        "primary": "#1A1A1A",
+        "secondary": "#E5E5E5",
+        "accent": "#FF3300",
+        "text": "#FFFFFF"
+      },
+      "emotional_trigger": "performance + grit — 'gear that matches your effort'",
+      "forbidden_styles": ["soft", "pastel", "delicate", "static flat lay", "hands", "people", "body parts"],
+      "prompt_prefix": "dynamic fitness product photography, gym environment, high contrast, dramatic lighting, concrete texture, motion energy",
+      "prompt_suffix": "athletic commercial, 8K, cinematic, no text, no watermark, no people"
+    }
+  },
+  "global_rules": {
+    "always_include": "product must be recognizable, no AI hallucination of product design",
+    "never_include": ["people", "hands", "faces", "skin", "body parts", "text overlays", "watermarks", "brand logos except on product"],
+    "image_source_rule": "website thumbnails = REAL Amazon images ONLY. AI generation = ads/social/video ONLY.",
+    "aspect_ratios": {
+      "instagram_feed": "1:1",
+      "instagram_story": "9:16",
+      "tiktok": "9:16",
+      "pinterest": "2:3",
+      "youtube_thumbnail": "16:9",
+      "facebook": "4:5"
+    }
+  }
+}

@@ -182,6 +182,17 @@ def build_static_site(
         encoding="utf-8",
     )
 
+    # ── data/collections.json ────────────────────────────────────────────
+    try:
+        from editorial_engine.transformer import generate_collection_for_frontend
+        collections = generate_collection_for_frontend()
+        (data_dir / "collections.json").write_text(
+            json.dumps(collections, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+    except Exception:
+        pass
+
     # ── i18n/*.json ──────────────────────────────────────────────────────
     for lang in ("en", "es", "fr"):
         (i18n_dir / f"{lang}.json").write_text(

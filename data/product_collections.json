@@ -1,0 +1,162 @@
+{
+  "_meta": {
+    "description": "Editorial collections — curated product groupings with narrative, visual identity, and social angles.",
+    "updated": "2026-05-29",
+    "schema_version": 1
+  },
+  "collections": [
+    {
+      "id": "minimalist_tech",
+      "title": "Minimalist Tech Essentials",
+      "theme": "Clean lines. Pure function. The products that earn a place on your desk.",
+      "category_mapping": ["electronics"],
+      "products": ["B0BDHWDR12", "B09XS7JWHH", "B08KTZ8249", "B0DGJ4QQ5W", "B0GJTFXNRX", "B09B8V1LZ3"],
+      "hero_product": "B0BDHWDR12",
+      "editorial_story": "There's a reason Apple fans don't just buy products — they curate an ecosystem. These are the tech pieces that pass the minimalist test: they do one thing, they do it perfectly, and they look immaculate doing it. From the AirPods Pro that redefined noise canceling to the Kindle that made screens feel like paper, every item here earns its space.",
+      "visual_style_tag": "apple_minimal",
+      "cta_style": "premium",
+      "social_angle": {
+        "tiktok": "POV: your desk setup after deleting everything that doesn't spark joy",
+        "instagram": "The edit. Nothing extra. Everything essential.",
+        "pinterest": "Minimalist tech setup inspiration — clean desk, clear mind"
+      },
+      "featured": true
+    },
+    {
+      "id": "viral_beauty",
+      "title": "Viral TikTok Beauty Finds",
+      "theme": "The products your FYP can't stop recommending — and they actually work.",
+      "category_mapping": ["beauty"],
+      "products": ["B09V7Z4TJG", "B00TTD9BRC", "B085DTZQNZ"],
+      "hero_product": "B09V7Z4TJG",
+      "editorial_story": "Not all viral products deserve the hype. These do. The medicube Zero Pore Pads went from K-beauty secret to global obsession for a reason — visible results in one use. CeraVe's moisturizer is literally what dermatologists use on their own skin. This isn't a trend cycle. This is the beauty canon, validated by millions of reviews.",
+      "visual_style_tag": "luxury_skincare",
+      "cta_style": "discovery",
+      "social_angle": {
+        "tiktok": "POV: products that actually live up to the TikTok hype",
+        "instagram": "Dermatologist-approved. TikTok-validated. Actually worth it.",
+        "pinterest": "Skincare routine essentials — viral products that actually work"
+      },
+      "featured": true
+    },
+    {
+      "id": "luxury_desk_setup",
+      "title": "Luxury Desk Setup",
+      "theme": "Your workspace is your brand. Make it premium.",
+      "category_mapping": ["electronics", "fashion"],
+      "products": ["B0BDHWDR12", "B09XS7JWHH", "B0DGJ4QQ5W", "B017SN1OI8", "B08KTZ8249"],
+      "hero_product": "B09XS7JWHH",
+      "editorial_story": "The home office revolution created a new status symbol: the desk. Not the desk itself — what's on it. Sony XM5s for the focus sessions. AirPods Pro for the calls. A MagSafe charger that looks like it was designed by Dieter Rams. A Fossil chronograph because real ones still wear watches. This is the desk that says you take your craft seriously.",
+      "visual_style_tag": "editorial_luxury",
+      "cta_style": "premium",
+      "social_angle": {
+        "tiktok": "my desk setup that makes people ask what I do for a living",
+        "instagram": "The workspace edit. Every piece intentional.",
+        "pinterest": "Luxury home office desk setup — productivity meets aesthetics"
+      },
+      "featured": true
+    },
+    {
+      "id": "gym_gear",
+      "title": "Premium Gym Gear",
+      "theme": "Train serious. Hydrate harder. Look like you mean it.",
+      "category_mapping": ["home", "fashion"],
+      "products": ["B0CP9YB3Q4", "B0DR9S2DQR", "B085DTZQNZ", "B0BZYCJK89", "B0D6C6GS58", "B0D9KM5SFR", "B087FD9DSV", "B06XW16QMS"],
+      "hero_product": "B0CP9YB3Q4",
+      "editorial_story": "The Stanley Quencher didn't just go viral — it created a hydration culture. Now your gym bag is a style statement. Pair the H2.0 tumbler with Nike Pegasus 41s and Ultraboost 21s, and you've got a gym kit that performs as hard as it looks. The Oakley Holbrooks are for the walk from the parking lot to the squat rack — because even that matters.",
+      "visual_style_tag": "lifestyle_active",
+      "cta_style": "urgent",
+      "social_angle": {
+        "tiktok": "the gym bag dump that gets compliments from strangers",
+        "instagram": "Gear that matches the effort. No shortcuts.",
+        "pinterest": "Gym bag essentials — premium fitness gear for serious athletes"
+      },
+      "featured": true
+    },
+    {
+      "id": "fashion_under_200",
+      "title": "Fashion Essentials Under $200",
+      "theme": "Premium brands at Amazon prices. The edit that punches above its weight.",
+      "category_mapping": ["fashion"],
+      "products": ["B0BXNRRN4Y", "B0D9KM5SFR", "B0018OQQBE", "B097DD3G8G", "B087FD9DSV", "B07PGR1XGZ", "B017SN1OI8", "B06Y2ZW779", "B06XW16QMS", "B000VUCLII"],
+      "hero_product": "B0BXNRRN4Y",
+      "editorial_story": "Ray-Ban Aviators. Levi's 501s. Nike Pegasus. Michael Kors crossbody. These aren't Amazon finds — they're wardrobe foundations. The brands that defined decades of style, available at prices your future self will thank you for. This is the capsule wardrobe starter kit, curated for people who know that style is about editing, not accumulating.",
+      "visual_style_tag": "nike_campaign",
+      "cta_style": "discovery",
+      "social_angle": {
+        "tiktok": "building a designer wardrobe under $200 — every piece from Amazon",
+        "instagram": "The capsule edit. 10 pieces. All premium. All under $200.",
+        "pinterest": "Capsule wardrobe essentials — designer brands at Amazon prices"
+      },
+      "featured": true
+    },
+    {
+      "id": "smart_home_upgrades",
+      "title": "Smart Home Upgrades",
+      "theme": "Small changes. Big daily impact. The home hacks that actually stick.",
+      "category_mapping": ["home", "electronics"],
+      "products": ["B00FLYWNYQ", "B07FDJMC9Q", "B09B8V1LZ3", "B07D5DN269", "B01M16WBW1", "B0C3FTCYZL"],
+      "hero_product": "B00FLYWNYQ",
+      "editorial_story": "The Instant Pot has 132,000+ reviews for a reason — it replaced five appliances with one. The Ninja Air Fryer turned health food into fast food. The Echo Show 5 turned your kitchen counter into a command center. These aren't impulse buys. They're the upgrades you use every single day, until you can't remember life before them.",
+      "visual_style_tag": "scandinavian_warm",
+      "cta_style": "discovery",
+      "social_angle": {
+        "tiktok": "Amazon home finds I use literally every day — 6 months later",
+        "instagram": "The home upgrade edit. Things you'll actually use daily.",
+        "pinterest": "Home essentials that actually change your daily routine"
+      },
+      "featured": true
+    },
+    {
+      "id": "travel_luxury",
+      "title": "Travel Luxury Picks",
+      "theme": "First-class taste. Economy-class prices.",
+      "category_mapping": ["electronics", "fashion"],
+      "products": ["B09XS7JWHH", "B0BXNRRN4Y", "B0GJTFXNRX", "B097DD3G8G", "B06XW16QMS"],
+      "hero_product": "B09XS7JWHH",
+      "editorial_story": "The Sony XM5s cancel the crying baby in row 12. The AirTag tracks the bag the airline inevitably loses. The Ray-Ban Aviators are for the arrival photo. The Michael Kors crossbody holds your passport without looking like a tourist. This is the travel kit that makes economy feel like first class.",
+      "visual_style_tag": "editorial_luxury",
+      "cta_style": "premium",
+      "social_angle": {
+        "tiktok": "my carry-on essentials that make economy feel first class",
+        "instagram": "The travel edit. Pack premium. Travel light.",
+        "pinterest": "Luxury travel essentials — the carry-on edit"
+      },
+      "featured": false
+    },
+    {
+      "id": "gift_ideas",
+      "title": "Gift Ideas That Actually Impress",
+      "theme": "Stop guessing. These gifts don't get returned.",
+      "category_mapping": ["electronics", "fashion", "beauty", "home"],
+      "products": ["B08KTZ8249", "B09B8V1LZ3", "B017SN1OI8", "B00TTD9BRC", "B0BXNRRN4Y", "B0BDHWDR12"],
+      "hero_product": "B08KTZ8249",
+      "editorial_story": "The Kindle Paperwhite has never been returned as a gift. The Fossil chronograph comes in a box that looks like it cost three times more. The CeraVe cream is what dermatologists actually use. These are the gifts where the recipient Googles the price and quietly judges how generous you are — in the best way.",
+      "visual_style_tag": "scandinavian_warm",
+      "cta_style": "discovery",
+      "social_angle": {
+        "tiktok": "gifts that make people think you actually put thought into it",
+        "instagram": "The gift edit. 4.7+ stars. 20K+ reviews. Can't go wrong.",
+        "pinterest": "Foolproof gift ideas — crowd-tested, never returned"
+      },
+      "featured": false
+    },
+    {
+      "id": "self_care_essentials",
+      "title": "Self-Care Essentials",
+      "theme": "Your bathroom deserves to feel like a spa.",
+      "category_mapping": ["beauty", "home"],
+      "products": ["B00TTD9BRC", "B09V7Z4TJG", "B085DTZQNZ", "B07D5DN269"],
+      "hero_product": "B00TTD9BRC",
+      "editorial_story": "CeraVe Moisturizing Cream has more five-star reviews than most products have reviews, period. The medicube pads are K-beauty's answer to expensive facials. The Owala bottle is for hydrating like you actually care about your skin from the inside. The mattress topper is for the sleep that makes all of it work. Self-care isn't a trend — it's infrastructure.",
+      "visual_style_tag": "luxury_skincare",
+      "cta_style": "premium",
+      "social_angle": {
+        "tiktok": "my self-care routine that's basically a spa for under $100",
+        "instagram": "The self-care edit. Skin, sleep, hydration — the trifecta.",
+        "pinterest": "Self-care routine essentials — spa-level products at home"
+      },
+      "featured": false
+    }
+  ]
+}

@@ -1,0 +1,686 @@
+[
+  {
+    "id": "minimalist_tech",
+    "title": "Minimalist Tech Essentials",
+    "theme": "Clean lines. Pure function. The products that earn a place on your desk.",
+    "editorial_story": "There's a reason Apple fans don't just buy products — they curate an ecosystem. These are the tech pieces that pass the minimalist test: they do one thing, they do it perfectly, and they look immaculate doing it. From the AirPods Pro that redefined noise canceling to the Kindle that made screens feel like paper, every item here earns its space.",
+    "hero_product": "B0BDHWDR12",
+    "hero_image": "https://m.media-amazon.com/images/I/61f1YfTkTDL._AC_SL1500_.jpg",
+    "products": [
+      {
+        "asin": "B0BDHWDR12",
+        "title": "Apple AirPods Pro (2nd Generation)",
+        "brand": "Apple",
+        "price": 199.99,
+        "image": "https://m.media-amazon.com/images/I/61f1YfTkTDL._AC_SL1500_.jpg",
+        "rating": 4.8,
+        "review_count": 89432,
+        "affiliate_url": "https://www.amazon.com/dp/B0BDHWDR12/?tag=aetherglobal-20",
+        "tags": [
+          "bestseller",
+          "apple",
+          "wireless",
+          "noise-canceling"
+        ]
+      },
+      {
+        "asin": "B09XS7JWHH",
+        "title": "Sony WH-1000XM5 Noise Canceling Headphones",
+        "brand": "Sony",
+        "price": 279.99,
+        "image": "https://m.media-amazon.com/images/I/61vJtKbAssL._AC_SL1500_.jpg",
+        "rating": 4.7,
+        "review_count": 28654,
+        "affiliate_url": "https://www.amazon.com/dp/B09XS7JWHH/?tag=aetherglobal-20",
+        "tags": [
+          "premium",
+          "noise-canceling",
+          "wireless"
+        ]
+      },
+      {
+        "asin": "B08KTZ8249",
+        "title": "Kindle Paperwhite (11th Gen) – 6.8\" display",
+        "brand": "Amazon",
+        "price": 139.99,
+        "image": "https://m.media-amazon.com/images/I/61P+vrvFZ9L._AC_SL1500_.jpg",
+        "rating": 4.7,
+        "review_count": 45231,
+        "affiliate_url": "https://www.amazon.com/dp/B08KTZ8249/?tag=aetherglobal-20",
+        "tags": [
+          "bestseller",
+          "reading",
+          "gift"
+        ]
+      },
+      {
+        "asin": "B0DGJ4QQ5W",
+        "title": "Apple MagSafe Charger (1m)",
+        "brand": "Apple",
+        "price": 38.99,
+        "image": "https://m.media-amazon.com/images/I/61QQUuYtWNL._AC_SL1500_.jpg",
+        "rating": 4.6,
+        "review_count": 12934,
+        "affiliate_url": "https://www.amazon.com/dp/B0DGJ4QQ5W/?tag=aetherglobal-20",
+        "tags": [
+          "apple",
+          "charging",
+          "essential"
+        ]
+      },
+      {
+        "asin": "B0GJTFXNRX",
+        "title": "Apple AirTag (2nd Generation)",
+        "brand": "Apple",
+        "price": 27.99,
+        "image": "https://m.media-amazon.com/images/I/61Qd9Z9caRL._AC_SL1500_.jpg",
+        "rating": 4.7,
+        "review_count": 8500,
+        "affiliate_url": "https://www.amazon.com/dp/B0GJTFXNRX/?tag=aetherglobal-20",
+        "tags": [
+          "apple",
+          "tracking",
+          "travel"
+        ]
+      },
+      {
+        "asin": "B09B8V1LZ3",
+        "title": "Amazon Echo Show 5 (3rd Gen)",
+        "brand": "Amazon",
+        "price": 89.99,
+        "image": "https://m.media-amazon.com/images/I/61J2sQtBYDL._AC_SL1500_.jpg",
+        "rating": 4.6,
+        "review_count": 19823,
+        "affiliate_url": "https://www.amazon.com/dp/B09B8V1LZ3/?tag=aetherglobal-20",
+        "tags": [
+          "smart_home",
+          "alexa",
+          "gift"
+        ]
+      }
+    ],
+    "product_count": 6,
+    "visual_style_tag": "apple_minimal",
+    "cta_style": "premium",
+    "social_angle": {
+      "tiktok": "POV: your desk setup after deleting everything that doesn't spark joy",
+      "instagram": "The edit. Nothing extra. Everything essential.",
+      "pinterest": "Minimalist tech setup inspiration — clean desk, clear mind"
+    }
+  },
+  {
+    "id": "viral_beauty",
+    "title": "Viral TikTok Beauty Finds",
+    "theme": "The products your FYP can't stop recommending — and they actually work.",
+    "editorial_story": "Not all viral products deserve the hype. These do. The medicube Zero Pore Pads went from K-beauty secret to global obsession for a reason — visible results in one use. CeraVe's moisturizer is literally what dermatologists use on their own skin. This isn't a trend cycle. This is the beauty canon, validated by millions of reviews.",
+    "hero_product": "B09V7Z4TJG",
+    "hero_image": "https://m.media-amazon.com/images/I/71Mcspt-6AL._AC_SL1500_.jpg",
+    "products": [
+      {
+        "asin": "B09V7Z4TJG",
+        "title": "medicube Toner Pads Zero Pore Pad 2.0",
+        "brand": "medicube",
+        "price": 26.14,
+        "image": "https://m.media-amazon.com/images/I/71Mcspt-6AL._AC_SL1500_.jpg",
+        "rating": 4.6,
+        "review_count": 24600,
+        "affiliate_url": "https://www.amazon.com/dp/B09V7Z4TJG/?tag=aetherglobal-20",
+        "tags": [
+          "trending",
+          "k-beauty",
+          "pore-care",
+          "viral"
+        ]
+      },
+      {
+        "asin": "B00TTD9BRC",
+        "title": "CeraVe Moisturizing Cream (19 oz)",
+        "brand": "CeraVe",
+        "price": 16.99,
+        "image": "https://m.media-amazon.com/images/I/61EidjXUBrL._AC_SL1500_.jpg",
+        "rating": 4.8,
+        "review_count": 156432,
+        "affiliate_url": "https://www.amazon.com/dp/B00TTD9BRC/?tag=aetherglobal-20",
+        "tags": [
+          "bestseller",
+          "skincare",
+          "dermatologist"
+        ]
+      },
+      {
+        "asin": "B085DTZQNZ",
+        "title": "Owala FreeSip Insulated Water Bottle (24oz)",
+        "brand": "Owala",
+        "price": 34.99,
+        "image": "https://m.media-amazon.com/images/I/718RbhzhVbL._AC_SL1500_.jpg",
+        "rating": 4.7,
+        "review_count": 47821,
+        "affiliate_url": "https://www.amazon.com/dp/B085DTZQNZ/?tag=aetherglobal-20",
+        "tags": [
+          "bestseller",
+          "hydration",
+          "gym",
+          "viral"
+        ]
+      }
+    ],
+    "product_count": 3,
+    "visual_style_tag": "luxury_skincare",
+    "cta_style": "discovery",
+    "social_angle": {
+      "tiktok": "POV: products that actually live up to the TikTok hype",
+      "instagram": "Dermatologist-approved. TikTok-validated. Actually worth it.",
+      "pinterest": "Skincare routine essentials — viral products that actually work"
+    }
+  },
+  {
+    "id": "luxury_desk_setup",
+    "title": "Luxury Desk Setup",
+    "theme": "Your workspace is your brand. Make it premium.",
+    "editorial_story": "The home office revolution created a new status symbol: the desk. Not the desk itself — what's on it. Sony XM5s for the focus sessions. AirPods Pro for the calls. A MagSafe charger that looks like it was designed by Dieter Rams. A Fossil chronograph because real ones still wear watches. This is the desk that says you take your craft seriously.",
+    "hero_product": "B09XS7JWHH",
+    "hero_image": "https://m.media-amazon.com/images/I/61vJtKbAssL._AC_SL1500_.jpg",
+    "products": [
+      {
+        "asin": "B0BDHWDR12",
+        "title": "Apple AirPods Pro (2nd Generation)",
+        "brand": "Apple",
+        "price": 199.99,
+        "image": "https://m.media-amazon.com/images/I/61f1YfTkTDL._AC_SL1500_.jpg",
+        "rating": 4.8,
+        "review_count": 89432,
+        "affiliate_url": "https://www.amazon.com/dp/B0BDHWDR12/?tag=aetherglobal-20",
+        "tags": [
+          "bestseller",
+          "apple",
+          "wireless",
+          "noise-canceling"
+        ]
+      },
+      {
+        "asin": "B09XS7JWHH",
+        "title": "Sony WH-1000XM5 Noise Canceling Headphones",
+        "brand": "Sony",
+        "price": 279.99,
+        "image": "https://m.media-amazon.com/images/I/61vJtKbAssL._AC_SL1500_.jpg",
+        "rating": 4.7,
+        "review_count": 28654,
+        "affiliate_url": "https://www.amazon.com/dp/B09XS7JWHH/?tag=aetherglobal-20",
+        "tags": [
+          "premium",
+          "noise-canceling",
+          "wireless"
+        ]
+      },
+      {
+        "asin": "B0DGJ4QQ5W",
+        "title": "Apple MagSafe Charger (1m)",
+        "brand": "Apple",
+        "price": 38.99,
+        "image": "https://m.media-amazon.com/images/I/61QQUuYtWNL._AC_SL1500_.jpg",
+        "rating": 4.6,
+        "review_count": 12934,
+        "affiliate_url": "https://www.amazon.com/dp/B0DGJ4QQ5W/?tag=aetherglobal-20",
+        "tags": [
+          "apple",
+          "charging",
+          "essential"
+        ]
+      },
+      {
+        "asin": "B017SN1OI8",
+        "title": "Fossil Grant Chronograph Stainless Steel Watch",
+        "brand": "Fossil",
+        "price": 113.4,
+        "image": "https://m.media-amazon.com/images/I/818lBoWqXtL._AC_SL1500_.jpg",
+        "rating": 4.7,
+        "review_count": 21027,
+        "affiliate_url": "https://www.amazon.com/dp/B017SN1OI8/?tag=aetherglobal-20",
+        "tags": [
+          "premium",
+          "chronograph",
+          "gift"
+        ]
+      },
+      {
+        "asin": "B08KTZ8249",
+        "title": "Kindle Paperwhite (11th Gen) – 6.8\" display",
+        "brand": "Amazon",
+        "price": 139.99,
+        "image": "https://m.media-amazon.com/images/I/61P+vrvFZ9L._AC_SL1500_.jpg",
+        "rating": 4.7,
+        "review_count": 45231,
+        "affiliate_url": "https://www.amazon.com/dp/B08KTZ8249/?tag=aetherglobal-20",
+        "tags": [
+          "bestseller",
+          "reading",
+          "gift"
+        ]
+      }
+    ],
+    "product_count": 5,
+    "visual_style_tag": "editorial_luxury",
+    "cta_style": "premium",
+    "social_angle": {
+      "tiktok": "my desk setup that makes people ask what I do for a living",
+      "instagram": "The workspace edit. Every piece intentional.",
+      "pinterest": "Luxury home office desk setup — productivity meets aesthetics"
+    }
+  },
+  {
+    "id": "gym_gear",
+    "title": "Premium Gym Gear",
+    "theme": "Train serious. Hydrate harder. Look like you mean it.",
+    "editorial_story": "The Stanley Quencher didn't just go viral — it created a hydration culture. Now your gym bag is a style statement. Pair the H2.0 tumbler with Nike Pegasus 41s and Ultraboost 21s, and you've got a gym kit that performs as hard as it looks. The Oakley Holbrooks are for the walk from the parking lot to the squat rack — because even that matters.",
+    "hero_product": "B0CP9YB3Q4",
+    "hero_image": "https://m.media-amazon.com/images/I/51-U5dEbEBL._AC_SL1500_.jpg",
+    "products": [
+      {
+        "asin": "B0CP9YB3Q4",
+        "title": "STANLEY Quencher H2.0 Tumbler with Handle and Straw",
+        "brand": "Stanley",
+        "price": 35.0,
+        "image": "https://m.media-amazon.com/images/I/51-U5dEbEBL._AC_SL1500_.jpg",
+        "rating": 4.8,
+        "review_count": 42000,
+        "affiliate_url": "https://www.amazon.com/dp/B0CP9YB3Q4/?tag=aetherglobal-20",
+        "tags": [
+          "bestseller",
+          "stanley",
+          "viral",
+          "tiktok"
+        ]
+      },
+      {
+        "asin": "B0DR9S2DQR",
+        "title": "STANLEY Quencher ProTour Flip Straw Tumbler",
+        "brand": "Stanley",
+        "price": 35.0,
+        "image": "https://m.media-amazon.com/images/I/614QBr7-g+L._AC_SL1500_.jpg",
+        "rating": 4.7,
+        "review_count": 2800,
+        "affiliate_url": "https://www.amazon.com/dp/B0DR9S2DQR/?tag=aetherglobal-20",
+        "tags": [
+          "trending",
+          "stanley",
+          "viral"
+        ]
+      },
+      {
+        "asin": "B085DTZQNZ",
+        "title": "Owala FreeSip Insulated Water Bottle (24oz)",
+        "brand": "Owala",
+        "price": 34.99,
+        "image": "https://m.media-amazon.com/images/I/718RbhzhVbL._AC_SL1500_.jpg",
+        "rating": 4.7,
+        "review_count": 47821,
+        "affiliate_url": "https://www.amazon.com/dp/B085DTZQNZ/?tag=aetherglobal-20",
+        "tags": [
+          "bestseller",
+          "hydration",
+          "gym",
+          "viral"
+        ]
+      },
+      {
+        "asin": "B0BZYCJK89",
+        "title": "Owala FreeSip Insulated Stainless Steel Water Bottle (40oz)",
+        "brand": "Owala",
+        "price": 37.99,
+        "image": "https://m.media-amazon.com/images/I/61Gvw0-b0eL._AC_SL1500_.jpg",
+        "rating": 4.7,
+        "review_count": 15000,
+        "affiliate_url": "https://www.amazon.com/dp/B0BZYCJK89/?tag=aetherglobal-20",
+        "tags": [
+          "trending",
+          "hydration",
+          "gym"
+        ]
+      },
+      {
+        "asin": "B0D6C6GS58",
+        "title": "HydroJug Traveler - 32oz Water Bottle with Handle",
+        "brand": "HydroJug",
+        "price": 29.99,
+        "image": "https://m.media-amazon.com/images/I/31tbwj3Mi9L._AC_SL1500_.jpg",
+        "rating": 4.5,
+        "review_count": 3200,
+        "affiliate_url": "https://www.amazon.com/dp/B0D6C6GS58/?tag=aetherglobal-20",
+        "tags": [
+          "trending",
+          "hydration",
+          "fitness"
+        ]
+      },
+      {
+        "asin": "B0D9KM5SFR",
+        "title": "Nike Pegasus 41 Men's Running Shoe",
+        "brand": "Nike",
+        "price": 89.99,
+        "image": "https://m.media-amazon.com/images/I/61WTJldtvgL._AC_SL1500_.jpg",
+        "rating": 4.6,
+        "review_count": 1129,
+        "affiliate_url": "https://www.amazon.com/dp/B0D9KM5SFR/?tag=aetherglobal-20",
+        "tags": [
+          "trending",
+          "running",
+          "nike"
+        ]
+      },
+      {
+        "asin": "B087FD9DSV",
+        "title": "adidas Ultraboost 21 Running Shoe",
+        "brand": "adidas",
+        "price": 99.99,
+        "image": "https://m.media-amazon.com/images/I/61PGo56GK5S._AC_SL1500_.jpg",
+        "rating": 4.6,
+        "review_count": 3750,
+        "affiliate_url": "https://www.amazon.com/dp/B087FD9DSV/?tag=aetherglobal-20",
+        "tags": [
+          "trending",
+          "running",
+          "boost"
+        ]
+      },
+      {
+        "asin": "B06XW16QMS",
+        "title": "Oakley Holbrook Matte Black Sunglasses",
+        "brand": "Oakley",
+        "price": 121.8,
+        "image": "https://m.media-amazon.com/images/I/618RD2rf+UL._AC_SL1500_.jpg",
+        "rating": 4.7,
+        "review_count": 1287,
+        "affiliate_url": "https://www.amazon.com/dp/B06XW16QMS/?tag=aetherglobal-20",
+        "tags": [
+          "premium",
+          "sport",
+          "sunglasses"
+        ]
+      }
+    ],
+    "product_count": 8,
+    "visual_style_tag": "lifestyle_active",
+    "cta_style": "urgent",
+    "social_angle": {
+      "tiktok": "the gym bag dump that gets compliments from strangers",
+      "instagram": "Gear that matches the effort. No shortcuts.",
+      "pinterest": "Gym bag essentials — premium fitness gear for serious athletes"
+    }
+  },
+  {
+    "id": "fashion_under_200",
+    "title": "Fashion Essentials Under $200",
+    "theme": "Premium brands at Amazon prices. The edit that punches above its weight.",
+    "editorial_story": "Ray-Ban Aviators. Levi's 501s. Nike Pegasus. Michael Kors crossbody. These aren't Amazon finds — they're wardrobe foundations. The brands that defined decades of style, available at prices your future self will thank you for. This is the capsule wardrobe starter kit, curated for people who know that style is about editing, not accumulating.",
+    "hero_product": "B0BXNRRN4Y",
+    "hero_image": "https://m.media-amazon.com/images/I/51+YqqbWIML._AC_SL1500_.jpg",
+    "products": [
+      {
+        "asin": "B0BXNRRN4Y",
+        "title": "Ray-Ban Classic Aviator RB3025 Sunglasses",
+        "brand": "Ray-Ban",
+        "price": 133.7,
+        "image": "https://m.media-amazon.com/images/I/51+YqqbWIML._AC_SL1500_.jpg",
+        "rating": 4.6,
+        "review_count": 24071,
+        "affiliate_url": "https://www.amazon.com/dp/B0BXNRRN4Y/?tag=aetherglobal-20",
+        "tags": [
+          "premium",
+          "iconic",
+          "sunglasses"
+        ]
+      },
+      {
+        "asin": "B0D9KM5SFR",
+        "title": "Nike Pegasus 41 Men's Running Shoe",
+        "brand": "Nike",
+        "price": 89.99,
+        "image": "https://m.media-amazon.com/images/I/61WTJldtvgL._AC_SL1500_.jpg",
+        "rating": 4.6,
+        "review_count": 1129,
+        "affiliate_url": "https://www.amazon.com/dp/B0D9KM5SFR/?tag=aetherglobal-20",
+        "tags": [
+          "trending",
+          "running",
+          "nike"
+        ]
+      },
+      {
+        "asin": "B0018OQQBE",
+        "title": "Levi's 501 Original Fit Men's Jeans",
+        "brand": "Levi's",
+        "price": 69.99,
+        "image": "https://m.media-amazon.com/images/I/41NgDv59BaL._AC_SL1500_.jpg",
+        "rating": 4.5,
+        "review_count": 95932,
+        "affiliate_url": "https://www.amazon.com/dp/B0018OQQBE/?tag=aetherglobal-20",
+        "tags": [
+          "classic",
+          "denim",
+          "wardrobe_staple"
+        ]
+      },
+      {
+        "asin": "B097DD3G8G",
+        "title": "Michael Kors Jet Set Large Crossbody Bag",
+        "brand": "Michael Kors",
+        "price": 83.44,
+        "image": "https://m.media-amazon.com/images/I/71G65R-XC2L._AC_SL1500_.jpg",
+        "rating": 4.8,
+        "review_count": 23254,
+        "affiliate_url": "https://www.amazon.com/dp/B097DD3G8G/?tag=aetherglobal-20",
+        "tags": [
+          "luxury",
+          "designer",
+          "crossbody"
+        ]
+      },
+      {
+        "asin": "B087FD9DSV",
+        "title": "adidas Ultraboost 21 Running Shoe",
+        "brand": "adidas",
+        "price": 99.99,
+        "image": "https://m.media-amazon.com/images/I/61PGo56GK5S._AC_SL1500_.jpg",
+        "rating": 4.6,
+        "review_count": 3750,
+        "affiliate_url": "https://www.amazon.com/dp/B087FD9DSV/?tag=aetherglobal-20",
+        "tags": [
+          "trending",
+          "running",
+          "boost"
+        ]
+      },
+      {
+        "asin": "B07PGR1XGZ",
+        "title": "Calvin Klein Cotton Stretch Boxer Briefs 7-Pack",
+        "brand": "Calvin Klein",
+        "price": 76.99,
+        "image": "https://m.media-amazon.com/images/I/51wCTS-vHXL._AC_SL1500_.jpg",
+        "rating": 4.5,
+        "review_count": 14170,
+        "affiliate_url": "https://www.amazon.com/dp/B07PGR1XGZ/?tag=aetherglobal-20",
+        "tags": [
+          "premium",
+          "essentials",
+          "value_pack"
+        ]
+      },
+      {
+        "asin": "B017SN1OI8",
+        "title": "Fossil Grant Chronograph Stainless Steel Watch",
+        "brand": "Fossil",
+        "price": 113.4,
+        "image": "https://m.media-amazon.com/images/I/818lBoWqXtL._AC_SL1500_.jpg",
+        "rating": 4.7,
+        "review_count": 21027,
+        "affiliate_url": "https://www.amazon.com/dp/B017SN1OI8/?tag=aetherglobal-20",
+        "tags": [
+          "premium",
+          "chronograph",
+          "gift"
+        ]
+      },
+      {
+        "asin": "B06Y2ZW779",
+        "title": "New Balance 574 Core Men's Sneaker",
+        "brand": "New Balance",
+        "price": 42.5,
+        "image": "https://m.media-amazon.com/images/I/81j9yqr0R9L._AC_SL1500_.jpg",
+        "rating": 4.6,
+        "review_count": 10406,
+        "affiliate_url": "https://www.amazon.com/dp/B06Y2ZW779/?tag=aetherglobal-20",
+        "tags": [
+          "classic",
+          "streetwear",
+          "retro"
+        ]
+      },
+      {
+        "asin": "B06XW16QMS",
+        "title": "Oakley Holbrook Matte Black Sunglasses",
+        "brand": "Oakley",
+        "price": 121.8,
+        "image": "https://m.media-amazon.com/images/I/618RD2rf+UL._AC_SL1500_.jpg",
+        "rating": 4.7,
+        "review_count": 1287,
+        "affiliate_url": "https://www.amazon.com/dp/B06XW16QMS/?tag=aetherglobal-20",
+        "tags": [
+          "premium",
+          "sport",
+          "sunglasses"
+        ]
+      },
+      {
+        "asin": "B000VUCLII",
+        "title": "Hanes Men's Soft Cotton T-Shirts Multipack",
+        "brand": "Hanes",
+        "price": 23.79,
+        "image": "https://m.media-amazon.com/images/I/61bIZNWiM8L._AC_SL1500_.jpg",
+        "rating": 4.6,
+        "review_count": 5470,
+        "affiliate_url": "https://www.amazon.com/dp/B000VUCLII/?tag=aetherglobal-20",
+        "tags": [
+          "value",
+          "basics",
+          "essentials"
+        ]
+      }
+    ],
+    "product_count": 10,
+    "visual_style_tag": "nike_campaign",
+    "cta_style": "discovery",
+    "social_angle": {
+      "tiktok": "building a designer wardrobe under $200 — every piece from Amazon",
+      "instagram": "The capsule edit. 10 pieces. All premium. All under $200.",
+      "pinterest": "Capsule wardrobe essentials — designer brands at Amazon prices"
+    }
+  },
+  {
+    "id": "smart_home_upgrades",
+    "title": "Smart Home Upgrades",
+    "theme": "Small changes. Big daily impact. The home hacks that actually stick.",
+    "editorial_story": "The Instant Pot has 132,000+ reviews for a reason — it replaced five appliances with one. The Ninja Air Fryer turned health food into fast food. The Echo Show 5 turned your kitchen counter into a command center. These aren't impulse buys. They're the upgrades you use every single day, until you can't remember life before them.",
+    "hero_product": "B00FLYWNYQ",
+    "hero_image": "https://m.media-amazon.com/images/I/71Z401LjFFL._AC_SL1500_.jpg",
+    "products": [
+      {
+        "asin": "B00FLYWNYQ",
+        "title": "Instant Pot Duo 7-in-1 Electric Pressure Cooker (6 Qt)",
+        "brand": "Instant Pot",
+        "price": 99.99,
+        "image": "https://m.media-amazon.com/images/I/71Z401LjFFL._AC_SL1500_.jpg",
+        "rating": 4.7,
+        "review_count": 132456,
+        "affiliate_url": "https://www.amazon.com/dp/B00FLYWNYQ/?tag=aetherglobal-20",
+        "tags": [
+          "bestseller",
+          "cooking",
+          "kitchen_essential"
+        ]
+      },
+      {
+        "asin": "B07FDJMC9Q",
+        "title": "Ninja 4 Qt Air Fryer AF101",
+        "brand": "Ninja",
+        "price": 99.99,
+        "image": "https://m.media-amazon.com/images/I/71+8uTMDRFL._AC_SL1500_.jpg",
+        "rating": 4.7,
+        "review_count": 31287,
+        "affiliate_url": "https://www.amazon.com/dp/B07FDJMC9Q/?tag=aetherglobal-20",
+        "tags": [
+          "bestseller",
+          "air_fryer",
+          "healthy_cooking"
+        ]
+      },
+      {
+        "asin": "B09B8V1LZ3",
+        "title": "Amazon Echo Show 5 (3rd Gen)",
+        "brand": "Amazon",
+        "price": 89.99,
+        "image": "https://m.media-amazon.com/images/I/61J2sQtBYDL._AC_SL1500_.jpg",
+        "rating": 4.6,
+        "review_count": 19823,
+        "affiliate_url": "https://www.amazon.com/dp/B09B8V1LZ3/?tag=aetherglobal-20",
+        "tags": [
+          "smart_home",
+          "alexa",
+          "gift"
+        ]
+      },
+      {
+        "asin": "B07D5DN269",
+        "title": "Niagara Sleep Solution Ultra Soft Queen Size Mattress Topper",
+        "brand": "Niagara",
+        "price": 39.95,
+        "image": "https://m.media-amazon.com/images/I/813u1XQxDQL._AC_SL1500_.jpg",
+        "rating": 4.4,
+        "review_count": 28000,
+        "affiliate_url": "https://www.amazon.com/dp/B07D5DN269/?tag=aetherglobal-20",
+        "tags": [
+          "trending",
+          "sleep",
+          "comfort"
+        ]
+      },
+      {
+        "asin": "B01M16WBW1",
+        "title": "Queen Size 4 Piece Sheet Set - Comfy Breathable",
+        "brand": "Generic",
+        "price": 23.99,
+        "image": "https://m.media-amazon.com/images/P/B01M16WBW1.01._SL1500_.jpg",
+        "rating": 4.5,
+        "review_count": 380000,
+        "affiliate_url": "https://www.amazon.com/dp/B01M16WBW1/?tag=aetherglobal-20",
+        "tags": [
+          "bestseller",
+          "bedding",
+          "value"
+        ]
+      },
+      {
+        "asin": "B0C3FTCYZL",
+        "title": "Zevo Flying Insect Trap Refill Cartridges",
+        "brand": "Zevo",
+        "price": 15.97,
+        "image": "https://m.media-amazon.com/images/I/81uXJAVhd1L._AC_SL1500_.jpg",
+        "rating": 4.3,
+        "review_count": 18500,
+        "affiliate_url": "https://www.amazon.com/dp/B0C3FTCYZL/?tag=aetherglobal-20",
+        "tags": [
+          "trending",
+          "home_hack",
+          "viral"
+        ]
+      }
+    ],
+    "product_count": 6,
+    "visual_style_tag": "scandinavian_warm",
+    "cta_style": "discovery",
+    "social_angle": {
+      "tiktok": "Amazon home finds I use literally every day — 6 months later",
+      "instagram": "The home upgrade edit. Things you'll actually use daily.",
+      "pinterest": "Home essentials that actually change your daily routine"
+    }
+  }
+]

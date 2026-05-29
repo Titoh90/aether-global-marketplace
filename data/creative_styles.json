@@ -1,0 +1,196 @@
+{
+  "_meta": {
+    "description": "Centralized creative style definitions per category. Used by Flow Director, copy_engine, and social posting.",
+    "updated": "2026-05-29",
+    "schema_version": 1
+  },
+  "styles": {
+    "apple_minimal": {
+      "name": "Apple Minimal",
+      "categories": ["electronics"],
+      "subcategories": ["audio", "accessories", "reading", "phones"],
+      "visual": {
+        "background": "pure white or matte black gradient",
+        "lighting": "soft studio, single key light, subtle rim light",
+        "composition": "center product, massive white space, asymmetric crop",
+        "color_palette": ["#000000", "#FFFFFF", "#F5F5F7", "#1D1D1F"],
+        "texture": "clean, no texture, anti-grain",
+        "depth_of_field": "shallow, product razor-sharp, background dissolved"
+      },
+      "photography_keywords": [
+        "product photography", "studio lighting", "white background",
+        "floating product", "subtle shadow", "rim light", "clean minimal",
+        "high-key lighting", "commercial product shot"
+      ],
+      "typography": "thin sans-serif, massive spacing, lowercase preferred",
+      "mood": "premium, clean, confident, understated",
+      "negative_prompts": ["cluttered", "busy background", "text overlay", "hands", "people"],
+      "social_format": {
+        "instagram": "single hero product shot, 1:1",
+        "tiktok": "unboxing reveal, 9:16",
+        "pinterest": "lifestyle flat lay, 2:3"
+      }
+    },
+    "futuristic_tech": {
+      "name": "Futuristic Tech",
+      "categories": ["electronics"],
+      "subcategories": ["smart_home", "gadgets", "wearables"],
+      "visual": {
+        "background": "dark gradient, deep blue/purple, subtle grid pattern",
+        "lighting": "neon accent, blue/cyan rim light, volumetric haze",
+        "composition": "low angle, dramatic perspective, product floating",
+        "color_palette": ["#0A0E27", "#1E3A5F", "#00D4FF", "#7B2FFF"],
+        "texture": "holographic, glass reflections, light streaks",
+        "depth_of_field": "moderate, environment slightly visible"
+      },
+      "photography_keywords": [
+        "futuristic", "neon lighting", "tech product", "holographic",
+        "sci-fi aesthetic", "volumetric light", "dark background",
+        "cyan accent light", "floating product", "reflection surface"
+      ],
+      "typography": "geometric sans-serif, neon accent color, tech feel",
+      "mood": "futuristic, exciting, cutting-edge, powerful",
+      "negative_prompts": ["warm tones", "organic", "rustic", "hands", "people"],
+      "social_format": {
+        "instagram": "cinematic wide, 4:5",
+        "tiktok": "reveal with light effects, 9:16",
+        "pinterest": "dark tech aesthetic, 2:3"
+      }
+    },
+    "luxury_skincare": {
+      "name": "Luxury Skincare",
+      "categories": ["beauty"],
+      "subcategories": ["skincare", "haircare", "makeup"],
+      "visual": {
+        "background": "soft cream/blush gradient or marble surface",
+        "lighting": "soft diffused, golden hour warmth, dewy highlights",
+        "composition": "macro detail, texture focus, product at slight angle",
+        "color_palette": ["#F5E6D3", "#E8C4A0", "#D4A574", "#FFFFFF", "#F0E0D0"],
+        "texture": "dewy drops, cream swirls, silk fabric, marble",
+        "depth_of_field": "very shallow, extreme macro on texture"
+      },
+      "photography_keywords": [
+        "luxury skincare", "macro photography", "dewy texture",
+        "cream texture", "soft lighting", "beauty product",
+        "marble surface", "golden hour", "silk fabric",
+        "water droplets on product", "spa aesthetic"
+      ],
+      "typography": "elegant serif, cream/gold tones, generous spacing",
+      "mood": "luxurious, serene, indulgent, transformative",
+      "negative_prompts": ["harsh light", "clinical", "hands", "people", "skin", "face"],
+      "social_format": {
+        "instagram": "macro texture carousel, 1:1",
+        "tiktok": "ASMR texture reveal, 9:16",
+        "pinterest": "flat lay with botanicals, 2:3"
+      }
+    },
+    "nike_campaign": {
+      "name": "Nike Campaign",
+      "categories": ["fashion"],
+      "subcategories": ["sneakers", "activewear", "basics", "denim", "underwear", "eyewear"],
+      "visual": {
+        "background": "urban concrete, motion blur cityscape, or pure white",
+        "lighting": "dramatic side light, high contrast, hard shadows",
+        "composition": "dynamic angle, off-center, motion implied, product in action",
+        "color_palette": ["#111111", "#FFFFFF", "#FF4400", "#E5E5E5"],
+        "texture": "concrete, asphalt, raw urban surfaces",
+        "depth_of_field": "selective focus on product, environment blurred"
+      },
+      "photography_keywords": [
+        "nike campaign", "dynamic product shot", "motion freeze",
+        "urban photography", "high contrast", "dramatic lighting",
+        "concrete background", "athletic aesthetic", "bold composition",
+        "side lighting", "action shot", "street style"
+      ],
+      "typography": "bold condensed sans-serif, ALL CAPS, high contrast",
+      "mood": "powerful, dynamic, aspirational, bold",
+      "negative_prompts": ["soft", "pastel", "delicate", "hands", "people", "person"],
+      "social_format": {
+        "instagram": "dynamic hero shot, 4:5",
+        "tiktok": "reveal with bass drop, 9:16",
+        "pinterest": "styled outfit flat lay, 2:3"
+      }
+    },
+    "editorial_luxury": {
+      "name": "Editorial Luxury",
+      "categories": ["fashion"],
+      "subcategories": ["bags", "watches", "jewelry", "accessories"],
+      "visual": {
+        "background": "dark leather surface, velvet, or studio gradient",
+        "lighting": "dramatic accent light, warm golden, selective illumination",
+        "composition": "product hero, editorial styling, detail focus",
+        "color_palette": ["#1A1A1A", "#C9A84C", "#8B6914", "#F5F0E8"],
+        "texture": "leather grain, metal reflection, fabric drape",
+        "depth_of_field": "shallow, detail macro on materials"
+      },
+      "photography_keywords": [
+        "luxury product photography", "editorial style", "leather texture",
+        "golden accent light", "dark moody", "watch photography",
+        "bag editorial", "jewelry macro", "premium commercial",
+        "velvet background", "warm metallic tones"
+      ],
+      "typography": "thin serif, gold on dark, elegant spacing",
+      "mood": "exclusive, refined, aspirational, timeless",
+      "negative_prompts": ["casual", "bright colors", "cluttered", "hands", "people"],
+      "social_format": {
+        "instagram": "detail macro carousel, 1:1",
+        "tiktok": "luxury unboxing ASMR, 9:16",
+        "pinterest": "styled editorial, 2:3"
+      }
+    },
+    "scandinavian_warm": {
+      "name": "Scandinavian Warm",
+      "categories": ["home"],
+      "subcategories": ["kitchen", "bedding", "pest_control", "furniture", "decor"],
+      "visual": {
+        "background": "light wood surface, white marble, linen fabric",
+        "lighting": "warm natural window light, soft shadows, golden hour",
+        "composition": "lifestyle context, product in-situ, styled scene",
+        "color_palette": ["#F5F0E8", "#E8DED0", "#C9B896", "#FFFFFF", "#8B7355"],
+        "texture": "wood grain, linen weave, ceramic matte, marble veining",
+        "depth_of_field": "moderate, environment adds context"
+      },
+      "photography_keywords": [
+        "scandinavian interior", "warm natural light", "kitchen scene",
+        "cozy home", "lifestyle photography", "product in context",
+        "wood surface", "linen texture", "morning light",
+        "clean kitchen counter", "bedroom cozy", "hygge aesthetic"
+      ],
+      "typography": "rounded sans-serif, warm tones, friendly spacing",
+      "mood": "warm, inviting, cozy, trusted, approachable",
+      "negative_prompts": ["dark", "moody", "industrial", "hands", "people"],
+      "social_format": {
+        "instagram": "lifestyle scene, 4:5",
+        "tiktok": "routine/hack format, 9:16",
+        "pinterest": "styled room scene, 2:3"
+      }
+    },
+    "lifestyle_active": {
+      "name": "Lifestyle Active",
+      "categories": ["home", "fashion"],
+      "subcategories": ["drinkware", "fitness", "activewear"],
+      "visual": {
+        "background": "gym setting, outdoor trail, or clean colored backdrop matching product",
+        "lighting": "bright, energetic, slight overexposure for freshness",
+        "composition": "product as hero, slight tilt, vibrant color pop",
+        "color_palette": ["product_color_match", "#FFFFFF", "#F0F0F0", "#333333"],
+        "texture": "water condensation, gym concrete, rubber matting",
+        "depth_of_field": "shallow, product sharp, vibrant background blur"
+      },
+      "photography_keywords": [
+        "active lifestyle", "water bottle product shot", "gym aesthetic",
+        "bright photography", "condensation drops", "fresh energetic",
+        "color pop product", "fitness lifestyle", "hydration aesthetic",
+        "vibrant product photography", "outdoor active"
+      ],
+      "typography": "bold sans-serif, product color accent, energetic",
+      "mood": "fresh, energetic, vibrant, motivating",
+      "negative_prompts": ["dark", "moody", "static", "hands", "people"],
+      "social_format": {
+        "instagram": "vibrant product hero, 1:1",
+        "tiktok": "haul/comparison format, 9:16",
+        "pinterest": "color-matched flat lay, 2:3"
+      }
+    }
+  }
+}
