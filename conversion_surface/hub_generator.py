@@ -138,31 +138,31 @@ def _fallback_product(worker_base_url: str) -> SurfaceProduct:
 def _make_test_hub(worker_base_url: str) -> HubSurface:
     """Rich test hub with verified ASINs + HD Amazon image IDs (scraped & confirmed)."""
 
-    # Verified HD image IDs per ASIN (Amazon I/ format, scraped from product pages)
+    # hiRes image IDs per ASIN (Amazon I/ format, extracted from colorImages/data-old-hires)
     _HD_IMAGES: dict[str, list[str]] = {
         # Electronics
-        "B0BDHWDR12": ["21ttIrgHhTL", "31TmzlrWV2L", "21On7xikgOL"],
-        "B08KTZ8249": ["41uqWaJH1aL", "415YFn0VOzL", "61w6XlassQL"],
-        "B09XS7JWHH": ["31BXEEUVfFL", "41JkueTBELL", "41WAozqLfiL"],
-        "B09B8V1LZ3": ["31vkCUuIWCL", "315PBUzfZiL", "41NkdsdZ3OL"],
-        "B0DGJ4QQ5W": ["21DcbviXOxL", "11RrezJCPgL", "11ZDMqH9n7L"],
+        "B0BDHWDR12": ["61f1YfTkTDL", "617I3mDGmTL", "51OoKCakCfL"],
+        "B08KTZ8249": ["61P+vrvFZ9L", "51QCk82iGcL", "71d6+Ib9muL"],
+        "B09XS7JWHH": ["61vJtKbAssL", "51QbrLdao0L", "81V1VCLb4oL"],
+        "B09B8V1LZ3": ["61J2sQtBYDL", "71hNp8d9WvL", "71kDL97LTgL"],
+        "B0DGJ4QQ5W": ["61QQUuYtWNL", "515oIieSmnL", "51yI62DIDmL"],
         # Beauty
-        "B00TTD9BRC": ["41ba2zJNMXL", "41itoI7tueL", "51Sb3T4JXGL"],
+        "B00TTD9BRC": ["61EidjXUBrL", "61-Ut3jOyyL", "91cwHnwUVEL"],
         # Home
-        "B085DTZQNZ": ["718RbhzhVbL", "31iIKOIm46L", "41YVoy+qyXL"],
-        "B00FLYWNYQ": ["71Z401LjFFL", "41OFXY6pMRL", "511i62OkshL"],
-        "B07FDJMC9Q": ["71+8uTMDRFL", "31MBSKiZOPL", "410LYwPnZLL"],
+        "B085DTZQNZ": ["718RbhzhVbL", "51B4ZbLNkOL", "512t1wfCMZL"],
+        "B00FLYWNYQ": ["71Z401LjFFL", "91V5r8X2VgL", "81s0Ow2f6sL"],
+        "B07FDJMC9Q": ["71+8uTMDRFL", "71wDCEfqZlL", "917o1KllOxL"],
         # Fashion
-        "B0BXNRRN4Y": ["21Vq5RWfHWL", "216PIkplq4L", "21zh37OLDoL"],
-        "B0D9KM5SFR": ["31xpQ4IwXvL", "31iEWGMUw7L", "310EDmNrhCL"],
-        "B0018OQQBE": ["3160cyoSYNL", "31Yr6Dex7KL", "31bzt8t+PXL"],
-        "B07PGR1XGZ": ["31QyJvLrLUL", "31cpEQq83sL", "31QXM6rindL"],
-        "B097DD3G8G": ["417llnT8ZnL", "415-y8Z65gL", "21hUxmcIQ5L"],
-        "B017SN1OI8": ["41OHta3+sfL", "31iWq9upMXL", "31pSSkjhHXL"],
-        "B087FD9DSV": ["31oq+iAnWHS", "417P-uT2QhS", "51wAfLBl72L"],
-        "B000VUCLII": ["41-Kk2ZPzmL", "61n7Q7NSkKL", "61bIZNWiM8L"],
-        "B06Y2ZW779": ["31wHdsMEL-L", "51WiROyx-aL", "31UoMa-c0qL"],
-        "B06XW16QMS": ["3170llwXGTL", "31eqVtvlvrL", "31NdngKkqYL"],
+        "B0BXNRRN4Y": ["51+YqqbWIML", "513yiRQ4xwL", "51DXz1+d1mL"],
+        "B0D9KM5SFR": ["61WTJldtvgL", "61yUyjhKsLL", "71YkzMrd6ZL"],
+        "B0018OQQBE": ["41NgDv59BaL", "51WtUkd+bDL", "61ERUtlEPGL"],
+        "B07PGR1XGZ": ["51wCTS-vHXL", "717P2-hKtoL", "61D4PlHJmGL"],
+        "B097DD3G8G": ["71G65R-XC2L", "71dhTScRQgL", "61JRJjqnzSL"],
+        "B017SN1OI8": ["818lBoWqXtL", "61V+is+XpkL", "61dh4J4f8ML"],
+        "B087FD9DSV": ["61PGo56GK5S", "71a9nX2lPAS", "61IwyWsyO5S"],
+        "B000VUCLII": ["61bIZNWiM8L"],
+        "B06Y2ZW779": ["81j9yqr0R9L", "91+8pVW0mPL", "71Oe8HH5g2L"],
+        "B06XW16QMS": ["618RD2rf+UL", "511cl6-GKkL", "51GEvpRPsUL"],
     }
 
     def _hd_url(image_id: str) -> str:
