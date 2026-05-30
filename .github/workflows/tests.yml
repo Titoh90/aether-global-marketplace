@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write   # needed by codecov/codecov-action@v5 for tokenless upload
 
 jobs:
   test:
@@ -75,3 +76,11 @@ jobs:
           name: coverage-${{ matrix.os }}-py${{ matrix.python-version }}
           path: coverage.xml
           retention-days: 7
+
+      - name: Upload coverage to Codecov
+        if: matrix.python-version == '3.12' && matrix.os == 'ubuntu-latest'
+        uses: codecov/codecov-action@v5
+        with:
+          files: coverage.xml
+          flags: unittests
+          fail_ci_if_error: false

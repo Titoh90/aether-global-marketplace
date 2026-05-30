@@ -1,6 +1,7 @@
 # IMPERIO_ROOT — Sistema Canónico
 
 [![Tests](https://github.com/Titoh90/aether-global-marketplace/actions/workflows/tests.yml/badge.svg)](https://github.com/Titoh90/aether-global-marketplace/actions/workflows/tests.yml)
+[![codecov](https://codecov.io/gh/Titoh90/aether-global-marketplace/branch/master/graph/badge.svg)](https://codecov.io/gh/Titoh90/aether-global-marketplace)
 
 ## Establecido: 2026-05-13
 
