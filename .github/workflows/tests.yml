@@ -56,12 +56,20 @@ jobs:
       - name: Lint with ruff
         if: matrix.python-version == '3.12' && matrix.os == 'ubuntu-latest'
         run: |
+          BASELINE=391
           ruff check \
             core/ operator/ REVENUE/ conversion_surface/ executive_layer/ \
             interfaces/ FLOW_DIRECTOR/ engagement_engine/ revenue_layer/ \
             platform_dispatch/ editorial_engine/ vendor/ automation/ \
             BROWSER_OPERATOR/ SRE/ dashboards/ \
-            --exit-zero
+            --exit-zero | tee /tmp/ruff.log
+          COUNT=$(grep -cE '^[A-Z]+[0-9]+ ' /tmp/ruff.log || true)
+          echo "Ruff violations: $COUNT (baseline: $BASELINE)"
+          if [ "$COUNT" -gt "$BASELINE" ]; then
+            echo "::warning title=Ruff violations increased::Violations went from $BASELINE to $COUNT (+$((COUNT - BASELINE)))"
+          elif [ "$COUNT" -lt "$BASELINE" ]; then
+            echo "Violations decreased: $BASELINE → $COUNT (-$((BASELINE - COUNT))) — nice!"
+          fi
 
       - name: Run test suite with coverage
         env:
