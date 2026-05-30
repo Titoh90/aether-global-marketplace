@@ -5,6 +5,8 @@ on:
     branches: [master, main]
   pull_request:
     branches: [master, main]
+  schedule:
+    - cron: "0 3 * * *"   # nightly at 3 AM UTC — catch regressions from dep updates
   workflow_dispatch:
     # Manual trigger from GitHub Actions UI
 
