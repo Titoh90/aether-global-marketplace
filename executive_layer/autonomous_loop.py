@@ -98,6 +98,8 @@ class AutonomousLoop:
             now = time.time()
 
             try:
+                hour = time.localtime().tm_hour
+
                 # Monitor — every 5 min
                 if now - self._last_monitor >= MONITOR_INTERVAL:
                     await self._cycle_monitor()

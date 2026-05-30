@@ -23,6 +23,8 @@ import hashlib
 import sys
 from pathlib import Path
 
+import numpy as np
+
 _IMPERIO_ROOT = Path(__file__).parent.parent.parent
 if str(_IMPERIO_ROOT) not in sys.path:
     sys.path.insert(0, str(_IMPERIO_ROOT))
@@ -60,7 +62,6 @@ def _make_dummy_centroid(dim: int = 384, seed: int | None = None) -> "np.ndarray
         dim:  embedding dimension (default 384)
         seed: random seed — use None for fixed seed, or pass an int for variety
     """
-    import numpy as np
     effective_seed = 42 if seed is None else seed
     rng = np.random.default_rng(effective_seed)
     centroid = rng.normal(0, 0.1, size=(dim,)).astype(np.float32)

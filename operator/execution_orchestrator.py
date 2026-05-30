@@ -247,9 +247,10 @@ def _build_executor_map(pipeline: str, action: str) -> dict[str, Callable]:
         def _youtube_wrapper(params: dict, task_id: str) -> dict:
             return _yt.post_video(params, task_id)
         executors["youtube_executor"] = _youtube_wrapper
-    except ImportError:
+    except ImportError as e:
+        _youtube_err = str(e)
         def _youtube_stub(params: dict, task_id: str) -> dict:
-            return {"status": "failed", "error": f"youtube_executor import error: {e}"}
+            return {"status": "failed", "error": f"youtube_executor import error: {_youtube_err}"}
         executors["youtube_executor"] = _youtube_stub
 
     # Facebook
@@ -258,9 +259,10 @@ def _build_executor_map(pipeline: str, action: str) -> dict[str, Callable]:
         def _facebook_wrapper(params: dict, task_id: str) -> dict:
             return _fb.post_reel(params, task_id)
         executors["facebook_executor"] = _facebook_wrapper
-    except ImportError:
+    except ImportError as e:
+        _facebook_err = str(e)
         def _facebook_stub(params: dict, task_id: str) -> dict:
-            return {"status": "failed", "error": f"facebook_executor import error: {e}"}
+            return {"status": "failed", "error": f"facebook_executor import error: {_facebook_err}"}
         executors["facebook_executor"] = _facebook_stub
 
     # Pinterest
@@ -269,9 +271,10 @@ def _build_executor_map(pipeline: str, action: str) -> dict[str, Callable]:
         def _pinterest_wrapper(params: dict, task_id: str) -> dict:
             return _pin.create_pin(params, task_id)
         executors["pinterest_executor"] = _pinterest_wrapper
-    except ImportError:
+    except ImportError as e:
+        _pinterest_err = str(e)
         def _pinterest_stub(params: dict, task_id: str) -> dict:
-            return {"status": "failed", "error": f"pinterest_executor import error: {e}"}
+            return {"status": "failed", "error": f"pinterest_executor import error: {_pinterest_err}"}
         executors["pinterest_executor"] = _pinterest_stub
 
     # Twitter / X
@@ -280,9 +283,10 @@ def _build_executor_map(pipeline: str, action: str) -> dict[str, Callable]:
         def _twitter_wrapper(params: dict, task_id: str) -> dict:
             return _tw.post_tweet(params, task_id)
         executors["twitter_executor"] = _twitter_wrapper
-    except ImportError:
+    except ImportError as e:
+        _twitter_err = str(e)
         def _twitter_stub(params: dict, task_id: str) -> dict:
-            return {"status": "failed", "error": f"twitter_executor import error: {e}"}
+            return {"status": "failed", "error": f"twitter_executor import error: {_twitter_err}"}
         executors["twitter_executor"] = _twitter_stub
 
     # ── Email ─────────────────────────────────────────────────────────────────

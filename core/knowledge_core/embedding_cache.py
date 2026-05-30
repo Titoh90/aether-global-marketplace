@@ -21,6 +21,7 @@ import time
 from pathlib import Path
 
 import numpy as np
+import torch
 
 _IMPERIO_ROOT = Path(__file__).parent.parent.parent
 if str(_IMPERIO_ROOT) not in sys.path:
@@ -68,7 +69,6 @@ def _mean_pool(token_embeddings: "torch.Tensor", attention_mask: "torch.Tensor")
 def _compute_transformers(text: str) -> np.ndarray | None:
     """Compute embedding via transformers. Returns (384,) float32 or None on failure."""
     try:
-        import torch
         tokenizer, model = _load_transformers_model()
         if tokenizer is None or model is None:
             return None
