@@ -6,8 +6,7 @@ schemas.py — Canonical types for the Visual Intelligence subsystem.
 from __future__ import annotations
 
 import datetime
-from dataclasses import dataclass, field, asdict
-from typing import Optional
+from dataclasses import dataclass, asdict
 
 
 @dataclass(frozen=True)

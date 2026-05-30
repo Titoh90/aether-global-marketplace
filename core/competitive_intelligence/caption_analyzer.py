@@ -23,7 +23,6 @@ _IMPERIO_ROOT = Path(__file__).parent.parent.parent
 if str(_IMPERIO_ROOT) not in sys.path:
     sys.path.insert(0, str(_IMPERIO_ROOT))
 
-from core.competitive_intelligence.schemas import HOOK_TYPES, CTA_TYPES
 from core.competitive_intelligence._patterns import extract_hook_type, extract_cta_type
 
 

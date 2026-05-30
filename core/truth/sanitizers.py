@@ -10,7 +10,6 @@ Each function:
 """
 
 from __future__ import annotations
-from typing import Any
 
 from .validators import (
     is_valid_price,
@@ -19,7 +18,6 @@ from .validators import (
     is_valid_discount,
     is_valid_title,
     is_valid_url,
-    parse_availability,
 )
 
 

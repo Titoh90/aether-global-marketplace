@@ -3,8 +3,7 @@ schemas.py — Frozen dataclasses for Conversion Surface Layer.
 All schemas are frozen=True to ensure deterministic rendering.
 """
 from __future__ import annotations
-from dataclasses import dataclass, field, asdict
-from typing import Optional
+from dataclasses import dataclass, asdict
 
 
 @dataclass(frozen=True)

@@ -21,7 +21,6 @@ sys.path.insert(0, str(IMPERIO_ROOT))
 from interfaces.telegram.telegram_bot import get_bot
 from interfaces.telegram.command_router import CommandRouter
 from interfaces.telegram.alert_dispatcher import get_dispatcher
-from interfaces.telegram.report_generator import ReportGenerator
 from executive_layer.executive_agent import ExecutiveAgent
 from executive_layer.autonomous_loop import AutonomousLoop
 

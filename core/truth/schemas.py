@@ -8,7 +8,6 @@ Raw Amazon data is NEVER passed to output layers directly.
 
 from __future__ import annotations
 from dataclasses import dataclass, field
-from typing import Optional
 
 
 @dataclass(frozen=True)

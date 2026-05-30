@@ -9,7 +9,6 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from datetime import datetime, timezone
-from collections import defaultdict
 
 _ROOT = Path(__file__).resolve().parent.parent
 _REVENUE = _ROOT / "REVENUE"

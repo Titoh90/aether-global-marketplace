@@ -17,7 +17,7 @@ import logging
 import re
 import urllib.parse
 import urllib.request
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass
 from pathlib import Path
 
 log = logging.getLogger("research_executor")
@@ -268,7 +268,7 @@ def _run_deerflow_thread(query: str, research_prompt: str) -> ProductBrief | Non
 
     # Auto-answer clarification — continue the same thread
     if asked_clarification:
-        log.info(f"DeerFlow asked clarification — auto-answering and continuing thread")
+        log.info("DeerFlow asked clarification — auto-answering and continuing thread")
         clarification_answer = (
             f"I want the best-selling Amazon product for: {query}. "
             f"Pick the #1 result by reviews/sales. Any specific subtype is fine. "
@@ -552,7 +552,8 @@ def start_deerflow_backend() -> int | None:
     Start DeerFlow FastAPI backend on :8001 if not already running.
     Returns PID or None if failed.
     """
-    import subprocess, time
+    import subprocess
+    import time
 
     if _deerflow_available():
         log.info("DeerFlow already running on :8001")

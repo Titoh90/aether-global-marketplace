@@ -21,13 +21,12 @@ import json
 import sys
 from pathlib import Path
 
-import numpy as np
 
 _IMPERIO_ROOT = Path(__file__).parent.parent.parent
 if str(_IMPERIO_ROOT) not in sys.path:
     sys.path.insert(0, str(_IMPERIO_ROOT))
 
-from core.knowledge_core.schemas import KnowledgeChunk, MEMORY_TYPES
+from core.knowledge_core.schemas import KnowledgeChunk
 from core.knowledge_core.document_ingestor import ingest_file, SKIP_DIRS
 from core.knowledge_core.embedding_cache import get_embedding
 from core.knowledge_core import knowledge_store as ks

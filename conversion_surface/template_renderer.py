@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import html as _html
 import json
-from .schemas import HubSurface, SurfaceProduct
+from .schemas import HubSurface
 from .descriptions import product_description
 
 
@@ -111,7 +111,6 @@ def render_js() -> str:
 # Image lookups delegated to image_cache (persistent HD image ID cache)
 from .image_cache import get_primary_image_url as _get_primary_image_url
 from .image_cache import get_carousel_urls as _get_carousel_urls
-from .image_cache import hd_image_url as _hd_image_url
 
 
 def _amazon_image_url(asin: str) -> str:

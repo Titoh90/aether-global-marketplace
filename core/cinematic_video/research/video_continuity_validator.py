@@ -13,7 +13,6 @@ from __future__ import annotations
 
 import datetime
 import hashlib
-from dataclasses import asdict
 
 from core.cinematic_video.research.schemas import (
     ContinuityValidation,

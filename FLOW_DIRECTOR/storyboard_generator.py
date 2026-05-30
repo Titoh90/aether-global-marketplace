@@ -14,9 +14,7 @@ FLUJO:
 import asyncio
 import json
 import os
-import shutil
 import sys
-import traceback
 import urllib.request
 import urllib.parse
 from pathlib import Path
@@ -57,7 +55,6 @@ def fetch_amazon_product_image(asin: str, out_path: Path) -> bool:
     """
     # Try Playwright CDP to get real main image
     try:
-        import asyncio as _asyncio
         from playwright.async_api import async_playwright
 
         async def _fetch():
@@ -121,7 +118,7 @@ def fetch_amazon_product_image(asin: str, out_path: Path) -> bool:
         except Exception:
             continue
 
-    print(f"[storyboard] ⚠️  Could not fetch real product image — using existing asset")
+    print("[storyboard] ⚠️  Could not fetch real product image — using existing asset")
     return False
 
 # ── Scene Prompt Generation ───────────────────────────────────────────────────
@@ -489,14 +486,14 @@ def run(product: dict) -> Path | None:
         print(f"[storyboard] Using cached product image: {product_img.name}")
 
     # 2. Generate 12 scene prompts
-    print(f"\n[storyboard] Generating 12 scene prompts via Ollama...")
+    print("\n[storyboard] Generating 12 scene prompts via Ollama...")
     scenes = generate_scene_prompts_ollama(product)
 
     # 3. Render storyboard grid via PIL (always correct, no AI credits)
     #    NOTE: Nano Banana/image AI cannot reliably render grid layouts with
     #    numbered frames and text — PIL guarantees correct output every time.
     #    Nano Banana is used later for individual SCENE images, not the grid.
-    print(f"\n[storyboard] Rendering storyboard grid (PIL)...")
+    print("\n[storyboard] Rendering storyboard grid (PIL)...")
     storyboard_path = render_storyboard_grid_pil(scenes, product_img, product)
 
     if not storyboard_path:
@@ -507,13 +504,13 @@ def run(product: dict) -> Path | None:
     plan_path = save_scene_plan(product, scenes, storyboard_path)
 
     # 6. Send to Telegram for review
-    print(f"\n[storyboard] Sending to Telegram for review...")
+    print("\n[storyboard] Sending to Telegram for review...")
     send_storyboard_for_review(storyboard_path, product, scenes)
 
-    print(f"\n✅ Storyboard complete.")
+    print("\n✅ Storyboard complete.")
     print(f"   Image: {storyboard_path}")
     print(f"   Plan:  {plan_path}")
-    print(f"   → Review in Telegram → /approve to generate videos")
+    print("   → Review in Telegram → /approve to generate videos")
     return plan_path
 
 # ── CLI ───────────────────────────────────────────────────────────────────────

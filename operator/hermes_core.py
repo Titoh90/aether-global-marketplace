@@ -306,7 +306,6 @@ No explanation."""
 
 def get_real_status() -> dict:
     """Read actual running state. No hallucinations."""
-    import subprocess
     import socket
     import sqlite3
 

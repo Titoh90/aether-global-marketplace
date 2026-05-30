@@ -32,14 +32,12 @@ import argparse
 import asyncio
 import json
 import sys
-import time
-import textwrap
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 sys.path.insert(0, str(Path(__file__).parent.parent / "PIXELLE_VIDEO"))
 
-from flow_operator import FlowOperator, ensure_chrome_ready, CAROUSEL_DIR
+from flow_operator import FlowOperator, ensure_chrome_ready
 
 try:
     from PIL import Image, ImageDraw, ImageFont
@@ -51,7 +49,6 @@ try:
     from prompt_parser import (
         parse_readme,
         select_carousel_prompts,
-        build_slide_prompt,
         detect_category,
     )
     PROMPTS_OK = True
@@ -413,8 +410,8 @@ def _build_prompt(
         )
     else:
         color_instruction = (
-            f"CRITICAL COLOR RULE: Render the product in its EXACT real color as shown on Amazon. "
-            f"Do NOT invent color variants. Match real product appearance precisely. "
+            "CRITICAL COLOR RULE: Render the product in its EXACT real color as shown on Amazon. "
+            "Do NOT invent color variants. Match real product appearance precisely. "
         )
 
     # ── Hero anchor — text-only product identity lock (no img2img to avoid MP4 mode) ──
@@ -541,7 +538,10 @@ def _qc_evaluate(img_path: Path, slot: str, product: str) -> dict:
     PASS conditions: overall score >= 7 AND product_clarity >= 8.
     Falls back to size-based heuristic if API unavailable.
     """
-    import base64, json as _json, os, urllib.request as _ul
+    import base64
+    import json as _json
+    import os
+    import urllib.request as _ul
 
     # Fast size heuristic: <150KB = thumbnail/failed render = instant fail
     size_kb = img_path.stat().st_size // 1024
@@ -679,7 +679,10 @@ def _ptve_validate(
     Falls back to size heuristic if API unavailable (always PASS in that case —
     PTVE requires vision to be meaningful).
     """
-    import base64, json as _json, os, urllib.request as _ul
+    import base64
+    import json as _json
+    import os
+    import urllib.request as _ul
 
     size_kb = img_path.stat().st_size // 1024
     slide_n = slide_index + 1
@@ -1179,7 +1182,7 @@ async def generate_carousel_flow(
                     print(f"    PTVE FAIL [{ptve['status']}] — {issues_str}")
                     # One PTVE regeneration attempt (don't loop — already retried in QC)
                     if qc_attempt < MAX_QC_RETRIES + 1:
-                        print(f"    PTVE: regenerating for product truth...")
+                        print("    PTVE: regenerating for product truth...")
                         await asyncio.sleep(5)
                         ptve_imgs = await op.generate_images(
                             prompt=prompt, aspect_ratio=aspect, count=1,
@@ -1195,7 +1198,7 @@ async def generate_carousel_flow(
                             print(f"    PTVE retry: {ptve_best.name}")
                         # Use best available regardless
                     else:
-                        print(f"    PTVE: max retries — keeping best available")
+                        print("    PTVE: max retries — keeping best available")
                 elif ptve["action"] == "review":
                     print(f"    PTVE WARNING [{ptve['status']}] — {ptve.get('reasoning','')}")
                 else:
@@ -1248,7 +1251,8 @@ async def generate_carousel_flow(
 
 def get_amazon_product_image(asin: str) -> str | None:
     """Extrae URL de imagen principal de Amazon dado un ASIN."""
-    import urllib.request as _ul, re as _re
+    import urllib.request as _ul
+    import re as _re
     url = f"https://www.amazon.com/dp/{asin}"
     req = _ul.Request(url, headers={
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -1285,7 +1289,9 @@ def get_amazon_product_colors(asin: str, product_name: str = "") -> dict:
     FAIL CONDITION: if no colors found, returns empty colors_available.
     Caller must STOP generation if colors_available is empty and product is color-variant.
     """
-    import urllib.request as _ul, re as _re, json as _json
+    import urllib.request as _ul
+    import re as _re
+    import json as _json
 
     result = {
         "colors_available": [],

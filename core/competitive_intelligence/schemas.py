@@ -8,7 +8,7 @@ READ-ONLY layer: extracts patterns from public data, NEVER copies content.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, asdict
 
 # ── Visual styles ────────────────────────────────────────────────────────────
 

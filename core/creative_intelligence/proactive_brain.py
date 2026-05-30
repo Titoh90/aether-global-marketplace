@@ -28,7 +28,6 @@ from pathlib import Path
 
 from core.creative_intelligence.creative_signal_aggregator import (
     CreativeSignalSnapshot,
-    ProductCreativeSignal,
     aggregate_creative_signals,
 )
 from core.creative_intelligence.creative_loop_cycle import (
@@ -40,7 +39,7 @@ from core.creative_intelligence.style_rotation_engine import (
     recommend_style,
     recommend_style_for_category,
 )
-from core.creative_intelligence.signal_store import IMPERIO_ROOT, build_creative_signal_state
+from core.creative_intelligence.signal_store import IMPERIO_ROOT
 
 
 class ProactiveBrain:

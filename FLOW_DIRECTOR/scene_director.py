@@ -271,7 +271,7 @@ def main():
     if args.model:
         OLLAMA_MODEL = args.model
 
-    print(f"\n🎬 FLOW SCENE DIRECTOR")
+    print("\n🎬 FLOW SCENE DIRECTOR")
     print(f"{'='*50}")
     print(f"Product:   {args.product}")
     print(f"Image:     {args.image}")
@@ -279,7 +279,7 @@ def main():
     print(f"Platform:  {args.platform}")
     print(f"Scenes:    {args.scenes} × 8s")
 
-    print(f"\n[1/2] Building scene plan...")
+    print("\n[1/2] Building scene plan...")
     plan = build_scene_plan(
         product=args.product,
         product_image=args.image,
@@ -290,7 +290,7 @@ def main():
         n_scenes=args.scenes,
     )
 
-    print(f"\n[2/2] Saving scene plan...")
+    print("\n[2/2] Saving scene plan...")
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     out_path = Path(args.output) if args.output else OUTPUT_DIR / f"{plan['plan_id']}.json"
     out_path.write_text(json.dumps(plan, indent=2, ensure_ascii=False))

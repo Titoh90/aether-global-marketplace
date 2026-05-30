@@ -10,7 +10,6 @@ Usage:
 
 import argparse
 import os
-import sys
 import time
 from pathlib import Path
 
@@ -27,7 +26,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 import torch
 from diffusers import LTXImageToVideoPipeline, LTXPipeline
-from diffusers.utils import export_to_video, load_image
+from diffusers.utils import export_to_video
 from PIL import Image
 
 
@@ -120,7 +119,7 @@ def main():
 
     generator = torch.manual_seed(args.seed)
 
-    print(f"\n[Generate]")
+    print("\n[Generate]")
     print(f"  Prompt:     {args.prompt[:80]}")
     print(f"  Resolution: {args.width}x{args.height}")
     print(f"  Frames:     {args.frames} @ {args.fps}fps = {args.frames/args.fps:.1f}s")

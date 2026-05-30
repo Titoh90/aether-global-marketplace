@@ -40,7 +40,6 @@ import math
 import sys
 import threading
 from pathlib import Path
-from typing import Optional
 
 _IMPERIO_ROOT = Path(__file__).parent.parent.parent
 if str(_IMPERIO_ROOT) not in sys.path:

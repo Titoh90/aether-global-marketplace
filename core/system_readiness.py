@@ -49,7 +49,7 @@ import shutil
 import sys
 import time
 from collections.abc import Callable
-from dataclasses import dataclass, field, replace as _dc_replace
+from dataclasses import dataclass, replace as _dc_replace
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -841,7 +841,7 @@ def run_readiness_check(
     if not json_only:
         print(f"\n{'─' * 60}")
         if all_healthy:
-            print(f"  ✅ ALL SYSTEMS HEALTHY")
+            print("  ✅ ALL SYSTEMS HEALTHY")
         elif critical_pass:
             print(f"  ⚠️  CRITICAL SYSTEMS HEALTHY — {len(degraded_names)} degraded, {len(unhealthy_names)} unhealthy (non-critical)")
         else:

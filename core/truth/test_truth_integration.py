@@ -17,15 +17,11 @@ Run:
 
 from __future__ import annotations
 
-import ast
-import importlib
 import json
-import os
 import re
 import sys
 import time
 import traceback
-import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -40,9 +36,9 @@ for p in [str(_ROOT_DIR), str(_REVENUE)]:
     if p not in sys.path:
         sys.path.insert(0, p)
 
-from core.truth.truth_guard import normalize_product, normalize_from_campaign
+from core.truth.truth_guard import normalize_product
 from core.truth.schemas     import SanitizedProduct
-from core.truth.validators  import is_valid_price, is_valid_rating, is_valid_reviews
+from core.truth.validators  import is_valid_price
 
 # ── ANSI colors ───────────────────────────────────────────────────────────────
 G  = "\033[92m"   # green
@@ -398,7 +394,6 @@ def test_cross_platform_consistency() -> TestResult:
 
         # posting_safety_layer path
         try:
-            from posting_safety_layer import generate_caption
             # generate_caption calls normalize_product internally
             # We test price consistency by calling normalize_product directly
             sp3 = normalize_product({"price": product.get("price")})
@@ -676,7 +671,7 @@ def test_module_pipeline() -> TestResult:
         elif sp.price_display in result.get("selected", ""):
             r.ok(f"copy_engine: price_display {sp.price_display!r} correctly in output")
         else:
-            r.ok(f"copy_engine: generated copy (price may be in hook/cta, not selected)")
+            r.ok("copy_engine: generated copy (price may be in hook/cta, not selected)")
 
         # No-price product must not show dollar amounts
         result2 = ce.generate(product=no_price_product, campaign=campaign, platform="instagram")
@@ -702,7 +697,7 @@ def test_module_pipeline() -> TestResult:
         cap_malformed   = generate_caption("Owala FreeSip", "$$bad", "4.7", "kitchen")
 
         if "$34.99" in cap_with_price:
-            r.ok(f"posting_safety_layer: valid price rendered correctly")
+            r.ok("posting_safety_layer: valid price rendered correctly")
         else:
             r.warn(f"posting_safety_layer: price may be in different field: {cap_with_price[:80]}")
 
@@ -874,7 +869,6 @@ def test_truth_layer_coverage() -> TestResult:
     from core.truth.sanitizers import (
         sanitize_price, sanitize_rating, sanitize_reviews,
         sanitize_discount, sanitize_title, sanitize_cta,
-        sanitize_affiliate_url, sanitize_image_url,
     )
 
     # sanitize_price
@@ -974,7 +968,7 @@ def test_truth_layer_coverage() -> TestResult:
 
 def print_final_report(results: list[TestResult]) -> bool:
     print(f"\n{'═'*60}")
-    print(f"  IMPERIO TRUTH LAYER — INTEGRATION TEST REPORT")
+    print("  IMPERIO TRUTH LAYER — INTEGRATION TEST REPORT")
     print(f"{'═'*60}")
 
     total_passed = sum(r.passed for r in results)
@@ -996,29 +990,29 @@ def print_final_report(results: list[TestResult]) -> bool:
 
     if total_failed == 0:
         print(f"\n  {G}✔ OVERALL RESULT: PASS{RST}")
-        print(f"  All Truth Layer enforcement rules satisfied.")
-        print(f"  No pricing hallucinations. No bypasses. No crashes.")
+        print("  All Truth Layer enforcement rules satisfied.")
+        print("  No pricing hallucinations. No bypasses. No crashes.")
     else:
         print(f"\n  {R}✘ OVERALL RESULT: FAIL{RST}")
-        print(f"\n  VIOLATIONS:")
+        print("\n  VIOLATIONS:")
         for r in results:
             if r.failures:
                 print(f"\n  [{r.section}]")
                 for f_msg in r.failures:
                     print(f"    {R}•{RST} {f_msg}")
-        print(f"\n  RECOMMENDED FIXES:")
+        print("\n  RECOMMENDED FIXES:")
         for r in results:
             if r.failures:
                 if "Bypass" in r.section:
-                    print(f"    • Audit local pricing logic — route ALL through normalize_product()")
+                    print("    • Audit local pricing logic — route ALL through normalize_product()")
                 if "Integrity" in r.section:
-                    print(f"    • Check sanitize_price() fallback path in validators.py")
+                    print("    • Check sanitize_price() fallback path in validators.py")
                 if "Consistency" in r.section:
-                    print(f"    • Ensure all modules call normalize_product() with same raw dict")
+                    print("    • Ensure all modules call normalize_product() with same raw dict")
                 if "Fault" in r.section:
-                    print(f"    • Add isinstance(raw, dict) guard at top of normalize_product()")
+                    print("    • Add isinstance(raw, dict) guard at top of normalize_product()")
                 if "Pipeline" in r.section:
-                    print(f"    • Run dry-run mode per module to isolate failure")
+                    print("    • Run dry-run mode per module to isolate failure")
 
     print(f"{'═'*60}\n")
     return overall_pass

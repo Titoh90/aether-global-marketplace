@@ -444,7 +444,7 @@ class FlowOperator:
         () => { const d=document.querySelector('[role="dialog"]'); return d ? d.getBoundingClientRect().width > 0 : false; }
         """)
         if not dialog_open:
-            self._log(f"  Picker dialog did not open — slot may already be set")
+            self._log("  Picker dialog did not open — slot may already be set")
             return True
 
         # 6. Click Cargas tab INSIDE the dialog (uploaded files)
@@ -548,7 +548,7 @@ class FlowOperator:
         () => { const d=document.querySelector('[role="dialog"]'); return d ? d.getBoundingClientRect().width > 0 : false; }
         """)
         if still_open:
-            self._log(f"  Dialog still open — trying Escape")
+            self._log("  Dialog still open — trying Escape")
             await self._pg.keyboard.press("Escape")
             await asyncio.sleep(1)
 
@@ -852,7 +852,7 @@ class FlowOperator:
 
         model_btn = await self._find_model_btn()
         if not model_btn:
-            self._log(f"  WARNING: Could not find model selector button")
+            self._log("  WARNING: Could not find model selector button")
             return False
 
         current_text = model_btn.get("t", "")
@@ -873,7 +873,7 @@ class FlowOperator:
                 self._log(f"  Already in Video mode ({current_text[:30]})")
                 return True
             # has_fin = True → stuck in Fotogramas mode — fall through to switch out
-            self._log(f"  Detected Fotogramas mode — switching to plain Video...")
+            self._log("  Detected Fotogramas mode — switching to plain Video...")
 
         await self._pg.mouse.click(model_btn["x"], model_btn["y"])
         await asyncio.sleep(1.5)
@@ -1174,7 +1174,7 @@ class FlowOperator:
 
         model_btn = await self._find_model_btn()
         if not model_btn:
-            self._log(f"  WARNING: aspect ratio panel not found (model btn missing)")
+            self._log("  WARNING: aspect ratio panel not found (model btn missing)")
             return False
 
         if target_icon in model_btn.get("t", ""):
@@ -1240,7 +1240,7 @@ class FlowOperator:
         # Open config panel
         model_btn = await self._find_model_btn()
         if not model_btn:
-            self._log(f"  WARNING: count panel not found (model btn missing)")
+            self._log("  WARNING: count panel not found (model btn missing)")
             return False
 
         # Check if already set (chip text contains e.g. "x2")
@@ -1717,7 +1717,7 @@ class FlowOperator:
             result["end_frame"] = dest
             self._log(f"  End frame → {dest.name}")
         else:
-            self._log(f"  WARNING: end frame generation failed — will use start only")
+            self._log("  WARNING: end frame generation failed — will use start only")
 
         return result
 

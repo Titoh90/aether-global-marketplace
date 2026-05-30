@@ -12,7 +12,10 @@ Video limit: 512MB, 2min20s. Image: up to 4 per tweet.
 """
 
 from __future__ import annotations
-import asyncio, json, logging, time
+import asyncio
+import json
+import logging
+import time
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -89,7 +92,7 @@ async def _tweet_async(
         page = await ctx.new_page()
 
         try:
-            url = f"https://x.com/compose/tweet"
+            url = "https://x.com/compose/tweet"
             if reply_to:
                 url = f"https://x.com/intent/tweet?in_reply_to={reply_to}"
 
@@ -151,7 +154,7 @@ async def _tweet_async(
             await asyncio.sleep(3)
 
             # Get tweet URL — navigate to profile to find latest tweet
-            tweet_url = f"https://x.com/AAether32355"
+            tweet_url = "https://x.com/AAether32355"
             try:
                 await page.goto(tweet_url, wait_until="domcontentloaded", timeout=15000)
                 await asyncio.sleep(2)

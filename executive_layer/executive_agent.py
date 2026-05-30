@@ -188,7 +188,7 @@ class ExecutiveAgent:
         success_rate = (report.posts_today / total * 100) if total > 0 else 0
 
         lines = [
-            f"Performance hoy:",
+            "Performance hoy:",
             f"  Posts exitosos: {report.posts_today}",
             f"  Fallos: {report.failures_today}",
             f"  Success rate: {success_rate:.0f}%",

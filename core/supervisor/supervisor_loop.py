@@ -23,11 +23,9 @@ from __future__ import annotations
 
 import json
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 
-from core.events.event_bus import bus, emit
-from core.events.event_types import EventType, Severity
 from core.supervisor.anomaly_detector import detect_anomalies, Anomaly
 from core.supervisor.incident_classifier import classify_incident, Incident
 
@@ -264,7 +262,7 @@ class HermesSupervisor:
         lines.append(f"AI spend: ${report.ai_spend_today:.4f}")
 
         if report.executor_health:
-            lines.append(f"\nExecutors:")
+            lines.append("\nExecutors:")
             for name, state in report.executor_health.items():
                 icon = {"closed": "OK", "open": "DISABLED", "half_open": "TESTING"}.get(state, state)
                 lines.append(f"  {name}: {icon}")
@@ -275,7 +273,7 @@ class HermesSupervisor:
                 lines.append(f"  [{a.severity.value.upper()}] {a.title}")
 
         if report.recommendations:
-            lines.append(f"\nRecommendations:")
+            lines.append("\nRecommendations:")
             for r in report.recommendations:
                 lines.append(f"  - {r}")
 

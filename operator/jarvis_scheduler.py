@@ -366,7 +366,7 @@ def main():
         if not last:
             print("No runs found")
             return
-        print(f"\n=== Last JARVIS Run ===")
+        print("\n=== Last JARVIS Run ===")
         print(f"Date:    {last['run_date']}")
         print(f"Status:  {last['status']}")
         print(f"Started: {last['started_at']}")

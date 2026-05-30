@@ -7,7 +7,7 @@ All dataclasses are frozen=True — immutable after construction.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 # ── Intent types ──────────────────────────────────────────────────────────────
 

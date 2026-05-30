@@ -30,7 +30,7 @@ import json
 import os
 import sqlite3
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -591,7 +591,7 @@ class ExecutiveTruthEngine:
                 lines.append(f"  {plat.name}: {plat.posts_today} hoy | {plat.posts_week} semana | {plat.posts_total} total")
         lines.append(f"  TOTAL: {s.posts_today} hoy | {s.posts_week} semana | {s.posts_total} total")
 
-        lines.append(f"\n── Clicks ──")
+        lines.append("\n── Clicks ──")
         lines.append(f"  Hoy: {s.clicks_today} | Semana: {s.clicks_week} | Total: {s.clicks_total}")
         if s.clicks_by_product:
             lines.append("  Por producto:")
@@ -606,12 +606,12 @@ class ExecutiveTruthEngine:
                 lines.append(f"    Plataformas: {', '.join(c.platforms_posted)}")
 
         if s.failures_today > 0 or s.failures_week > 0:
-            lines.append(f"\n── Fallos ──")
+            lines.append("\n── Fallos ──")
             lines.append(f"  Hoy: {s.failures_today} | Semana: {s.failures_week}")
             for e in s.recent_errors[-3:]:
                 lines.append(f"  • [{e['severity']}] {e['event_type']}: {e['error'][:80]}")
 
-        lines.append(f"\n── Executors ──")
+        lines.append("\n── Executors ──")
         for plat in s.platforms:
             bar = "█" * (plat.health_score // 10) + "░" * (10 - plat.health_score // 10)
             icon = "✅" if plat.health_score >= 80 else "⚠️" if plat.health_score >= 50 else "❌"
@@ -622,7 +622,7 @@ class ExecutiveTruthEngine:
                 lines.append(f"  CB {icon} {name}: {state}")
 
         if s.ai_spend_today > 0 or s.ai_budget > 0:
-            lines.append(f"\n── AI Spend ──")
+            lines.append("\n── AI Spend ──")
             lines.append(f"  ${s.ai_spend_today:.4f}" + (
                 f" ({s.ai_spend_pct:.0f}% de ${s.ai_budget:.2f})" if s.ai_budget > 0 else ""))
 
@@ -631,7 +631,7 @@ class ExecutiveTruthEngine:
             for p in s.top_scouted[:3]:
                 lines.append(f"  • {p['name']} (score: {p['score']})")
 
-        lines.append(f"\n── Top Product ──")
+        lines.append("\n── Top Product ──")
         lines.append(f"  {s.top_product}")
         lines.append(f"\n  Best platform: {s.top_platform}")
         lines.append(f"  Worst platform: {s.worst_platform}")

@@ -24,7 +24,6 @@ from __future__ import annotations
 import sys
 import json
 import argparse
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -42,7 +41,6 @@ from core.truth.sanitizers import (
     sanitize_reviews,
     sanitize_discount,
     sanitize_title,
-    sanitize_cta,
     sanitize_affiliate_url,
     sanitize_image_url,
 )
@@ -279,7 +277,7 @@ def _run_status() -> None:
     campaigns = raw.get("campaigns", raw) if isinstance(raw, dict) else {}
 
     print(f"\n{'═'*54}")
-    print(f"  TRUTH GUARD — Status")
+    print("  TRUTH GUARD — Status")
     print(f"{'═'*54}")
     print(f"  Campaigns    : {len(campaigns)}")
 

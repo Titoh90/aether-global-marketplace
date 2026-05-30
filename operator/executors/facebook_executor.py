@@ -12,7 +12,11 @@ Facebook bot detection: strict. We use:
 """
 
 from __future__ import annotations
-import asyncio, json, logging, random, time
+import asyncio
+import json
+import logging
+import random
+import time
 from pathlib import Path
 from datetime import datetime, timezone
 

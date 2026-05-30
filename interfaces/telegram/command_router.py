@@ -137,7 +137,7 @@ class CommandRouter:
                 pid = lock_file.read_text().strip()
                 return f"Pipeline: RUNNING (PID {pid})"
             except Exception:
-                return f"Pipeline: RUNNING"
+                return "Pipeline: RUNNING"
         return f"Pipeline: {status}"
 
     async def _cmd_posts(self, args: str) -> str:
@@ -192,7 +192,7 @@ class CommandRouter:
 
         f = failures[0]
         lines = [
-            f"Ultimo fallo:",
+            "Ultimo fallo:",
             f"  Tipo: {f.get('event_type', '?')}",
             f"  Severidad: {f.get('severity', '?')}",
             f"  Timestamp: {f.get('timestamp', '?')}",

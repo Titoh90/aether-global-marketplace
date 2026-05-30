@@ -19,7 +19,6 @@ Web UI: http://localhost:7860 after /fooocus_start
 import subprocess
 import logging
 import json
-import time
 from pathlib import Path
 from datetime import datetime
 

@@ -17,7 +17,6 @@ Embeddings stored to core/visual_intelligence cache, not production logs.
 from __future__ import annotations
 
 import hashlib
-import json
 import sys
 from io import BytesIO
 from pathlib import Path
@@ -137,7 +136,6 @@ def _load_clip() -> None:
 
 def _encode_clip(image_bytes: bytes) -> np.ndarray:
     """Encode using CLIP ViT-B/32. Returns (512,) float32."""
-    import open_clip
     import torch
     from PIL import Image
 

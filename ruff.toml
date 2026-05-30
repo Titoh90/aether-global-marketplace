@@ -6,6 +6,17 @@
 
 target-version = "py311"
 
+[lint]
+ignore = [
+    # Intentional style choice — compact season conditionals
+    "E701",   # multiple statements on one line
+]
+
+# Note: 391 pre-existing ruff violations exist across the codebase.
+# The CI lint step uses --exit-zero so violations are visible but
+# non-blocking. Remove --exit-zero (and rules from ignore) as the
+# codebase is cleaned up.
+
 exclude = [
     "APPLIO",
     "FOOOCUS",

@@ -7,11 +7,10 @@ Supports daily digest, incident summary, and performance reports.
 
 from __future__ import annotations
 
-import json
 import time
 from pathlib import Path
 
-from core.supervisor.supervisor_loop import HermesSupervisor, SupervisorReport
+from core.supervisor.supervisor_loop import HermesSupervisor
 from core.events.event_store import EventStore
 
 IMPERIO_ROOT = Path("/Volumes/OPENCLAW_STORAG 1/IMPERIO_ROOT")
@@ -32,7 +31,7 @@ class ReportGenerator:
         report = self._supervisor.observe()
         lines = []
         lines.append(f"{'='*35}")
-        lines.append(f"HERMES DAILY DIGEST")
+        lines.append("HERMES DAILY DIGEST")
         lines.append(f"{time.strftime('%Y-%m-%d %H:%M')}")
         lines.append(f"{'='*35}")
 
@@ -44,7 +43,7 @@ class ReportGenerator:
 
         # Executor health
         if report.executor_health:
-            lines.append(f"\nExecutors:")
+            lines.append("\nExecutors:")
             for name, state in report.executor_health.items():
                 icon = {"closed": "OK", "open": "DISABLED", "half_open": "TESTING"}.get(state, state.upper())
                 lines.append(f"  {name}: {icon}")
@@ -52,7 +51,7 @@ class ReportGenerator:
         # Event summary
         counts = self._event_store.count_by_type()
         if counts:
-            lines.append(f"\nEventos por tipo:")
+            lines.append("\nEventos por tipo:")
             for et, count in sorted(counts.items(), key=lambda x: -x[1])[:8]:
                 lines.append(f"  {et}: {count}")
 
@@ -64,14 +63,14 @@ class ReportGenerator:
 
         # Recommendations
         if report.recommendations:
-            lines.append(f"\nRecomendaciones:")
+            lines.append("\nRecomendaciones:")
             for r in report.recommendations:
                 lines.append(f"  - {r}")
 
         # Revenue snapshot
         revenue = self._get_revenue_snapshot()
         if revenue:
-            lines.append(f"\nRevenue:")
+            lines.append("\nRevenue:")
             lines.append(f"  Clicks hoy: {revenue.get('clicks_today', 0)}")
             lines.append(f"  Revenue est.: ${revenue.get('estimated_revenue', 0):.2f}")
 

@@ -12,7 +12,10 @@ Pinterest is affiliate-friendly:
 """
 
 from __future__ import annotations
-import asyncio, json, logging, time
+import asyncio
+import json
+import logging
+import time
 from pathlib import Path
 from datetime import datetime, timezone
 

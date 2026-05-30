@@ -7,7 +7,6 @@ Respects circuit breaker state — no retries if circuit is OPEN.
 
 from __future__ import annotations
 
-import time
 from dataclasses import dataclass
 from enum import Enum
 

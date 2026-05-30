@@ -12,8 +12,7 @@ ValidationResult: aggregate gate result for a full carousel run
 from __future__ import annotations
 
 import datetime
-from dataclasses import dataclass, asdict
-from typing import Optional
+from dataclasses import dataclass
 
 
 @dataclass(frozen=True)

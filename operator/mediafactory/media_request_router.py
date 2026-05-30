@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Callable
 
 from mediafactory.media_request_schema import MediaRequest, normalize_media_request
 from mediafactory.model_router import ModelSelection, choose_model_backend

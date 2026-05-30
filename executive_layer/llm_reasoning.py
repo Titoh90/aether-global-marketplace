@@ -11,10 +11,8 @@ Fallback chain ensures 24/7 availability.
 
 from __future__ import annotations
 
-import json
 import os
 import logging
-from pathlib import Path
 
 import httpx
 

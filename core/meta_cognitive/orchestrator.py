@@ -37,7 +37,6 @@ import os
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
 
 IMPERIO_ROOT = Path("/Volumes/OPENCLAW_STORAG 1/IMPERIO_ROOT")
 
@@ -939,7 +938,7 @@ class HermesMetaOrchestrator:
         else:
             ideas.append(
                 "Run an A/B split test: warm vs cool palette "
-                f"on top-performing product"
+                "on top-performing product"
             )
 
         # Ensure we have 3

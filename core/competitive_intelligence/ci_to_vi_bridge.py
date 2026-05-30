@@ -19,7 +19,6 @@ Usage:
 
 from __future__ import annotations
 
-import datetime
 import hashlib
 import sys
 from pathlib import Path
@@ -28,7 +27,7 @@ _IMPERIO_ROOT = Path(__file__).parent.parent.parent
 if str(_IMPERIO_ROOT) not in sys.path:
     sys.path.insert(0, str(_IMPERIO_ROOT))
 
-from core.competitive_intelligence.schemas import CompetitorInsight, VISUAL_STYLES
+from core.competitive_intelligence.schemas import CompetitorInsight
 
 
 # ── Style mapping: CI visual_styles → VI archetype_memory labels ──────────────

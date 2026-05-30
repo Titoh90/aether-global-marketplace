@@ -72,17 +72,17 @@ def generate_report(plan: dict, operator_log: list) -> str:
     failed = [s for s in plan["scenes"] if s["status"] != "completed"]
 
     lines = [
-        f"# Flow Execution Report",
+        "# Flow Execution Report",
         f"**Plan ID:** {plan['plan_id']}",
         f"**Video:** {plan['video_title']}",
         f"**Product:** {plan['product']}",
         f"**Platform:** {plan['platform']} | {plan['aspect_ratio']}",
         f"**Generated:** {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}",
-        f"",
-        f"## Scene Summary",
-        f"",
-        f"| # | Purpose | Status | Clip | Duration |",
-        f"|---|---------|--------|------|----------|",
+        "",
+        "## Scene Summary",
+        "",
+        "| # | Purpose | Status | Clip | Duration |",
+        "|---|---------|--------|------|----------|",
     ]
     for s in plan["scenes"]:
         status = "✅" if s["status"] == "completed" else "❌"
@@ -91,35 +91,35 @@ def generate_report(plan: dict, operator_log: list) -> str:
         lines.append(f"| {s['scene_id']} | {s['purpose']} | {status} | {clip} | {dur} |")
 
     lines += [
-        f"",
-        f"## Generated Clips",
-        f"",
+        "",
+        "## Generated Clips",
+        "",
     ]
     for s in clips:
         lines.append(f"- `clips/{Path(s.get('download_path','?')).name}` — {s['purpose']}: {s['visual_description']}")
 
     if failed:
-        lines += [f"", f"## Failed Scenes", f""]
+        lines += ["", "## Failed Scenes", ""]
         for s in failed:
             lines.append(f"- Scene {s['scene_id']}: {s.get('error','unknown error')}")
 
     lines += [
-        f"",
-        f"## Next Steps (Pixelle Pipeline)",
-        f"",
-        f"```bash",
-        f"# Combine clips with Pixelle-Video + FFmpeg:",
+        "",
+        "## Next Steps (Pixelle Pipeline)",
+        "",
+        "```bash",
+        "# Combine clips with Pixelle-Video + FFmpeg:",
         f"# Input clips are in: {CLIPS_DIR}",
         "# Scene order: " + " → ".join(f"scene_{s['scene_id']:02d}" for s in plan["scenes"]),
-        f"```",
-        f"",
-        f"## Scene Flow Prompts",
-        f"",
+        "```",
+        "",
+        "## Scene Flow Prompts",
+        "",
     ]
     for s in plan["scenes"]:
         lines.append(f"**Scene {s['scene_id']} ({s['purpose']}):**")
         lines.append(f"> {s['flow_prompt']}")
-        lines.append(f"")
+        lines.append("")
 
     return "\n".join(lines)
 
@@ -173,11 +173,11 @@ async def _run_pre_phases(plan: dict, args) -> dict:
                 print(f"   Price:  {amazon.get('price', 'N/A')}")
                 print(f"   Image:  {main_img.name} ({main_img.stat().st_size//1024}KB)")
             else:
-                print(f"   ⚠️  No product image extracted from Amazon")
+                print("   ⚠️  No product image extracted from Amazon")
 
         # ── Phase 1.5: FREE Image Generation (Nano Banana) ───────────────────
         if getattr(args, "image_first", False):
-            print(f"\n[Phase 1.5] Generating images — Nano Banana (GRATIS)...")
+            print("\n[Phase 1.5] Generating images — Nano Banana (GRATIS)...")
             CAROUSEL_DIR.mkdir(parents=True, exist_ok=True)
             FRAMES_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -253,9 +253,9 @@ def run_agent(args) -> int:
                 s["status"] = "pending"
         print(f"   Resuming: {len(pending)} pending/failed scenes")
     else:
-        print(f"\n🎬 FLOW SCENE DIRECTOR AGENT")
+        print("\n🎬 FLOW SCENE DIRECTOR AGENT")
         print(f"{'='*50}")
-        print(f"\n[Phase 1] Generating scene plan...")
+        print("\n[Phase 1] Generating scene plan...")
         print(f"   Product:  {args.product}")
         print(f"   Angle:    {args.angle}")
         print(f"   Platform: {args.platform}")
@@ -274,7 +274,7 @@ def run_agent(args) -> int:
         plan_path = OUTPUT_DIR / f"{plan['plan_id']}.json"
         plan_path.write_text(json.dumps(plan, indent=2, ensure_ascii=False))
         print(f"\n💾 Scene plan saved: {plan_path}")
-        print(f"\n   REVIEW SCENE PLAN BEFORE CONTINUING:")
+        print("\n   REVIEW SCENE PLAN BEFORE CONTINUING:")
         for s in plan["scenes"]:
             print(f"   [{s['scene_id']}] {s['purpose']:10s} ← {s['image_input']}")
             print(f"         PROMPT: {s['flow_prompt'][:80]}...")
@@ -295,10 +295,10 @@ def run_agent(args) -> int:
                 print(f"\n   Plan updated with pre-phase data: {plan_path.name}")
             except Exception as e:
                 print(f"\n   ⚠️  Pre-phase error: {e}")
-                print(f"   Continuing with original scene plan...")
+                print("   Continuing with original scene plan...")
 
     # ── Phase 2: Pre-flight checks ──
-    print(f"\n[Phase 2] Pre-flight checks...")
+    print("\n[Phase 2] Pre-flight checks...")
 
     # Check product image exists
     product_img = BASE_DIR / "assets" / plan.get("product_image", "product_main.jpg")
@@ -310,22 +310,22 @@ def run_agent(args) -> int:
         if not getattr(args, "yes", False):
             input("   Press Enter when image is ready... ")
         else:
-            print(f"   ⚠️  --yes mode: continuing without product image")
+            print("   ⚠️  --yes mode: continuing without product image")
 
     # Check Chrome CDP (Playwright approach — AppleScript is broken)
     from flow_operator import is_chrome_debug_running, ensure_chrome_ready
     if is_chrome_debug_running():
-        print(f"   ✅ Chrome CDP: running on port 9222")
+        print("   ✅ Chrome CDP: running on port 9222")
     else:
-        print(f"   ⚠️  Chrome not on port 9222 — launching now...")
+        print("   ⚠️  Chrome not on port 9222 — launching now...")
         ok = ensure_chrome_ready()
         if ok:
-            print(f"   ✅ Chrome launched on port 9222")
+            print("   ✅ Chrome launched on port 9222")
         else:
-            print(f"   ❌ Failed to launch Chrome on port 9222")
-            print(f"      Manual: /Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome")
-            print(f"        --remote-debugging-port=9222 --user-data-dir=/tmp/chrome_dbg_root")
-            print(f"        --profile-directory=Default https://labs.google/fx/tools/flow")
+            print("   ❌ Failed to launch Chrome on port 9222")
+            print("      Manual: /Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome")
+            print("        --remote-debugging-port=9222 --user-data-dir=/tmp/chrome_dbg_root")
+            print("        --profile-directory=Default https://labs.google/fx/tools/flow")
             if not args.yes:
                 input("   Fix Chrome then press Enter... ")
 
@@ -346,7 +346,7 @@ def run_agent(args) -> int:
     if use_frames:
         p = BASE_DIR / "assets" / plan.get("product_image", "product_main.jpg")
         prod_img_for_frames = p if p.exists() else None
-        print(f"   --frames mode: generate start+end images before each video")
+        print("   --frames mode: generate start+end images before each video")
         if prod_img_for_frames:
             print(f"   Reference image: {prod_img_for_frames.name}")
 
@@ -358,7 +358,7 @@ def run_agent(args) -> int:
     )
 
     # ── Phase 4: Save results ──
-    print(f"\n[Phase 4] Saving results...")
+    print("\n[Phase 4] Saving results...")
 
     plan_path.write_text(json.dumps(plan, indent=2, ensure_ascii=False))
 
@@ -383,7 +383,7 @@ def run_agent(args) -> int:
 
     # ── Phase 5: TTS + Post-production assembly ──
     if completed > 0:
-        print(f"\n[Phase 5] Running post-production (TTS + FFmpeg assembly)...")
+        print("\n[Phase 5] Running post-production (TTS + FFmpeg assembly)...")
         try:
             from post_producer import run_post_production
             final_video = run_post_production(plan)
@@ -392,12 +392,12 @@ def run_agent(args) -> int:
             print(f"\n  ⚠️  Post-production error: {e}")
             print(f"      Run manually: python3 post_producer.py --plan {plan_path}")
     else:
-        print(f"\n  ⚠️  No clips completed — skipping post-production")
-        print(f"      Run manually after generating clips:")
+        print("\n  ⚠️  No clips completed — skipping post-production")
+        print("      Run manually after generating clips:")
         print(f"      python3 post_producer.py --plan {plan_path}")
 
     print(f"\n{'='*50}")
-    print(f"🏁 FLOW AGENT COMPLETE")
+    print("🏁 FLOW AGENT COMPLETE")
     print(f"   Clips:   {completed}/{total} generated")
     print(f"   Clips:   {CLIPS_DIR}")
     print(f"   Report:  {report_path}")

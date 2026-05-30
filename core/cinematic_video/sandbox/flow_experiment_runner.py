@@ -24,7 +24,6 @@ from core.cinematic_video.sandbox.schemas import (
     ExperimentConfig,
     SandboxExperiment,
     ExtensionTrial,
-    _make_id,
     _now_iso,
 )
 from core.cinematic_video.sandbox.prompt_variation_engine import generate_variations
@@ -42,7 +41,6 @@ from core.cinematic_video.sandbox.generation_reviewer import (
 )
 from core.cinematic_video.sandbox.failed_generation_registry import (
     record_failure,
-    get_failure_statistics,
 )
 
 

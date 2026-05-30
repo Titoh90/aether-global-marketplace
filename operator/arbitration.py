@@ -20,7 +20,7 @@ Versión: 1.0
 from __future__ import annotations
 
 import logging
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Optional
 
 log = logging.getLogger("arbitration")
@@ -183,7 +183,8 @@ def _get_reliability(tool: str, db_path: Optional[str] = None) -> float:
     if db_path:
         try:
             # Import aquí para evitar circular imports
-            import sys, os
+            import sys
+            import os
             operator_root = os.path.dirname(os.path.abspath(__file__))
             if operator_root not in sys.path:
                 sys.path.insert(0, operator_root)
@@ -406,7 +407,8 @@ def _log_trace_safe(
 ):
     """Registra trace sin crashear aunque falle."""
     try:
-        import sys, os
+        import sys
+        import os
         operator_root = os.path.dirname(os.path.abspath(__file__))
         if operator_root not in sys.path:
             sys.path.insert(0, operator_root)

@@ -15,7 +15,6 @@ import json
 import subprocess
 import sys
 import datetime
-import tempfile
 from pathlib import Path
 
 BASE_DIR   = Path("/Volumes/OPENCLAW_STORAG 1/IMPERIO_ROOT/FLOW_DIRECTOR")
@@ -295,7 +294,7 @@ def assemble_final_video(plan: dict, clips_dir: Path, audio_dir: Path,
             str(output_path)
         ]
 
-    print(f"  [Assembly] Encoding final video with audio mix...")
+    print("  [Assembly] Encoding final video with audio mix...")
     result = subprocess.run(cmd, capture_output=True, text=True)
     if result.returncode != 0:
         print(f"  [Assembly] FFmpeg stderr:\n{result.stderr[-2000:]}")
@@ -357,7 +356,7 @@ def run_post_production(plan: dict, voice: str = "en-US-AriaNeural",
             scene["tts_path"] = None
 
     # ── Phase B: Assemble final video ──────────────────────────────────────
-    print(f"\n  [Phase B] Assembling final video...")
+    print("\n  [Phase B] Assembling final video...")
 
     final_path = assemble_final_video(
         plan=plan,
@@ -373,7 +372,7 @@ def run_post_production(plan: dict, voice: str = "en-US-AriaNeural",
     print(f"  [Revenue] Copied to: {revenue_copy}")
 
     print(f"\n{'='*50}")
-    print(f"✅ POST-PRODUCTION COMPLETE")
+    print("✅ POST-PRODUCTION COMPLETE")
     print(f"   Final video: {final_path}")
     print(f"   Revenue copy: {revenue_copy}")
 

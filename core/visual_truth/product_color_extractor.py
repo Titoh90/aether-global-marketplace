@@ -22,7 +22,6 @@ ZERO AI calls. ZERO writes to disk. Pure in-memory extraction.
 
 from __future__ import annotations
 
-import colorsys
 import datetime
 import sys
 import urllib.request
@@ -252,7 +251,8 @@ def _name_to_hex(name: str) -> Optional[str]:
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    import argparse, json
+    import argparse
+    import json
     parser = argparse.ArgumentParser()
     parser.add_argument("--url",     required=True, help="Image URL to analyze")
     parser.add_argument("--product", default="TEST", help="Product ID")

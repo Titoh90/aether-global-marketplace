@@ -32,7 +32,7 @@ import logging
 import sys
 import time
 from pathlib import Path
-from typing import Callable, Optional
+from typing import Callable
 
 # ─── Setup paths ──────────────────────────────────────────────────────────────
 OPERATOR_ROOT = Path(__file__).resolve().parent
@@ -247,7 +247,7 @@ def _build_executor_map(pipeline: str, action: str) -> dict[str, Callable]:
         def _youtube_wrapper(params: dict, task_id: str) -> dict:
             return _yt.post_video(params, task_id)
         executors["youtube_executor"] = _youtube_wrapper
-    except ImportError as e:
+    except ImportError:
         def _youtube_stub(params: dict, task_id: str) -> dict:
             return {"status": "failed", "error": f"youtube_executor import error: {e}"}
         executors["youtube_executor"] = _youtube_stub
@@ -258,7 +258,7 @@ def _build_executor_map(pipeline: str, action: str) -> dict[str, Callable]:
         def _facebook_wrapper(params: dict, task_id: str) -> dict:
             return _fb.post_reel(params, task_id)
         executors["facebook_executor"] = _facebook_wrapper
-    except ImportError as e:
+    except ImportError:
         def _facebook_stub(params: dict, task_id: str) -> dict:
             return {"status": "failed", "error": f"facebook_executor import error: {e}"}
         executors["facebook_executor"] = _facebook_stub
@@ -269,7 +269,7 @@ def _build_executor_map(pipeline: str, action: str) -> dict[str, Callable]:
         def _pinterest_wrapper(params: dict, task_id: str) -> dict:
             return _pin.create_pin(params, task_id)
         executors["pinterest_executor"] = _pinterest_wrapper
-    except ImportError as e:
+    except ImportError:
         def _pinterest_stub(params: dict, task_id: str) -> dict:
             return {"status": "failed", "error": f"pinterest_executor import error: {e}"}
         executors["pinterest_executor"] = _pinterest_stub
@@ -280,7 +280,7 @@ def _build_executor_map(pipeline: str, action: str) -> dict[str, Callable]:
         def _twitter_wrapper(params: dict, task_id: str) -> dict:
             return _tw.post_tweet(params, task_id)
         executors["twitter_executor"] = _twitter_wrapper
-    except ImportError as e:
+    except ImportError:
         def _twitter_stub(params: dict, task_id: str) -> dict:
             return {"status": "failed", "error": f"twitter_executor import error: {e}"}
         executors["twitter_executor"] = _twitter_stub

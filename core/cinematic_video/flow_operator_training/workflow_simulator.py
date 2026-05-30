@@ -17,7 +17,6 @@ from __future__ import annotations
 
 import time
 import uuid
-from typing import Optional
 
 from core.cinematic_video.flow_operator_training.schemas import (
     FlowAction,

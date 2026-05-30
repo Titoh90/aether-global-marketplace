@@ -20,7 +20,6 @@ import sys
 import json
 import subprocess
 import tempfile
-import shutil
 from pathlib import Path
 
 # Ensure local imports work
@@ -232,7 +231,7 @@ def run_test():
     print(f"  All mock clips ready in: {CLIPS_DIR}")
 
     # ── Step 3: Extract last frames ─────────────────────────────────────────
-    print(f"\n[Step 3] Extracting last frames from mock clips...")
+    print("\n[Step 3] Extracting last frames from mock clips...")
     try:
         extract_mock_last_frames(plan)
     except Exception as e:
@@ -240,7 +239,7 @@ def run_test():
         print("  Continuing — post-production does not require frames.")
 
     # ── Step 4: Post-production ─────────────────────────────────────────────
-    print(f"\n[Step 4] Running post_producer.run_post_production()...")
+    print("\n[Step 4] Running post_producer.run_post_production()...")
 
     from post_producer import run_post_production
 
@@ -259,7 +258,7 @@ def run_test():
         sys.exit(1)
 
     # ── Step 5: Verify output ───────────────────────────────────────────────
-    print(f"\n[Step 5] Verifying output...")
+    print("\n[Step 5] Verifying output...")
 
     if not final_path.exists():
         print(f"  ERROR: Final video not found at: {final_path}")
@@ -288,7 +287,7 @@ def run_test():
             pass
 
     print(f"\n{'='*60}")
-    print(f"✅ PIPELINE TEST RESULTS")
+    print("✅ PIPELINE TEST RESULTS")
     print(f"{'='*60}")
     print(f"  Output:     {final_path}")
     print(f"  Size:       {size_mb:.1f} MB")
@@ -307,7 +306,7 @@ def run_test():
     else:
         print(f"  Duration OK: {duration_s:.1f}s ≈ {expected_dur}s")
 
-    print(f"\n  Pipeline test PASSED. Final video ready.")
+    print("\n  Pipeline test PASSED. Final video ready.")
     print(f"  Path: {final_path}")
     return final_path
 

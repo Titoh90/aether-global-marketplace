@@ -16,7 +16,6 @@ from __future__ import annotations
 from core.cinematic_video.sandbox.schemas import (
     ExtensionTrial,
     _make_id,
-    _now_iso,
 )
 
 

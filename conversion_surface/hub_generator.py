@@ -7,7 +7,6 @@ rebuild_hub()  → str (path to index.html)
 from __future__ import annotations
 
 import json
-import os
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -15,7 +14,7 @@ from .schemas import SurfaceProduct, HubSurface
 from .ranking_engine import rank_products
 from .template_renderer import render_html
 from .static_site_builder import build_static_site, DEFAULT_OUT
-from .image_cache import get_image_ids, get_primary_image_url, warm_cache, hd_image_url
+from .image_cache import get_primary_image_url, warm_cache
 
 _CATEGORY_MAP = {
     "Beauty & Personal Care": "beauty",

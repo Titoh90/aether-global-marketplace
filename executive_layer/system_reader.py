@@ -20,7 +20,7 @@ from __future__ import annotations
 import json
 import os
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 
 IMPERIO_ROOT = Path("/Volumes/OPENCLAW_STORAG 1/IMPERIO_ROOT")
@@ -125,12 +125,12 @@ class SystemReader:
             for e in snap.recent_errors[:3]:
                 lines.append(f"  • {e[:80]}")
 
-        lines.append(f"\n── AI Spend ──")
+        lines.append("\n── AI Spend ──")
         lines.append(f"  ${snap.ai_spend_usd:.4f}" + (
             f" ({snap.ai_spend_pct:.0f}% de ${snap.ai_budget_usd:.2f})"
             if snap.ai_budget_usd > 0 else " (sin budget)"))
 
-        lines.append(f"\n── Affiliate ──")
+        lines.append("\n── Affiliate ──")
         lines.append(f"  Clicks: {snap.clicks_today}")
         lines.append(f"  Campañas activas: {snap.campaigns_active}")
         if snap.top_campaigns:
@@ -138,7 +138,7 @@ class SystemReader:
             for c in snap.top_campaigns[:3]:
                 lines.append(f"    {c['name'][:30]}: {c['posts']} posts")
 
-        lines.append(f"\n── Executors ──")
+        lines.append("\n── Executors ──")
         for ex, state in snap.executor_states.items():
             icon = {"CLOSED": "✅", "OPEN": "❌", "HALF_OPEN": "⚠️"}.get(state, "?")
             lines.append(f"  {icon} {ex}")
@@ -148,15 +148,15 @@ class SystemReader:
                 lines.append(f"  {plat}: {bar} {score}/100")
 
         if snap.quality_scores:
-            lines.append(f"\n── Quality Gate ──")
+            lines.append("\n── Quality Gate ──")
             for qs in snap.quality_scores[:3]:
                 lines.append(f"  score={qs.get('score', '?')} {qs.get('pass_fail', '?')}")
 
-        lines.append(f"\n── Engagement ──")
+        lines.append("\n── Engagement ──")
         lines.append(f"  Comments: {snap.comments_today} | Responses: {snap.responses_today}")
 
         if snap.trending_products:
-            lines.append(f"\n── Trending ──")
+            lines.append("\n── Trending ──")
             for t in snap.trending_products[:3]:
                 lines.append(f"  • {t[:50]}")
 
@@ -341,7 +341,7 @@ class SystemReader:
         eng_dir = IMPERIO_ROOT / "engagement_engine"
         if not eng_dir.exists():
             return 0
-        log_file = eng_dir / f"response_log.jsonl"
+        log_file = eng_dir / "response_log.jsonl"
         if not log_file.exists():
             return 0
         try:

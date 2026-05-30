@@ -35,9 +35,6 @@ IMPERIO_ROOT = Path("/Volumes/OPENCLAW_STORAG 1/IMPERIO_ROOT")
 sys.path.insert(0, str(IMPERIO_ROOT))
 
 from core.supervisor.supervisor_loop import HermesSupervisor
-from core.supervisor.anomaly_detector import detect_anomalies
-from core.events.event_bus import emit
-from core.events.event_types import EventType, Severity
 from executive_layer.planning_engine import PlanningEngine
 from executive_layer.llm_reasoning import reason
 from executive_layer.daily_executive_report import DailyExecutiveReport
@@ -269,8 +266,8 @@ class AutonomousLoop:
 
                 if product_list:
                     prompt = (
-                        f"De estos productos trending de Amazon, cuáles 3 tienen más potencial viral "
-                        f"para contenido de afiliado en Instagram/TikTok? Explica por qué en 1 línea cada uno:\n\n"
+                        "De estos productos trending de Amazon, cuáles 3 tienen más potencial viral "
+                        "para contenido de afiliado en Instagram/TikTok? Explica por qué en 1 línea cada uno:\n\n"
                         + "\n".join(product_list[:10])
                     )
                     recommendation = await reason(

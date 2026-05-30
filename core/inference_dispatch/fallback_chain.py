@@ -176,7 +176,6 @@ def complete_with_task_fallback(
     tier = get_freellmapi_tier(task_type)
     t0   = time.monotonic()
     try:
-        from core.llm.fallback_chain import ProviderExhaustedError
         result     = llm_complete(prompt=prompt, tier=tier, max_tokens=max_tokens, task_type=task_type)
         latency_ms = int((time.monotonic() - t0) * 1000)
         return InferenceResult(

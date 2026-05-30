@@ -7,7 +7,7 @@ All schemas are frozen=True — no runtime mutation.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 
 # ── Memory types ──────────────────────────────────────────────────────────────

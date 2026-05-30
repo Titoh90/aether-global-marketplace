@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from core.supervisor.anomaly_detector import Anomaly
-from core.supervisor.incident_classifier import Incident
 
 
 @dataclass(frozen=True)

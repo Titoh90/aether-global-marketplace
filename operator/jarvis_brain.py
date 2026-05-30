@@ -25,10 +25,9 @@ import json
 import logging
 import os
 import sqlite3
-import time
 import urllib.request
 import urllib.error
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 
 # ─── Rutas ────────────────────────────────────────────────────────────────────
@@ -539,7 +538,7 @@ def main():
         print("\n=== Daily Plan ===")
         print(json.dumps(plan, ensure_ascii=False, indent=2))
         if args.notify and "error" not in plan:
-            msg = f"📋 *Plan del día — JARVIS*\n\n"
+            msg = "📋 *Plan del día — JARVIS*\n\n"
             msg += f"🎯 {plan.get('objetivo_del_dia', 'Sin objetivo')}\n"
             msg += f"🔍 Productos: {', '.join(plan.get('productos_a_investigar', []))}\n"
             msg += f"🎬 Videos: {plan.get('videos_a_crear', 0)}\n"
