@@ -1,0 +1,46 @@
+[run]
+source =
+    core
+    operator
+    REVENUE
+    conversion_surface
+    executive_layer
+    interfaces
+    FLOW_DIRECTOR
+    engagement_engine
+    revenue_layer
+    platform_dispatch
+    editorial_engine
+    vendor
+    automation
+    BROWSER_OPERATOR
+    SRE
+    dashboards
+
+omit =
+    */tests/*
+    */test_*.py
+    APPLIO/*
+    FOOOCUS/*
+    STABLE_AUDIO/*
+    REAL_ESRGAN/*
+    PIXELLE_VIDEO/*
+    JCODE_RUNTIME/*
+    UI_TARS/*
+    DEERFLOW/*
+    .git/*
+    */__pycache__/*
+    */site-packages/*
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    raise AssertionError
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    if TYPE_CHECKING:
+    @(abc\.)?abstractmethod
+
+show_missing = True
+skip_covered = False
