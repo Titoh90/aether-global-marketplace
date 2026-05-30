@@ -45,7 +45,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements-ci.txt
+          pip install --only-binary :all: -r requirements-ci.txt
 
       - name: Lint with ruff
         if: matrix.python-version == '3.12' && matrix.os == 'ubuntu-latest'
