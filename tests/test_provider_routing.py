@@ -13,6 +13,8 @@ import time
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from core.llm.model_registry import get_models, VALID_TIERS
@@ -31,6 +33,19 @@ def _check(name: str, condition: bool, detail: str = "") -> None:
     else:
         _FAIL += 1
         print(f"  ❌ {name}" + (f" — {detail}" if detail else ""))
+
+
+@pytest.fixture(autouse=True)
+def _reset_provider_health() -> None:
+    """Clear global provider_health state before each test to prevent
+    cross-test contamination.  Without this, a test that marks a model
+    unhealthy (e.g. test_fallback_skip_unhealthy) can cause other tests
+    that mock complete() to fail — complete_with_fallback() checks
+    is_healthy() BEFORE calling complete(), so the mock never runs and
+    ProviderExhaustedError is raised immediately."""
+    from core.llm.provider_health import _state
+    _state.clear()
+    yield
 
 
 # ── model_registry ────────────────────────────────────────────────────────────
