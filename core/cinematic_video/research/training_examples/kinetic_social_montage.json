@@ -1,0 +1,19 @@
+{
+  "example_id": "kinetic_social_montage",
+  "category": "kinetic_montage",
+  "shot_count": 5,
+  "dominant_style": "tech_futuristic",
+  "camera_patterns": ["whip_pan", "push_in", "tracking_shot", "top_down_rotation", "zoom_transition"],
+  "pacing_pattern": "fast_kinetic",
+  "hook_structure": "Attention grab in 0.5s → rapid angle changes → product feature → CTA → loop",
+  "composition_notes": [
+    "Rapid cuts between angles — 1-2s per shot",
+    "Neon accent lighting on dark background",
+    "Whip pans and motion blur transitions",
+    "Product shown from multiple angles rapidly",
+    "Energy sustained throughout — no slow moments",
+    "Loop-friendly: end matches beginning for seamless replay",
+    "Optimized for TikTok/Reels vertical format"
+  ],
+  "source_type": "pattern_synthesis"
+}

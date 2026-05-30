@@ -1,0 +1,181 @@
+#!/usr/bin/env python3
+"""
+flow_ui_mapper.py — Google Flow UI element map.
+
+Documents buttons, panels, modes, and workflows in Flow's interface.
+Research-only: builds knowledge for future UI automation.
+
+RESEARCH-ONLY: No browser automation. Pure knowledge.
+"""
+
+from __future__ import annotations
+
+from core.cinematic_video.research.schemas import FlowUIElement
+
+
+_FLOW_UI: tuple[FlowUIElement, ...] = (
+    FlowUIElement(
+        element_id="text_to_video_tab",
+        name="Text-to-Video Tab",
+        ui_location="Top navigation bar > Text to Video",
+        function="Main entry point for text-prompt-based video generation. Contains prompt input, style selectors, and generate button.",
+        flow_mode="text_to_video",
+        risks=("Easy to waste credits on poorly structured prompts", "No undo after generation"),
+        best_practices=("Structure prompts: PRODUCT + CAMERA + LIGHTING + MOTION + ATMOSPHERE", "Keep under 200 chars"),
+    ),
+    FlowUIElement(
+        element_id="image_to_video_tab",
+        name="Image-to-Video Tab",
+        ui_location="Top navigation bar > Image to Video",
+        function="Upload reference image + text prompt for product-anchored video generation.",
+        flow_mode="image_to_video",
+        risks=("Low-quality reference = low-quality output", "Background in reference constrains generation"),
+        best_practices=("Use clean product-on-dark or product-on-white photos", "Match prompt lighting to image"),
+    ),
+    FlowUIElement(
+        element_id="prompt_input_field",
+        name="Prompt Input Field",
+        ui_location="Center panel > large text area",
+        function="Primary text prompt input. Supports up to ~500 characters. Earlier terms have more weight.",
+        flow_mode="text_to_video",
+        risks=("Long prompts dilute weighting", "No real-time prompt validation"),
+        best_practices=("Most important keywords FIRST", "Product + style before camera + details"),
+    ),
+    FlowUIElement(
+        element_id="generate_button",
+        name="Generate Button",
+        ui_location="Bottom right of prompt area",
+        function="Submits prompt and starts generation. Consumes 1 credit per press.",
+        flow_mode="text_to_video",
+        risks=("No confirmation dialog", "Credits consumed immediately"),
+        best_practices=("Verify prompt BEFORE clicking", "Check credit balance first"),
+    ),
+    FlowUIElement(
+        element_id="aspect_ratio_selector",
+        name="Aspect Ratio Selector",
+        ui_location="Right panel > Settings > Aspect Ratio",
+        function="Sets output aspect ratio: 1:1, 4:5, 9:16, 16:9.",
+        flow_mode="text_to_video",
+        risks=("Wrong ratio = wasted generation for target platform", "Some ratios crop content"),
+        best_practices=("9:16 for Reels/TikTok", "1:1 for feed posts", "Set BEFORE generating"),
+    ),
+    FlowUIElement(
+        element_id="motion_intensity_slider",
+        name="Motion Intensity Slider",
+        ui_location="Right panel > Camera > Motion Intensity",
+        function="Controls camera movement speed/intensity. May not be present in all Flow versions.",
+        flow_mode="text_to_video",
+        risks=("Slider behavior not well documented", "May conflict with prompt motion keywords"),
+        best_practices=("Match slider to prompt motion keyword", "Default to medium unless specific need"),
+    ),
+    FlowUIElement(
+        element_id="style_presets",
+        name="Style Presets",
+        ui_location="Right panel > Style",
+        function="Predefined visual style options: Cinematic, Realistic, Artistic, etc.",
+        flow_mode="text_to_video",
+        risks=("Presets override prompt style keywords", "Not all presets work for product ads"),
+        best_practices=("Use 'Cinematic' or 'Realistic' for product ads", "Avoid 'Artistic' for commercial content"),
+    ),
+    FlowUIElement(
+        element_id="extend_button",
+        name="Extend Button",
+        ui_location="Generated video preview > Extend",
+        function="Extends generated video by 2-4 additional seconds.",
+        flow_mode="extend_mode",
+        risks=("Each extension = 1 credit", "Drift increases with multiple extensions"),
+        best_practices=("Limit to 1-2 extensions", "Extend from stable frame"),
+    ),
+    FlowUIElement(
+        element_id="frame_export_button",
+        name="Frame Export Button",
+        ui_location="Generated video preview > Export Frame",
+        function="Exports current frame as still image. Critical for continuity workflows.",
+        flow_mode="text_to_video",
+        risks=("Export quality may be lower than original", "Motion blur frames export poorly"),
+        best_practices=("Export end frames for continuity", "Build frame library by product + style"),
+    ),
+    FlowUIElement(
+        element_id="scene_builder_panel",
+        name="Scene Builder Panel",
+        ui_location="Top navigation > Scene Builder (if available)",
+        function="Multi-scene video planning interface. Storyboard view with scene slots.",
+        flow_mode="scene_builder",
+        risks=("Not all Flow tiers include this", "Complex storyboards may fail"),
+        best_practices=("Plan storyboard completely BEFORE entering", "Keep scenes simple: 1 motion per scene"),
+    ),
+    FlowUIElement(
+        element_id="ingredients_panel",
+        name="Ingredients Panel",
+        ui_location="Side panel > Ingredients (if available)",
+        function="Upload multiple reference images as 'ingredients' for generation.",
+        flow_mode="ingredients_to_video",
+        risks=("Multiple ingredients increase generation time", "Conflicting ingredients = poor results"),
+        best_practices=("One product image + one style reference", "Keep ingredients consistent in tone"),
+    ),
+    FlowUIElement(
+        element_id="generation_history",
+        name="Generation History",
+        ui_location="Bottom panel or sidebar > History",
+        function="Shows past generations with prompts. Allows re-generation from history.",
+        flow_mode="text_to_video",
+        risks=("Old prompts may not work with updated models", "History may be limited"),
+        best_practices=("Document successful prompts externally", "Tag good generations for reuse"),
+    ),
+    FlowUIElement(
+        element_id="download_button",
+        name="Download Button",
+        ui_location="Generated video preview > Download",
+        function="Downloads generated video as MP4. Available after generation completes.",
+        flow_mode="text_to_video",
+        risks=("Download only after generation (no resume)", "File may be compressed"),
+        best_practices=("Download immediately after successful generation", "Back up to cloud/local storage"),
+    ),
+    FlowUIElement(
+        element_id="credit_display",
+        name="Credit Display",
+        ui_location="Top right > Credits remaining",
+        function="Shows remaining daily generation credits.",
+        flow_mode="text_to_video",
+        risks=("Does not show credit cost BEFORE generation", "Daily reset time may not be displayed"),
+        best_practices=("Check credits before every session", "Plan multi-clip projects around credit budget"),
+    ),
+)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Public API
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def get_all_elements() -> tuple[FlowUIElement, ...]:
+    """Return all documented UI elements."""
+    return _FLOW_UI
+
+
+def get_element(element_id: str) -> FlowUIElement | None:
+    """Look up a UI element by ID."""
+    for e in _FLOW_UI:
+        if e.element_id == element_id:
+            return e
+    return None
+
+
+def get_elements_by_mode(mode: str) -> tuple[FlowUIElement, ...]:
+    """Get UI elements for a specific Flow mode."""
+    return tuple(e for e in _FLOW_UI if e.flow_mode == mode)
+
+
+def ui_element_count() -> int:
+    return len(_FLOW_UI)
+
+
+def export_ui_map_json() -> str:
+    """Export the UI map as FLOW_UI_MAP.json formatted string."""
+    import json
+    elements = []
+    for e in _FLOW_UI:
+        d = e.to_dict()
+        d["risks"] = list(d["risks"])
+        d["best_practices"] = list(d["best_practices"])
+        elements.append(d)
+    return json.dumps({"flow_ui_elements": elements}, indent=2, ensure_ascii=False)

@@ -15,6 +15,8 @@ import sys
 from pathlib import Path
 from unittest.mock import patch
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from core.truth.truth_guard import normalize_product
@@ -32,6 +34,15 @@ def _check(name: str, condition: bool, detail: str = "") -> None:
     else:
         _FAIL += 1
         print(f"  ❌ {name}" + (f" — {detail}" if detail else ""))
+
+
+@pytest.fixture(autouse=True)
+def _reset_provider_health() -> None:
+    """Reset global provider health before each test to prevent
+    cross-test contamination from other modules (e.g. test_provider_routing)
+    that mark providers as unhealthy."""
+    from core.llm.provider_health import _state
+    _state.clear()
 
 
 _PRODUCT_RAW = {

@@ -1,0 +1,19 @@
+{
+  "example_id": "cinematic_beauty_soft_glamour",
+  "category": "cinematic_beauty",
+  "shot_count": 4,
+  "dominant_style": "luxury_dark",
+  "camera_patterns": ["macro_close_up", "orbit", "slow_reveal", "rack_focus"],
+  "pacing_pattern": "slow_dramatic",
+  "hook_structure": "Dewy macro texture → full product reveal → ingredient detail → lifestyle glow",
+  "composition_notes": [
+    "Extreme macro emphasizes texture and light refraction",
+    "Dewy/luminous surfaces with soft rim lighting",
+    "Golden hour warmth in lifestyle context shots",
+    "Glass and gold accents catch and scatter light",
+    "Rose petals or marble surfaces as elegant props",
+    "Shallow depth of field keeps focus on product",
+    "Soft focus background bokeh for premium feel"
+  ],
+  "source_type": "pattern_synthesis"
+}

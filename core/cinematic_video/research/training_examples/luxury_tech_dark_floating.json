@@ -1,0 +1,18 @@
+{
+  "example_id": "luxury_tech_dark_floating",
+  "category": "luxury_tech",
+  "shot_count": 3,
+  "dominant_style": "luxury_dark",
+  "camera_patterns": ["floating_object_orbit", "macro_close_up", "dolly_in"],
+  "pacing_pattern": "slow_dramatic",
+  "hook_structure": "Dark void reveal — product materializes from darkness with rim light",
+  "composition_notes": [
+    "Product centered in dark void — zero background distraction",
+    "Slow orbit reveals product from all angles",
+    "Macro detail of engineering/materials as second beat",
+    "CTA frame with centered logo + clean product",
+    "Rim light creates separation from dark background",
+    "No human elements — pure product focus"
+  ],
+  "source_type": "pattern_synthesis"
+}

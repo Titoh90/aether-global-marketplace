@@ -11,6 +11,8 @@ import sys
 from pathlib import Path
 from unittest.mock import patch
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from core.llm.openai_compat_client import ProviderError
@@ -32,6 +34,15 @@ def _check(name: str, condition: bool, detail: str = "") -> None:
 
 
 MSG = [{"role": "user", "content": "test"}]
+
+
+@pytest.fixture(autouse=True)
+def _reset_provider_health():
+    """Reset global provider health before each test to prevent
+    cross-test contamination from other modules (e.g. test_provider_routing)
+    that mark providers as unhealthy."""
+    from core.llm.provider_health import _state
+    _state.clear()
 
 
 def test_429_triggers_fallback() -> None:
@@ -99,10 +110,6 @@ def test_all_fail_exhausted() -> None:
 
 def test_health_marked_failed_after_error() -> None:
     print("\n[5] Failed model → marked unhealthy")
-    # Reset all FAST_CHEAP models before test (previous test may have dirtied health state)
-    from core.llm.model_registry import get_models
-    for m in get_models("FAST_CHEAP"):
-        provider_health.mark_healthy(m)
     models_used = []
 
     def _mock(model, messages, max_tokens, timeout):
@@ -124,10 +131,6 @@ def test_health_marked_failed_after_error() -> None:
 
 def test_prompt_preserved_across_retries() -> None:
     print("\n[6] Original prompt preserved in all retry attempts")
-    # Reset health
-    from core.llm.model_registry import get_models
-    for m in get_models("FAST_CHEAP"):
-        provider_health.mark_healthy(m)
     prompts_seen = []
     original = "my exact prompt content"
     calls = [0]

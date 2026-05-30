@@ -50,3 +50,18 @@ Movies/
 # Temp / cache
 *.plist
 aionui-config.txt
+
+# Model checkpoints (large binary files)
+*.ckpt
+*.pt
+*.safetensors
+*.sft
+
+# Secrets
+*.pem
+*.env
+
+# Runtime artifacts
+*.db
+tmp/
+checkpoints/

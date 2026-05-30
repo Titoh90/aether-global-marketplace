@@ -1,0 +1,82 @@
+{
+  "created_at": "2026-05-19T13:52:55.801269",
+  "product": "medicube Toner Pads Zero Pore Pad 2.0",
+  "asin": "B09V7Z4TJG",
+  "affiliate_url": "https://www.amazon.com/dp/B09V7Z4TJG?tag=aetherglobal-20",
+  "storyboard_image": "/Volumes/OPENCLAW_STORAG 1/IMPERIO_ROOT/FLOW_DIRECTOR/storyboards/storyboard_20260519_135255.png",
+  "scenes": [
+    {
+      "frame": 1,
+      "role": "INTRO",
+      "action": "Product package pristine on clean surface, studio lighting, dramatic shadow",
+      "prompt": "Clean tabletop under bright studio lights, MEDICUBE TONER PAD ZERO POROUS PALETTE on pristine surface, dramatic shadow highlights edges, product packaging is sleek and modern, zero-pore technology instantly visible."
+    },
+    {
+      "frame": 2,
+      "role": "UNBOX",
+      "action": "Hands opening product package, reveal moment",
+      "prompt": "Hands gently slide open the pristine, labeled packaging of medicube Toner Pads Zero Pore Pad 2.0, revealing a sleek, innovative pad set for smooth and flawless skin immediately."
+    },
+    {
+      "frame": 3,
+      "role": "DETAIL",
+      "action": "Close-up product container/packaging premium texture",
+      "prompt": "Close-up of premium texture detailing on the front of the Medicube Toner Pads Zero Pore Pad 2.0 package, showcasing its unique zero-pore technology for flawless skin in a luxurious, high-end design."
+    },
+    {
+      "frame": 4,
+      "role": "EXTRACT",
+      "action": "Single pad/product unit extracted, held between fingers",
+      "prompt": "A pale blue medicube Toner Pad Zero Pore Pad 2.0 extracted from its protective pouch, revealing the smooth zero-pore texture."
+    },
+    {
+      "frame": 5,
+      "role": "TEXTURE",
+      "action": "Extreme close-up of product surface texture and material",
+      "prompt": "Product Texture: Ultra-fine, matte finish, embossed pattern on white pad surface"
+    },
+    {
+      "frame": 6,
+      "role": "BEFORE",
+      "action": "Close-up of skin showing the problem the product solves",
+      "prompt": "Close-up of acne-prone skin, pores visibly clogged, revealing blackheads beneath a clear medicube Toner Pad Zero Pore Pad 2.0."
+    },
+    {
+      "frame": 7,
+      "role": "APPLY",
+      "action": "Applying product to skin, gentle motion, precise hands",
+      "prompt": "A hand gently applies the medicube Toner Pads Zero Pore Pad 2.0 to a skin surface in a gentle motion, capturing the product's ultra-thin pads for flawless results."
+    },
+    {
+      "frame": 8,
+      "role": "CONTACT",
+      "action": "Product touching skin, close-up of application point",
+      "prompt": "A single medicube Toner Pads Zero Pore Pad 2.0 in a pristine white package, ready to touch skin at the contact point."
+    },
+    {
+      "frame": 9,
+      "role": "REACTION",
+      "action": "Immediate skin response after application, glossy/dewy",
+      "prompt": "Toner pads cradle in hand, eyes widen as pores instantly vanish, revealing perfectly smooth skin under a dewy glow."
+    },
+    {
+      "frame": 10,
+      "role": "TRANSFORM",
+      "action": "Visible transformation of skin, before/after comparison",
+      "prompt": "\"Transform your skincare routine from imperfections to perfection with Medicube's Zero Pore Pad 2.0 - Transform skin today!\""
+    },
+    {
+      "frame": 11,
+      "role": "LIFESTYLE",
+      "action": "Person with glowing results, natural lifestyle setting",
+      "prompt": "Person standing in a lush garden surrounded by vibrant flowers, using medicube Toner Pads Zero Pore Pad 2.0 to reveal perfectly clear skin, enhancing natural beauty effortlessly."
+    },
+    {
+      "frame": 12,
+      "role": "HERO",
+      "action": "Final hero shot: product floating/floating, soft glow, clean background",
+      "prompt": "Hero stands in front of a sleek, minimalist bathroom wall. Their hand gently opens to reveal a floating, perfectly clean surface - the medicube Zero Pore Pad 2.0 product floating above them, illuminated by a soft glow from behind, symbolizing its ability to transform flawless skin."
+    }
+  ],
+  "video_ready": false
+}

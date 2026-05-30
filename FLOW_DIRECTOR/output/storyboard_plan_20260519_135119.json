@@ -1,0 +1,82 @@
+{
+  "created_at": "2026-05-19T13:51:19.700018",
+  "product": "medicube Toner Pads Zero Pore Pad 2.0",
+  "asin": "B09V7Z4TJG",
+  "affiliate_url": "https://www.amazon.com/dp/B09V7Z4TJG?tag=aetherglobal-20",
+  "storyboard_image": "/Volumes/OPENCLAW_STORAG 1/IMPERIO_ROOT/FLOW_DIRECTOR/storyboards/storyboard_20260519_134907.png",
+  "scenes": [
+    {
+      "frame": 1,
+      "role": "INTRO",
+      "action": "Product package pristine on clean surface, studio lighting, dramatic shadow",
+      "prompt": "Product package of medicube Toner Pads Zero Pore Pad 2.0 pristine on a clean surface, studio lighting casting dramatic shadows, emphasizing its sleek design and clarity."
+    },
+    {
+      "frame": 2,
+      "role": "UNBOX",
+      "action": "Hands opening product package, reveal moment",
+      "prompt": "Hands gently slide open the medicube Toner Pads Zero Pore Pad 2.0 package, revealing a sleek design in pristine white, showcasing zero pores for a clear complexion, ready to transform your skincare routine."
+    },
+    {
+      "frame": 3,
+      "role": "DETAIL",
+      "action": "Close-up product container/packaging premium texture",
+      "prompt": "Close-up of medicube Toner Pads Zero Pore Pad 2.0 packaging displaying sleek premium texture, logo subtly highlighted in background."
+    },
+    {
+      "frame": 4,
+      "role": "EXTRACT",
+      "action": "Single pad/product unit extracted, held between fingers",
+      "prompt": "**Product Package Image:**\n*Label Features:*\n- Medicube Logo\n- Product Name: *Medicube Toner Pads Zero Pore Pad 2.0*\n- Color Scheme: **Black and White with Medicube Green Text**\n- Packaging Design: Minimalist, Modern\n\n**Scene Description:**\nA single pad of **Medicube Toner Pads Zero Pore Pad 2.0** extracted from its packaging, held between two fingers, showcasing the sleek, matte finish with a hint of reflective shine that suggests it's designed to transform skin imperfections effectively without"
+    },
+    {
+      "frame": 5,
+      "role": "TEXTURE",
+      "action": "Extreme close-up of product surface texture and material",
+      "prompt": "Close-up of medicube Toner Pads Zero Pore Pad 2.0: ultra-fine texture, glassy smooth finish, vibrant green color, \"Zero Pores\" label evident"
+    },
+    {
+      "frame": 6,
+      "role": "BEFORE",
+      "action": "Close-up of skin showing the problem the product solves",
+      "prompt": "Close-up of skin revealing the initial imperfections under medicube Toner Pads Zero Pore Pad 2.0 pad, showing immediate improvement in pore clarity."
+    },
+    {
+      "frame": 7,
+      "role": "APPLY",
+      "action": "Applying product to skin, gentle motion, precise hands",
+      "prompt": "Gentle fingers glide over pristine Zero Pore Pads, ensuring flawless skin texture as routine skincare begins."
+    },
+    {
+      "frame": 8,
+      "role": "CONTACT",
+      "action": "Product touching skin, close-up of application point",
+      "prompt": "Product touches skin at delicate eye area, highlighting its ultra-thin zero pores technology."
+    },
+    {
+      "frame": 9,
+      "role": "REACTION",
+      "action": "Immediate skin response after application, glossy/dewy",
+      "prompt": "Transforming your skincare routine in an instant, revealing zero pores for flawless skin immediately upon application, leaving a glossy/dewy finish that lasts throughout the day."
+    },
+    {
+      "frame": 10,
+      "role": "TRANSFORM",
+      "action": "Visible transformation of skin, before/after comparison",
+      "prompt": "Transform from pores to perfection—reveal your radiant skin through medicube's Zero Pore Pad technology!"
+    },
+    {
+      "frame": 11,
+      "role": "LIFESTYLE",
+      "action": "Person with glowing results, natural lifestyle setting",
+      "prompt": "Glowing individual in a serene outdoor setting wearing a neutral outfit, hands gently smoothing medicube Toner Pads Zero Pore Pad 2.0 across their face, transforming skin flawlessly without pores."
+    },
+    {
+      "frame": 12,
+      "role": "HERO",
+      "action": "Final hero shot: product floating/floating, soft glow, clean background",
+      "prompt": "Hero stands in front of a mirror, holding the medicube Toner Pads Zero Pore Pad 2.0 bottle, its sleek design and soft glow illuminate as it floats effortlessly over the surface, enhancing the hero's flawless skin transformation."
+    }
+  ],
+  "video_ready": false
+}

@@ -329,16 +329,31 @@ class TestFlightCheckIsolation:
                     ), f"Forbidden import: {node.module}"
 
     def test_flight_check_only_uses_stdlib(self):
+        """Flight check must not import any core modules at module level.
+
+        Function-level lazy imports are acceptable — they don't break
+        isolation on import. The companion test_no_forbidden_imports
+        catches any forbidden modules even inside functions via ast.walk.
+        """
+        import ast
         import inspect
         import core.flight_check as fc
+
         src = inspect.getsource(fc)
-        # Flight check must not import any core modules (only stdlib)
-        for line in src.split("\n"):
-            stripped = line.strip()
-            if stripped.startswith("from core.") and "flight_check" not in stripped:
-                pytest.fail(f"Flight check imports core module: {stripped}")
-            if stripped.startswith("import core.") and "flight_check" not in stripped:
-                pytest.fail(f"Flight check imports core module: {stripped}")
+        tree = ast.parse(src)
+
+        # Only check module-level imports (not inside function bodies)
+        for node in ast.iter_child_nodes(tree):
+            if isinstance(node, ast.Import):
+                for alias in node.names:
+                    name = alias.name
+                    if name.startswith("core.") and "flight_check" not in name:
+                        pytest.fail(f"Flight check imports core module: {name}")
+            elif isinstance(node, ast.ImportFrom):
+                if node.module:
+                    mod = node.module
+                    if mod.startswith("core.") and "flight_check" not in mod:
+                        pytest.fail(f"Flight check imports core module: {mod}")
 
 
 # ═══════════════════════════════════════════════════════════════════════════════

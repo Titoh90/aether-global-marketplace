@@ -1,0 +1,19 @@
+{
+  "example_id": "warm_lifestyle_ecommerce",
+  "category": "warm_lifestyle",
+  "shot_count": 4,
+  "dominant_style": "warm_lifestyle",
+  "camera_patterns": ["handheld", "top_down_rotation", "dolly_out", "cinematic_pan"],
+  "pacing_pattern": "medium_commercial",
+  "hook_structure": "Human interaction → product detail → environment reveal → aspirational moment",
+  "composition_notes": [
+    "Natural window light — warm and inviting",
+    "Handheld camera for authentic, unscripted feel",
+    "Product in use — not sterile product photography",
+    "Golden hour or morning light as ambient",
+    "Context-rich environments: kitchens, living spaces",
+    "Human hands or partial human presence",
+    "Shallow depth of field on emotional moments"
+  ],
+  "source_type": "pattern_synthesis"
+}

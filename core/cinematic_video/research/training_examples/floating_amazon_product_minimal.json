@@ -1,0 +1,18 @@
+{
+  "example_id": "floating_amazon_product_minimal",
+  "category": "floating_product",
+  "shot_count": 3,
+  "dominant_style": "tech_futuristic",
+  "camera_patterns": ["floating_object_orbit", "push_in", "top_down_rotation"],
+  "pacing_pattern": "medium_commercial",
+  "hook_structure": "Product floating in void → feature callout → lifestyle context",
+  "composition_notes": [
+    "Clean white or dark void — no environment",
+    "Slow rotation reveals all angles efficiently",
+    "Feature callouts via push-in on key areas",
+    "Top-down flat lay for packaging/accessories",
+    "Clean Amazon-style product photography aesthetic",
+    "Maximum product clarity — no distracting elements"
+  ],
+  "source_type": "pattern_synthesis"
+}

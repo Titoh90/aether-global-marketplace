@@ -1,0 +1,19 @@
+{
+  "example_id": "apple_style_premium_tech",
+  "category": "premium_tech",
+  "shot_count": 4,
+  "dominant_style": "tech_futuristic",
+  "camera_patterns": ["floating_object_orbit", "macro_close_up", "crane_up", "cinematic_pan"],
+  "pacing_pattern": "medium_commercial",
+  "hook_structure": "Floating product in dark space → engineering detail → dramatic reveal → lifestyle integration",
+  "composition_notes": [
+    "Minimal dark background — Apple-style precision",
+    "Floating product with subtle shadow/reflection",
+    "Macro shots of materials: aluminum texture, glass edges",
+    "Slow, deliberate camera movements",
+    "Neon accent or soft rim light for depth",
+    "CTA frame: product centered + simple text overlay space",
+    "Transitions are clean dissolves or match cuts"
+  ],
+  "source_type": "pattern_synthesis"
+}

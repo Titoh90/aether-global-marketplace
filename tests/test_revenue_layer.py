@@ -17,7 +17,15 @@ import tempfile
 from pathlib import Path
 from unittest.mock import patch
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).parent.parent))
+
+
+@pytest.fixture
+def tmp_dir(tmp_path: Path) -> Path:
+    """Bridge pytest's tmp_path to the tmp_dir parameter expected by standalone test functions."""
+    return tmp_path
 
 _PASS = 0
 _FAIL = 0

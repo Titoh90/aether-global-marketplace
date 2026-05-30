@@ -1,0 +1,13 @@
+# IMPERIO pre-commit hooks
+# Install: cd IMPERIO_ROOT && pre-commit install
+# Run manually: pre-commit run --all-files
+repos:
+  - repo: local
+    hooks:
+      - id: pytest-full
+        name: Full test suite (pytest)
+        entry: bash run_tests.sh
+        language: system
+        pass_filenames: false
+        always_run: true
+        verbose: true
