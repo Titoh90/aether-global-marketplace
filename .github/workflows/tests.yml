@@ -13,15 +13,16 @@ permissions:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
 
     strategy:
       fail-fast: false
       matrix:
+        os: [ubuntu-latest, macos-latest]
         python-version: ["3.11", "3.12", "3.13"]
 
-    name: Python ${{ matrix.python-version }}
+    name: ${{ matrix.os }} · Python ${{ matrix.python-version }}
 
     steps:
       - name: Checkout repository
@@ -35,7 +36,7 @@ jobs:
       - name: Cache pip packages
         uses: actions/cache@v4
         with:
-          path: ~/.cache/pip
+          path: ${{ runner.os == 'macOS' && '~/Library/Caches/pip' || '~/.cache/pip' }}
           key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('.github/workflows/tests.yml') }}
           restore-keys: |
             ${{ runner.os }}-pip-${{ matrix.python-version }}-
@@ -46,7 +47,7 @@ jobs:
           pip install pytest pytest-cov ruff
 
       - name: Lint with ruff
-        if: matrix.python-version == '3.12'
+        if: matrix.python-version == '3.12' && matrix.os == 'ubuntu-latest'
         run: |
           ruff check \
             core/ operator/ REVENUE/ conversion_surface/ executive_layer/ \
@@ -70,6 +71,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-py${{ matrix.python-version }}
+          name: coverage-${{ matrix.os }}-py${{ matrix.python-version }}
           path: coverage.xml
           retention-days: 7
