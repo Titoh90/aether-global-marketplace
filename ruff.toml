@@ -1,0 +1,21 @@
+# Ruff config for IMPERIO_ROOT.
+# Ruff's default rule set (E, F, W) covers pycodestyle + pyflakes.
+# Run: ruff check          (lint only)
+#      ruff check --fix    (auto-fix safe issues)
+#      ruff format         (format code)
+
+target-version = "py311"
+
+exclude = [
+    "APPLIO",
+    "FOOOCUS",
+    "STABLE_AUDIO",
+    "REAL_ESRGAN",
+    "PIXELLE_VIDEO",
+    "JCODE_RUNTIME",
+    "UI_TARS",
+    "DEERFLOW",
+    "tests",
+    ".git",
+    "__pycache__",
+]

@@ -43,7 +43,16 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest pytest-cov
+          pip install pytest pytest-cov ruff
+
+      - name: Lint with ruff
+        if: matrix.python-version == '3.12'
+        run: |
+          ruff check \
+            core/ operator/ REVENUE/ conversion_surface/ executive_layer/ \
+            interfaces/ FLOW_DIRECTOR/ engagement_engine/ revenue_layer/ \
+            platform_dispatch/ editorial_engine/ vendor/ automation/ \
+            BROWSER_OPERATOR/ SRE/ dashboards/
 
       - name: Run test suite with coverage
         env:
