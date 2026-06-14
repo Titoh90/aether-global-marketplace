@@ -13,6 +13,8 @@ SANDBOX-ONLY: Never touches production pipeline.
 
 from __future__ import annotations
 
+import warnings
+
 from core.cinematic_video.sandbox.schemas import (
     ExtensionTrial,
     _make_id,
@@ -118,8 +120,13 @@ def run_extension_trial(
     """
     if not dry_run:
         # Real Flow extension testing requires browser automation —
-        # not yet implemented in sandbox. Return simulated results.
-        pass
+        # not yet implemented in sandbox. Falling back to simulated results.
+        warnings.warn(
+            "run_extension_trial(dry_run=False) is not yet implemented — "
+            "real Flow browser automation is unavailable. "
+            "Returning simulated results instead.",
+            stacklevel=2,
+        )
 
     results: list[ExtensionTrial] = []
 
