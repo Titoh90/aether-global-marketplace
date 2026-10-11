@@ -28,7 +28,7 @@ def render_html(surface: HubSurface) -> str:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aether Global — Premium Deals</title>
+  <title>Alexander Aether — Premium Deals</title>
   <meta name="description" content="Curated premium products with affiliate links. Quality you can trust.">
   <link rel="preconnect" href="https://m.media-amazon.com" crossorigin>
   <link rel="stylesheet" href="assets/styles.css">
@@ -37,10 +37,10 @@ def render_html(surface: HubSurface) -> str:
   <noscript><div style="text-align:center;padding:3rem 1rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"><p style="color:#9CA3AF;font-size:1rem">JavaScript is required to view our curated product deals.</p></div></noscript>
   <header class="site-header" id="site-header">
     <div class="header-inner">
-      <a href="#" class="brand" aria-label="Aether Global Home" onclick="App.reset();return false">
+      <a href="#" class="brand" aria-label="Alexander Aether Home" onclick="App.reset();return false">
         <span class="brand-icon">◆</span>
-        <span class="brand-text">AETHER</span>
-        <span class="brand-sub">GLOBAL</span>
+        <span class="brand-text">ALEXANDER</span>
+        <span class="brand-sub">AETHER</span>
       </a>
       <div class="header-right">
         <div class="search-box">
@@ -110,7 +110,7 @@ def render_html(surface: HubSurface) -> str:
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <p class="footer-brand">◆ AETHER GLOBAL</p>
+      <p class="footer-brand">◆ ALEXANDER AETHER</p>
       <p class="footer-disclaimer" data-i18n="footerDisclaimer">As an Amazon Associate we earn from qualifying purchases.</p>
       <p class="footer-updated"><span data-i18n="updated">Updated</span>: {_e(surface.generated_at[:16].replace('T', ' '))}</p>
     </div>
@@ -405,7 +405,7 @@ _TRANSLATIONS = {
 
 def _css() -> str:
     return """/* ═══════════════════════════════════════════════════════════
-   AETHER GLOBAL — Premium Affiliate Marketplace
+   ALEXANDER AETHER — Premium Affiliate Marketplace
    Design System: Light + Gold (#C9A84C)
    ═══════════════════════════════════════════════════════════ */
 
@@ -975,7 +975,7 @@ def _js() -> str:
 'use strict';
 
 /* ═══════════════════════════════════════════════════════════════════════
-   Aether Global Marketplace — Client App
+   Alexander Aether Marketplace — Client App
    Features: i18n, search, category filters,
    IntersectionObserver lazy loading, trust labels
    ═══════════════════════════════════════════════════════════════════════ */
